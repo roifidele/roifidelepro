@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - ROI FIDÈLE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #564FD8;
+            --secondary: #FF6584;
+            --dark: #2D3748;
+            --light-gray: #EDF2F7;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .contact-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .contact-header p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contact-method {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .method-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .method-details {
+            margin-bottom: 25px;
+        }
+        
+        .method-details p {
+            margin-bottom: 15px;
+        }
+        
+        .email-example {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        .whatsapp-btn, .email-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+        
+        .email-btn {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .whatsapp-btn:hover, .email-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1>Trouvons la solution à votre projet 🚀</h1>
+            <p>Vous avez une idée, un projet ou un problème à résoudre ? Écrivez-nous un message clair et précis, et nous revenons vers vous avec une proposition adaptée en moins de 24h.</p>
+        </div>
+        
+        <div class="contact-method">
+            <h2 class="method-title"><i class="fas fa-envelope"></i> 1️⃣ Par Email</h2>
+            <div class="method-details">
+                <p><strong>📧 contact@roifidele.com</strong></p>
+                <p><strong>Objet :</strong> [Type de projet – ex. Site e-commerce, Branding, Application]</p>
+                <p><strong>Message :</strong></p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>Présentez-vous en 1 phrase (Nom, entreprise, secteur)</li>
+                    <li>Décrivez brièvement votre projet ou votre problème</li>
+                    <li>Mentionnez votre budget ou votre délai idéal (facultatif, mais aide à aller plus vite)</li>
+                    <li>Ajoutez vos coordonnées (téléphone, WhatsApp)</li>
+                </ul>
+                
+                <div class="email-example">
+                    <p><strong>Objet :</strong> Création d'un site web pour startup</p>
+                    <p>Bonjour,<br>
+                    Je suis Junior, fondateur de StartAgro, une startup agricole.<br>
+                    Nous cherchons à lancer un site web moderne avec espace membre et paiement en ligne.<br>
+                    Notre budget se situe autour de 1 500 $ et nous aimerions démarrer ce mois-ci.<br>
+                    Voici mon WhatsApp pour échanger rapidement : +243 97 000 00 00<br>
+                    Merci,<br>
+                    Junior M.</p>
+                </div>
+            </div>
+            <a href="mailto:contact@roifidele.com" class="email-btn"><i class="fas fa-paper-plane"></i> Envoyer un email</a>
+        </div>
+        
+        <div class="contact-method">
+            <h2 class="method-title"><i class="fab fa-whatsapp"></i> 2️⃣ Par WhatsApp</h2>
+            <div class="method-details">
+                <p><strong>📱 +243 978 05 82 89</strong></p>
+                <p><strong>💬 Modèle de message :</strong></p>
+                <p>Bonjour ROI FIDELE,<br>
+                Je m'appelle [Votre prénom + Nom].<br>
+                Mon projet : [Description courte].<br>
+                Budget : [Montant ou intervalle].<br>
+                Délai souhaité : [Date ou délai].<br>
+                Voici mon email pour l'envoi de devis : [Votre email].</p>
+                
+                <p style="margin-top: 20px; font-style: italic; color: var(--primary);">
+                💡 Astuce : Plus votre message est clair, plus nous pourrons vous proposer une solution adaptée et rapide.
+                </p>
+            </div>
+            <a href="https://wa.me/243978058289" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Envoyer un message WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        // Script pour gérer les paramètres d'URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const service = urlParams.get('service');
+            
+            if (service) {
+                // Vous pourriez utiliser cette information pour personnaliser le contenu
+                console.log('Service demandé:', service);
+            }
+        });
+    </script>
+</body>
+</html>
