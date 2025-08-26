@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Vitrine Professionnel - ROI FIDÈLE</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #564FD8;
+            --secondary: #FF6584;
+            --dark: #2D3748;
+            --light-gray: #EDF2F7;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .bg-primary-custom {
+            background-color: var(--primary);
+        }
+        
+        .text-primary-custom {
+            color: var(--primary);
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--primary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+            color: white;
+        }
+        
+        .btn-secondary-custom {
+            background-color: var(--secondary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary-custom:hover {
+            background-color: #e04e6d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 101, 132, 0.2);
+            color: white;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+        
+        .process-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .launch-offer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .launch-offer:before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .launch-offer:after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(108, 99, 255, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="py-5" style="background: linear-gradient(135deg, #f9f9f9 0%, #EDF2F7 100%);">
+        <div class="container py-5">
+            <div class="row align-items-center py-5">
+                <div class="col-lg-6 mb-5 mb-lg-0 fade-in">
+                    <h1 class="display-4 fw-bold mb-4">Votre business mérite une vitrine digne des grandes entreprises.</h1>
+                    <p class="lead mb-5">Un site premium, moderne et professionnel, conçu pour inspirer confiance et attirer vos clients.</p>
+                    <a href="#contact" class="btn btn-primary-custom btn-lg px-5 py-3">Commencez votre projet</a>
+                </div>
+                <div class="col-lg-6 zoom-in">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Site vitrine professionnel" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valeur ajoutée Section -->
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center fw-bold section-title">Pourquoi choisir un site vitrine professionnel ?</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card card h-100 border-0 shadow-sm p-4">
+                        <div class="card-body text-center">
+                            <div class="bg-primary-custom rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                                <i class="fas fa-medal text-white fs-2"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Crédibilité immédiate</h5>
+                            <p class="card-text">Donnez une image professionnelle à votre entreprise et inspirez confiance à vos visiteurs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card card h-100 border-0 shadow-sm p-4">
+                        <div class="card-body text-center">
+                            <div class="bg-primary-custom rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                                <i class="fas fa-laptop-code text-white fs-2"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Design moderne & responsive</h5>
+                            <p class="card-text">Un site élégant qui s'adapte parfaitement à tous les écrans, du mobile au desktop.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card card h-100 border-0 shadow-sm p-4">
+                        <div class="card-body text-center">
+                            <div class="bg-primary-custom rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                                <i class="fas fa-globe text-white fs-2"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Visibilité 24h/24</h5>
+                            <p class="card-text">Votre entreprise est accessible à tout moment, où que se trouvent vos clients potentiels.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card card h-100 border-0 shadow-sm p-4">
+                        <div class="card-body text-center">
+                            <div class="bg-primary-custom rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                                <i class="fas fa-search text-white fs-2"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Optimisation SEO incluse</h5>
+                            <p class="card-text">Augmentez votre visibilité sur les moteurs de recherche et attirez plus de clients.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processus Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center fw-bold section-title">Un processus simple et efficace</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="process-step fade-in">
+                        <div class="process-number">1</div>
+                        <h4 class="fw-bold mb-3">On discute de vos besoins</h4>
+                        <p>Nous échangeons pour comprendre votre activité, vos objectifs et vos préférences afin de créer un site qui vous représente parfaitement.</p>
+                    </div>
+                    <div class="process-step fade-in">
+                        <div class="process-number">2</div>
+                        <h4 class="fw-bold mb-3">On conçoit votre site premium</h4>
+                        <p>Notre équipe de designers et développeurs crée votre site vitrine sur-mesure avec les technologies les plus modernes.</p>
+                    </div>
+                    <div class="process-step fade-in">
+                        <div class="process-number">3</div>
+                        <h4 class="fw-bold mb-3">Vous êtes en ligne et prêt à convaincre</h4>
+                        <p>Votre site est livré, formé et déployé. Vous pouvez désormais accueillir vos visiteurs avec une vitrine professionnelle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offre de lancement Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="launch-offer text-white text-center p-5">
+                <h2 class="fw-bold mb-4">OFFRE DE LANCEMENT</h2>
+                <p class="fs-3 mb-4">-30% pour les 5 premiers clients ce mois-ci !</p>
+                <p class="mb-5">Ne manquez pas cette opportunité d'obtenir un site vitrine professionnel à un prix exceptionnel.</p>
+                <a href="#contact" class="btn btn-secondary-custom btn-lg px-5 py-3">Profitez de l'offre maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center fw-bold section-title">Prêt à démarrer votre projet ?</h2>
+            <p class="text-center mb-5">Remplissez le formulaire ci-dessous et nous vous contacterons dans les plus brefs délais.</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="contactForm" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Nom complet</label>
+                                <input type="text" class="form-control form-control-lg" id="name" required>
+                                <div class="invalid-feedback">
+                                    Veuillez entrer votre nom.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Adresse e-mail</label>
+                                <input type="email" class="form-control form-control-lg" id="email" required>
+                                <div class="invalid-feedback">
+                                    Veuillez entrer une adresse e-mail valide.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="whatsapp" class="form-label">Numéro WhatsApp</label>
+                                <input type="tel" class="form-control form-control-lg" id="whatsapp" required>
+                                <div class="invalid-feedback">
+                                    Veuillez entrer votre numéro WhatsApp.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="company" class="form-label">Entreprise (optionnel)</label>
+                                <input type="text" class="form-control form-control-lg" id="company">
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control form-control-lg" id="message" rows="5" required></textarea>
+                                <div class="invalid-feedback">
+                                    Veuillez entrer votre message.
+                                </div>
+                            </div>
+                            <div class="col-12 text-center mt-4">
+                                <button type="submit" class="btn btn-primary-custom btn-lg px-5 py-3">Obtenez votre site vitrine</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="fw-bold mb-4">ROI FIDÈLE</h5>
+                    <p>Nous créons des sites vitrine professionnels qui transforment votre présence en ligne et boostent votre crédibilité.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="fw-bold mb-4">Coordonnées</h5>
+                    <p><i class="fas fa-phone-alt me-2"></i> +243 978 05 82 89</p>
+                    <p><i class="fas fa-envelope me-2"></i> contact@roifidele.com</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-4">Suivez-nous</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white fs-5"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 ROI FIDÈLE. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation au défilement
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const zoomElements = document.querySelectorAll('.zoom-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(el => observer.observe(el));
+            zoomElements.forEach(el => observer.observe(el));
+            
+            // Validation du formulaire
+            const form = document.getElementById('contactForm');
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                if (!form.checkValidity()) {
+                    event.stopPropagation();
+                    form.classList.add('was-validated');
+                } else {
+                    // Récupérer les valeurs du formulaire
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const whatsapp = document.getElementById('whatsapp').value;
+                    const company = document.getElementById('company').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Créer le message pour WhatsApp
+                    const whatsappMessage = `Bonjour ROI FIDÈLE,%0A%0AJe m'appelle ${name}.%0AEntreprise: ${company || 'Non spécifié'}%0AEmail: ${email}%0A%0AMon projet: ${message}%0A%0AMerci de me recontacter pour discuter de mon projet de site vitrine.`;
+                    
+                    // Rediriger vers WhatsApp
+                    window.open(`https://wa.me/243978058289?text=${whatsappMessage}`, '_blank');
+                    
+                    // Réinitialiser le formulaire
+                    form.reset();
+                    form.classList.remove('was-validated');
+                }
+            }, false);
+        });
+    </script>
+</body>
