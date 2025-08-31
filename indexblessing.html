@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blessing Kasasi - Activiste des droits humains</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="stylesblessing.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <span class="fw-bold">Blessing Kasasi</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about" @click="smoothScroll">À propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#causes" @click="smoothScroll">Causes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#achievements" @click="smoothScroll">Distinctions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery" @click="smoothScroll">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact" @click="smoothScroll">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Hero Section -->
+        <section class="hero d-flex align-items-center">
+            <div class="container text-center text-white">
+                <h1 class="display-3 fw-bold mb-3">Blessing Kasasi Lebeka</h1>
+                <p class="lead mb-4">Activiste des droits humains en République Démocratique du Congo</p>
+                <a href="#about" class="btn btn-women btn-lg" @click="smoothScroll">Découvrir son histoire</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Qui est Blessing Kasasi ?</h2>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <p class="lead">
+                            Blessing Kasasi Lebeka est une activiste des droits humains en République Démocratique du Congo, engagée dès son adolescence pour la promotion des droits des filles, des femmes, des enfants, ainsi que des personnes vivant avec l'albinisme.
+                        </p>
+                        <p>
+                            À seulement 13 ans, elle a commencé à militer pour les droits des enfants, en particulier pour l'accès à l'éducation et le leadership des jeunes filles en RDC. Elle était élève en humanités littéraires au lycée Tobongisa, à Kinshasa.
+                        </p>
+                        <p>
+                            En décembre 2023, elle a été élue présidente du comité scolaire des élèves de son lycée. Elle y avait promis de promouvoir les valeurs morales, le respect du règlement intérieur et une amélioration de la qualité de l'enseignement.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card shadow">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-hands-helping fa-4x mb-3 text-women"></i>
+                                <h3>Initiatives</h3>
+                                <p>Elle est l'initiatrice du mouvement <strong>Akhetu-A-Ndando</strong> ("femme de valeurs" en langue pénde) et a organisé des actions de sensibilisation, notamment une matinée autour de l'hygiène menstruelle pour informer et distribuer des kits aux jeunes filles.</p>
+                                <a href="https://www.youtube.com/channel/UCexample" target="_blank" class="btn btn-outline-women mt-2">
+                                    <i class="fab fa-youtube me-2"></i>Blessing KBL TV
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="card bg-light border-0">
+                            <div class="card-body p-4">
+                                <h4 class="text-center mb-3">Lutte contre la désinformation</h4>
+                                <p class="text-center mb-0">
+                                    En juillet 2023, Blessing, alors âgée de 15 ans, a participé à Kinshasa à une formation de la MONUSCO sur la production de contenus numériques visant à lutter contre la désinformation sur les réseaux sociaux.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Causes Section -->
+        <section id="causes" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Ses causes phares</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm cause-card albinism-card" @mouseover="hoverEffect('albinisme')" @mouseleave="resetEffect('albinisme')">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-eye fa-3x text-albinism"></i>
+                                </div>
+                                <h3 class="card-title text-center">Défense des personnes atteintes d'albinisme</h3>
+                                <p class="card-text">
+                                    À l'occasion de la Journée internationale de sensibilisation à l'albinisme (13 juin), elle a adressé un message fort mettant en lumière les discriminations, les difficultés d'accès à l'éducation et les limitations visuelles que rencontrent les personnes atteintes d'albinisme.
+                                </p>
+                                <p :class="{'highlight-text-albinism': activeEffect === 'albinisme'}">
+                                    Elle a encouragé ces personnes à valoriser leurs talents et à ne pas se laisser abattre. En juin 2023, elle avait réclamé du gouvernement l'accès à des produits dermatologiques à bas prix, essentiels pour leur protection.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm cause-card women-card" @mouseover="hoverEffect('femmes')" @mouseleave="resetEffect('femmes')">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-female fa-3x text-women"></i>
+                                </div>
+                                <h3 class="card-title text-center">Encouragement des filles et des jeunes femmes</h3>
+                                <p class="card-text">
+                                    Le 11 octobre 2023, à l'occasion de la Journée internationale de la fille, elle a invité les filles à développer leur voir, leur juger et leur agir, pour être actrices d'un changement positif dans la société.
+                                </p>
+                                <p :class="{'highlight-text-women': activeEffect === 'femmes'}">
+                                    Elle a souligné que la liberté d'esprit doit précéder toute autonomie ou entrepreneuriat. Son engagement vise à créer une génération de femmes fortes, indépendantes et capables de transformer leur communauté.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Ses distinctions marquantes</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4" v-for="(achievement, index) in achievements" :key="index">
+                        <div class="card h-100 shadow achievement-card" :class="[achievement.type, {'active': activeAchievement === index}]" @click="toggleAchievement(index)">
+                            <div class="card-body text-center">
+                                <i class="fas fa-trophy fa-3x mb-3" :class="achievement.iconColor"></i>
+                                <h4 class="card-title">{{ achievement.title }}</h4>
+                                <p class="card-text" v-if="activeAchievement !== index">{{ achievement.shortDesc }}</p>
+                                <div v-if="activeAchievement === index">
+                                    <p class="card-text">{{ achievement.fullDesc }}</p>
+                                    <p class="text-muted"><small>{{ achievement.year }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="py-5 children-section text-white">
+            <div class="container">
+                <h2 class="text-center mb-5">En résumé</h2>
+                <div class="table-responsive">
+                    <table class="table table-borderless text-white">
+                        <thead>
+                            <tr>
+                                <th scope="col">Champ d'action</th>
+                                <th scope="col">Initiatives</th>
+                                <th scope="col">Reconnaissance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Droits des filles, des femmes, des enfants, des personnes vivant avec l'albinisme, et lutte contre la désinformation.</td>
+                                <td>Sensibilisation scolaire, campagne YouTube, distributions de kits hygiène, formations numériques.</td>
+                                <td>Prix national (Julienne Lusenge), liste des 100 jeunes influents, nomination aux "50 Femmes qui inspirent".</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Galerie</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4" v-for="(image, index) in galleryImages" :key="index">
+                        <div class="card gallery-card shadow-sm" :class="image.type">
+                            <div class="gallery-image-placeholder" :class="image.type">
+                                <i class="fas fa-image fa-5x"></i>
+                                <p class="mt-2">Image {{ index + 1 }}</p>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text text-center">{{ image.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 section-title">Contact</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow">
+                            <div class="card-body p-4">
+                                <form @submit.prevent="submitForm">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nom</label>
+                                        <input type="text" class="form-control" id="name" v-model="contactForm.name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" v-model="contactForm.email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea class="form-control" id="message" rows="5" v-model="contactForm.message" required></textarea>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-women btn-lg">Envoyer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">&copy; 2023 Blessing Kasasi. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to Top Button -->
+        <button v-if="showScrollTop" @click="scrollToTop" class="btn btn-women scroll-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Custom JS -->
+    <script src="interblessing.js"></script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+:root {
+    /* Couleurs thématiques pour les causes de Blessing */
+    --color-women: #9c27b0;       /* Violet pour les droits des femmes */
+    --color-albinism: #ff9800;    /* Orange pour l'albinisme */
+    --color-children: #4caf50;    /* Vert pour les droits des enfants */
+    --color-education: #2196f3;   /* Bleu pour l'éducation */
+    --color-desinformation: #f44336; /* Rouge pour la lutte contre la désinformation */
+    
+    --dark-color: #2e3a59;
+    --light-color: #f8f9fc;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    padding-top: 76px; /* For fixed navbar */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+.section-title {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--color-women);
+}
+
+/* Navigation */
+.navbar {
+    background-color: rgba(46, 58, 89, 0.95);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: var(--dark-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(156, 39, 176, 0.7), rgba(76, 175, 80, 0.7)), url('blessing01.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    min-height: 500px;
+}
+
+/* Boutons thématiques */
+.btn-women {
+    background-color: var(--color-women);
+    border-color: var(--color-women);
+    color: white;
+}
+
+.btn-women:hover {
+    background-color: #7b1fa2;
+    border-color: #7b1fa2;
+    color: white;
+}
+
+.btn-outline-women {
+    color: var(--color-women);
+    border-color: var(--color-women);
+}
+
+.btn-outline-women:hover {
+    background-color: var(--color-women);
+    color: white;
+}
+
+.btn-albinism {
+    background-color: var(--color-albinism);
+    border-color: var(--color-albinism);
+    color: white;
+}
+
+.btn-albinism:hover {
+    background-color: #ef6c00;
+    border-color: #ef6c00;
+    color: white;
+}
+
+.btn-children {
+    background-color: var(--color-children);
+    border-color: var(--color-children);
+    color: white;
+}
+
+.btn-children:hover {
+    background-color: #388e3c;
+    border-color: #388e3c;
+    color: white;
+}
+
+/* Couleurs de texte */
+.text-women {
+    color: var(--color-women) !important;
+}
+
+.text-albinism {
+    color: var(--color-albinism) !important;
+}
+
+.text-children {
+    color: var(--color-children) !important;
+}
+
+.text-education {
+    color: var(--color-education) !important;
+}
+
+.text-desinformation {
+    color: var(--color-desinformation) !important;
+}
+
+/* Cartes thématiques */
+.women-card {
+    border-top: 4px solid var(--color-women);
+}
+
+.albinism-card {
+    border-top: 4px solid var(--color-albinism);
+}
+
+.children-card {
+    border-top: 4px solid var(--color-children);
+}
+
+.education-card {
+    border-top: 4px solid var(--color-education);
+}
+
+.desinformation-card {
+    border-top: 4px solid var(--color-desinformation);
+}
+
+/* Sections thématiques */
+.women-section {
+    background-color: var(--color-women);
+}
+
+.albinism-section {
+    background-color: var(--color-albinism);
+}
+
+.children-section {
+    background-color: var(--color-children);
+}
+
+.education-section {
+    background-color: var(--color-education);
+}
+
+.desinformation-section {
+    background-color: var(--color-desinformation);
+}
+
+/* Cartes */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.cause-card, .achievement-card {
+    cursor: pointer;
+}
+
+.achievement-card.active {
+    border: 2px solid;
+}
+
+.women.active {
+    border-color: var(--color-women);
+}
+
+.albinism.active {
+    border-color: var(--color-albinism);
+}
+
+.children.active {
+    border-color: var(--color-children);
+}
+
+/* Gallery */
+.gallery-card {
+    overflow: hidden;
+}
+
+.gallery-image-placeholder {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.gallery-image-placeholder.women {
+    background-color: var(--color-women);
+}
+
+.gallery-image-placeholder.albinism {
+    background-color: var(--color-albinism);
+}
+
+.gallery-image-placeholder.children {
+    background-color: var(--color-children);
+}
+
+.gallery-image-placeholder.education {
+    background-color: var(--color-education);
+}
+
+.gallery-image-placeholder.desinformation {
+    background-color: var(--color-desinformation);
+}
+
+/* Table */
+.table th {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Effets de survol */
+.highlight-text-women {
+    background-color: rgba(156, 39, 176, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.highlight-text-albinism {
+    background-color: rgba(255, 152, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.highlight-text-children {
+    background-color: rgba(76, 175, 80, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Scroll to top button */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-top:hover {
+    opacity: 1;
+}
+
+/* Animation classes */
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title::after {
+        width: 60px;
+    }
+    
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 66px;
+    }
+    
+    .hero {
+        height: 80vh;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p.lead {
+        font-size: 1rem;
+    }
+}
