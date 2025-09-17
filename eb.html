@@ -408,4 +408,118 @@ Dans Piégée par le passé, il nous entraîne dans un univers de choix difficil
     </section>
 
     <!-- Community Section -->
-    <section id="communaute" class="py-16 md:py
+    <section id="communaute" class="py-16 md:py-24 bg-bosembo-blue text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">Bosembo Leadership Community</h2>
+                <p class="text-xl mb-10">
+                    Rejoignez une communauté dynamique de leaders passionnés par le développement de l'Afrique et de sa diaspora. Échangez, collaborez et grandissez ensemble.
+                </p>
+                <a href="#contact" class="inline-block bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300">
+                    En savoir plus
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-bosembo-blue mb-12">Contactez-nous</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
+                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-gray-700 mb-2">Adresse email</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-gray-700 mb-2">Message</label>
+                        <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-bosembo-blue hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                        Envoyer le message
+                    </button>
+                </form>
+                
+                <div class="mt-12 flex justify-center space-x-6">
+                    <a href="#" class="text-bosembo-blue hover:text-blue-800 text-2xl">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-bosembo-blue hover:text-blue-800 text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-bosembo-blue hover:text-blue-800 text-2xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start">
+                        <img src="favicon.jpg" alt="Logo Torche" class="logo-torche mr-2 h-10 w-auto">
+                        <span class="text-xl font-bold text-bosembo-gold">Éditions Bosembo</span>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-bosembo-gold">© 2025 Éditions Bosembo. Tous droits réservés.</p>
+                    <p class="text-gray-400 mt-2">
+                        <a href="#" class="hover:text-bosembo-gold transition duration-300">Mentions légales</a> | 
+                        <a href="#" class="hover:text-bosembo-gold transition duration-300">Politique de confidentialité</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
