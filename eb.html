@@ -85,6 +85,79 @@
         .nav-link:hover::after {
             width: 100%;
         }
+        
+        /* Style spécifique pour la section concours */
+        .writing-contest {
+            background: linear-gradient(135deg, #0057B7 0%, #003a78 100%);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 87, 183, 0.2);
+            overflow: hidden;
+        }
+        
+        .contest-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #F6BD1F;
+        }
+        
+        .contest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contest-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .contest-timeline::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #F6BD1F;
+        }
+        
+        .contest-timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .contest-timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #0057B7;
+            border: 3px solid #F6BD1F;
+        }
+        
+        .prize-card {
+            background: linear-gradient(135deg, #F6BD1F 0%, #E76F51 100%);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .prize-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(246, 189, 31, 0.3);
+        }
+        
+        .floating-pen {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -92,7 +165,7 @@
     <nav class="fixed w-full bg-white shadow-md z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
-                <div class="logo-torche mr-2"></div>
+                <img src="favicon.jpg" alt="Logo Torche" class="logo-torche mr-2 h-10 w-auto">
                 <span class="text-xl font-bold text-bosembo-blue">Éditions Bosembo</span>
             </div>
             
@@ -126,7 +199,7 @@
     <!-- Hero Section -->
     <section id="accueil" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-bosembo-blue to-blue-800 text-white">
         <div class="container mx-auto px-4 flex flex-col items-center">
-            <div class="logo-torche mb-6" style="transform: scale(2);"></div>
+            <img src="favicon.jpg" alt="Logo Torche" class="logo-torche mr-2 h-10 w-auto">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6">Éditions Bosembo</h1>
             <p class="text-xl md:text-2xl text-bosembo-gold font-semibold text-center mb-10">« Lire. Grandir. Inspirer. »</p>
             
@@ -140,7 +213,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- About Section -->
     <section id="about" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4">
@@ -157,6 +230,125 @@
             </div>
         </div>
     </section>
+    
+    <!-- Writing Contest Section -->
+    <section id="concours" class="py-16 md:py-24 bg-gradient-to-b from-gray-100 to-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-bosembo-blue mb-4">Concours d'Écriture</h2>
+            <p class="text-xl text-center text-bosembo-terracotta mb-12">À la manière de Wattpad, partagez votre talent avec la communauté</p>
+            
+            <div class="writing-contest p-6 md:p-8 mb-16">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-8 md:mb-0 md:pr-8">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Notre Grand Concours d'Écriture</h3>
+                        <p class="text-white text-lg mb-6">
+                            Les Éditions Bosembo lancent un concours d'écriture ouvert à tous les talents émergents. Envoyez-nous vos premiers chapitres ou ouvrages complets et tentez de remporter un accompagnement personnalisé pour publier votre œuvre.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#contact" class="bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-3 px-6 rounded-full transition duration-300">
+                                Participer maintenant
+                            </a>
+                            <a href="#" class="bg-transparent hover:bg-blue-800 border-2 border-white text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                                Voir les règles
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="floating-pen bg-bosembo-gold p-6 rounded-full w-32 h-32 flex items-center justify-center">
+                            <i class="fas fa-pen-nib text-white text-5xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="contest-card p-6">
+                    <div class="text-bosembo-blue text-4xl mb-4">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-bosembo-blue mb-3">Les Récompenses</h3>
+                    <p class="text-gray-600">Mentorat personnalisé, publication de votre ebook et accompagnement complet pour lancer votre carrière d'auteur.</p>
+                </div>
+                
+                <div class="contest-card p-6">
+                    <div class="text-bosembo-blue text-4xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-bosembo-blue mb-3">Pour Qui ?</h3>
+                    <p class="text-gray-600">Le concours est ouvert à tous les passionnés d'écriture, sans restriction d'âge ou d'expérience préalable.</p>
+                </div>
+                
+                <div class="contest-card p-6">
+                    <div class="text-bosembo-blue text-4xl mb-4">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-bosembo-blue mb-3">Thématiques</h3>
+                    <p class="text-gray-600">Leadership, développement personnel, entrepreneuriat, relations humaines, éveil spirituel et histoires inspirantes.</p>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-center text-bosembo-blue mb-8">Calendrier du Concours</h3>
+            
+            <div class="contest-timeline max-w-2xl mx-auto mb-16">
+                <div class="contest-timeline-item">
+                    <h4 class="text-xl font-bold text-bosembo-blue">1. Ouverture des soumissions</h4>
+                    <p class="text-bosembo-terracotta font-semibold">15 Septembre 2025</p>
+                    <p class="text-gray-600">Début de la période d'envoi des manuscrits.</p>
+                </div>
+                
+                <div class="contest-timeline-item">
+                    <h4 class="text-xl font-bold text-bosembo-blue">2. Clôture des inscriptions</h4>
+                    <p class="text-bosembo-terracotta font-semibold">30 Novembre 2025</p>
+                    <p class="text-gray-600">Dernier jour pour envoyer votre participation.</p>
+                </div>
+                
+                <div class="contest-timeline-item">
+                    <h4 class="text-xl font-bold text-bosembo-blue">3. Annonce des finalistes</h4>
+                    <p class="text-bosembo-terracotta font-semibold">15 Janvier 2026</p>
+                    <p class="text-gray-600">Publication de la liste des finalistes sur notre site.</p>
+                </div>
+                
+                <div class="contest-timeline-item">
+                    <h4 class="text-xl font-bold text-bosembo-blue">4. Cérémonie de remise des prix</h4>
+                    <p class="text-bosembo-terracotta font-semibold">28 Février 2026</p>
+                    <p class="text-gray-600">Annonce des gagnants et début de l'accompagnement.</p>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-center text-bosembo-blue mb-8">Les Lots à Gagner</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="prize-card p-8 text-white">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Premier Prix</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Contrat d'édition avec les Éditions Bosembo</li>
+                        <li>Mentorat personnalisé de 6 mois</li>
+                        <li>Publication en format ebook et papier</li>
+                        <li>Campagne de promotion sur nos réseaux</li>
+                        <li>Prime de 1000€</li>
+                    </ul>
+                </div>
+                
+                <div class="prize-card p-8 text-white">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Deuxième Prix</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Contrat d'édition numérique</li>
+                        <li>Mentorat de 3 mois</li>
+                        <li>Publication en format ebook</li>
+                        <li>Promotion sur nos plateformes</li>
+                        <li>Prime de 500€</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Publications Section -->
     <section id="publications" class="py-16 md:py-24 bg-gray-100">
@@ -166,12 +358,14 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Book 1 -->
                 <div class="book-card bg-white rounded-lg overflow-hidden shadow-md">
-                    <div class="h-48 bg-bosembo-blue flex items-center justify-center">
-                        <span class="text-white text-5xl"><i class="fas fa-book"></i></span>
+                    <div class="h-100 bg-bosembo-blue flex items-center justify-center">
+                        <img src="vaf1.jpg" alt="Couverture du livre" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">Leadership Africain</h3>
-                        <p class="text-gray-600 mb-4">Découvrez les principes du leadership inspirés des sagesses africaines et comment les appliquer dans le monde moderne.</p>
+                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">LA VIE APRES LA FAC</h3>
+                        <p class="text-gray-600 mb-4">Maître Nathan Banze Mukuta est avocat au barreau près la Cour d’appel de Kinshasa/Matete, avocat de la République, arbitre, jeune écrivain, analyste politique et activiste congolais, né à Lubumbashi, dans le Grand Katanga. Il a effectué ses études supérieures en droit à l’Université Protestante au Congo, qui lui ont permis d’obtenir les différents titres précités.
+
+Dans La vie après la fac, il expose les réalités auxquelles il est confronté, tant dans sa propre vie que dans celle des autres, après leur parcours universitaire. Au-delà des rêves et des espoirs souvent promis aux jeunes générations, la réalité s’avère bien différente. Avec un esprit révolté et une rage constructive, l’auteur contribue, à travers cet ouvrage, à l’édifice du changement.</p>
                         <button class="w-full bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded transition duration-300">
                             Télécharger
                         </button>
@@ -180,12 +374,14 @@
                 
                 <!-- Book 2 -->
                 <div class="book-card bg-white rounded-lg overflow-hidden shadow-md">
-                    <div class="h-48 bg-bosembo-terracotta flex items-center justify-center">
-                        <span class="text-white text-5xl"><i class="fas fa-book"></i></span>
+                    <div class="h-100 bg-bosembo-terracotta flex items-center justify-center">
+                        <img src="sol1.jpg" alt="Couverture du livre" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">L'Entrepreneuriat Communautaire</h3>
-                        <p class="text-gray-600 mb-4">Apprenez à développer une entreprise qui sert à la fois vos intérêts et ceux de votre communauté.</p>
+                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">J'AI TROUVÉ LA SOLUTION</h3>
+                        <p class="text-gray-600 mb-4">Jack Kutiwu Nzukukina, alias « Jack le Merveilleux », est un jeune auteur passionné par le leadership, les affaires et le Christ. Cofondateur de plusieurs structures autour de ces thématiques, il cultive également d’autres passions que le lecteur découvrira au fil du temps.
+
+Dans J’ai trouvé la solution, il raconte comment il a longtemps cherché une approche capable de résoudre la majorité de ses problèmes et de faire prospérer ses entreprises. Il y dévoile finalement un principe universel, déjà mis en pratique par les plus grands. Découvrez cette solution qui éclaire et libère !</p>
                         <button class="w-full bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded transition duration-300">
                             Télécharger
                         </button>
@@ -194,12 +390,14 @@
                 
                 <!-- Book 3 -->
                 <div class="book-card bg-white rounded-lg overflow-hidden shadow-md">
-                    <div class="h-48 bg-bosembo-gold flex items-center justify-center">
-                        <span class="text-blue-900 text-5xl"><i class="fas fa-book"></i></span>
+                    <div class="h-100 bg-bosembo-gold flex items-center justify-center">
+                        <img src="passee1.jpg" alt="Couverture du livre" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">Relations Humaines Authentiques</h3>
-                        <p class="text-gray-600 mb-4">Explorez les clés pour construire des relations épanouissantes basées sur les valeurs africaines.</p>
+                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">PIEGEE PAR LE PASSE</h3>
+                        <p class="text-gray-600 mb-4">Jason Ntumba Katambwa est un auteur fasciné par les émotions humaines et les dilemmes du cœur. Son écriture se distingue par une sensibilité rare et une capacité à capturer l’intensité des sentiments.
+
+Dans Piégée par le passé, il nous entraîne dans un univers de choix difficiles et de regrets. Son engagement à inspirer son entourage se manifeste dans chacune de ses œuvres, toujours porteuses d’un message d’espoir et de résilience.</p>
                         <button class="w-full bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded transition duration-300">
                             Télécharger
                         </button>
@@ -210,118 +408,4 @@
     </section>
 
     <!-- Community Section -->
-    <section id="communaute" class="py-16 md:py-24 bg-bosembo-blue text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8">Bosembo Leadership Community</h2>
-                <p class="text-xl mb-10">
-                    Rejoignez une communauté dynamique de leaders passionnés par le développement de l'Afrique et de sa diaspora. Échangez, collaborez et grandissez ensemble.
-                </p>
-                <a href="#contact" class="inline-block bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300">
-                    En savoir plus
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-bosembo-blue mb-12">Contactez-nous</h2>
-            
-            <div class="max-w-2xl mx-auto">
-                <form class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
-                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold">
-                    </div>
-                    
-                    <div>
-                        <label for="email" class="block text-gray-700 mb-2">Adresse email</label>
-                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold">
-                    </div>
-                    
-                    <div>
-                        <label for="message" class="block text-gray-700 mb-2">Message</label>
-                        <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-bosembo-blue hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-                        Envoyer le message
-                    </button>
-                </form>
-                
-                <div class="mt-12 flex justify-center space-x-6">
-                    <a href="#" class="text-bosembo-blue hover:text-blue-800 text-2xl">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" class="text-bosembo-blue hover:text-blue-800 text-2xl">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="text-bosembo-blue hover:text-blue-800 text-2xl">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center justify-center md:justify-start">
-                        <div class="logo-torche mr-2"></div>
-                        <span class="text-xl font-bold text-bosembo-gold">Éditions Bosembo</span>
-                    </div>
-                </div>
-                
-                <div class="text-center md:text-right">
-                    <p class="text-bosembo-gold">© 2025 Éditions Bosembo. Tous droits réservés.</p>
-                    <p class="text-gray-400 mt-2">
-                        <a href="#" class="hover:text-bosembo-gold transition duration-300">Mentions légales</a> | 
-                        <a href="#" class="hover:text-bosembo-gold transition duration-300">Politique de confidentialité</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Menu mobile toggle
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+    <section id="communaute" class="py-16 md:py
