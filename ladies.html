@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiative Ladies - Magazine Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                            800: '#9d174d',
+                            900: '#831843',
+                        },
+                        secondary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, #ec4899 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .mobile-menu {
+            display: none;
+        }
+        .mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary-600 font-serif">Initiative<span class="text-secondary-600">Ladies</span></h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Accueil</a>
+                    <a href="#" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Magazine</a>
+                    <a href="#" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Événements</a>
+                    <a href="#" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Communauté</a>
+                    <a href="#" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-5 rounded-full transition duration-300 hidden md:block">
+                        Rejoindre
+                    </button>
+                    <button class="md:hidden flex items-center mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menu mobile -->
+        <div class="mobile-menu hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#" class="block py-2 text-gray-700 hover:text-primary-600 font-medium">Accueil</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-primary-600 font-medium">Magazine</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-primary-600 font-medium">Événements</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-primary-600 font-medium">Communauté</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-primary-600 font-medium">Contact</a>
+                <button class="w-full bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 rounded-full transition duration-300">
+                    Rejoindre
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <video autoplay muted loop class="hero-video">
+            <source src="01ladies.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay absolute inset-0"></div>
+        
+        <div class="relative z-10 text-white max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center py-16">
+            <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 font-serif">Promouvoir l'entrepreneuriat <span class="text-primary-400">féminin</span> & inspirer les <span class="text-secondary-400">leaders</span> de demain</h2>
+                <p class="text-xl text-gray-200 mb-8 max-w-lg">Notre magazine digital allie optimisme et compétence pour mettre en lumière les femmes qui façonnent l'avenir.</p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:-translate-y-1 flex items-center">
+                        <i class="fas fa-users mr-2"></i> Rejoindre la communauté
+                    </button>
+                    <button class="bg-white bg-opacity-10 hover:bg-opacity-20 text-white font-bold py-3 px-8 rounded-full transition duration-300 backdrop-blur-sm border border-white border-opacity-30 flex items-center">
+                        <i class="fas fa-book-open mr-2"></i> Découvrir le magazine
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center mt-10 md:mt-0">
+                <div class="stat-card rounded-2xl p-8 shadow-xl max-w-md w-full">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-primary-100 p-3 rounded-full">
+                            <i class="fas fa-crown text-primary-600 text-2xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold text-gray-800">Initiative Ladies</h3>
+                            <p class="text-gray-600">Magazine Digital</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-primary-600">8</p>
+                            <p class="text-gray-600 text-sm">Posts</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-secondary-600">74</p>
+                            <p class="text-gray-600 text-sm">Followers</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-primary-600">13</p>
+                            <p class="text-gray-600 text-sm">Following</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg font-medium flex items-center transition-colors">
+                            <i class="fas fa-plus mr-2"></i> Follow
+                        </button>
+                        <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium flex items-center transition-colors">
+                            <i class="fas fa-envelope mr-2"></i> Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-serif">Nos <span class="text-primary-600">Initiatives</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Découvrez nos programmes et contenus conçus pour accompagner et valoriser les femmes entrepreneures.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 card-hover">
+                    <div class="text-4xl mb-4 feature-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Conférences</h3>
+                    <p class="text-gray-600 mb-4">Des événements inspirants avec des femmes leaders qui partagent leurs expériences et connaissances.</p>
+                    <a href="#" class="text-primary-600 font-medium flex items-center group">
+                        En savoir plus
+                        <i class="fas fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+                    </a>
+                </div>
+                <div class="bg-gradient-to-br from-secondary-50 to-primary-50 rounded-2xl p-8 card-hover">
+                    <div class="text-4xl mb-4 feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Magazine Digital</h3>
+                    <p class="text-gray-600 mb-4">Notre publication met en lumière les parcours inspirants et les conseils pratiques pour réussir.</p>
+                    <a href="#" class="text-secondary-600 font-medium flex items-center group">
+                        Lire le magazine
+                        <i class="fas fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+                    </a>
+                </div>
+                <div class="bg-gradient-to-br from-primary-50 to-purple-50 rounded-2xl p-8 card-hover">
+                    <div class="text-4xl mb-4 feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Réseautage</h3>
+                    <p class="text-gray-600 mb-4">Rejoignez une communauté de femmes ambitieuses et développez votre réseau professionnel.</p>
+                    <a href="#" class="text-primary-600 font-medium flex items-center group">
+                        Rencontrer la communauté
+                        <i class="fas fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Impact Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-600 to-secondary-600">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-serif">Notre impact sur la communauté</h2>
+                    <p class="text-primary-100 text-lg mb-8">Nous œuvrons chaque jour pour créer un écosystème favorable à l'épanouissement professionnel des femmes.</p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white bg-opacity-10 rounded-xl p-5 backdrop-blur-sm">
+                            <div class="text-3xl font-bold text-white mb-2">200+</div>
+                            <div class="text-primary-100">Femmes accompagnées</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 rounded-xl p-5 backdrop-blur-sm">
+                            <div class="text-3xl font-bold text-white mb-2">50+</div>
+                            <div class="text-primary-100">Entreprises lancées</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 rounded-xl p-5 backdrop-blur-sm">
+                            <div class="text-3xl font-bold text-white mb-2">12</div>
+                            <div class="text-primary-100">Pays représentés</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 rounded-xl p-5 backdrop-blur-sm">
+                            <div class="text-3xl font-bold text-white mb-2">15K</div>
+                            <div class="text-primary-100">Abonnés en ligne</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-white bg-opacity-20 rounded-2xl backdrop-blur-sm animate-float"></div>
+                        <div class="relative bg-white rounded-2xl shadow-2xl p-8 max-w-md">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4 font-serif">Prochain Événement</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="bg-primary-100 text-primary-600 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-calendar-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium">15 Septembre 2023</div>
+                                    <div class="text-gray-600">18h30 - 21h00</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-6">
+                                <div class="bg-primary-100 text-primary-600 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium">Espace Coworking</div>
+                                    <div class="text-gray-600">123 Avenue des Entrepreneurs, Paris</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-6">Rejoignez-nous pour une soirée de networking et d'inspiration avec des femmes leaders de l'industrie tech.</p>
+                            <button class="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                                S'inscrire à l'événement
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Channel Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-serif">Notre <span class="text-primary-600">Chaîne YouTube</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Découvrez notre contenu vidéo inspirant mettant en lumière des femmes exceptionnelles.</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl p-1 shadow-xl">
+                    <div class="bg-gray-800 rounded-2xl p-8 text-white relative overflow-hidden">
+                        <div class="absolute -right-8 -top-8 w-32 h-32 bg-primary-600 rounded-full opacity-20"></div>
+                        <div class="absolute -left-8 -bottom-8 w-32 h-32 bg-secondary-600 rounded-full opacity-20"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-6">
+                                <i class="fab fa-youtube text-4xl text-red-500 mr-4"></i>
+                                <h3 class="text-2xl font-bold">@music_ladie</h3>
+                            </div>
+                            <p class="mb-6 text-gray-200">Abonnez-vous à notre chaîne pour ne manquer aucun de nos contenus exclusifs : interviews, conseils pratiques et portraits inspirants.</p>
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 flex items-center mx-auto">
+                                <i class="fab fa-youtube mr-2"></i> S'abonner à notre chaîne
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-serif">Témoignages</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Découvrez ce que les membres de notre communauté disent de nous.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white font-bold">
+                            SD
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Sophie Dubois</h4>
+                            <p class="text-gray-600 text-sm">CEO, TechSolutions</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Grâce à Initiative Ladies, j'ai pu développer mon réseau et trouver les ressources nécessaires pour faire passer mon entreprise au niveau supérieur."</p>
+                    <div class="flex text-primary-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white font-bold">
+                            AM
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Aïsha Mensah</h4>
+                            <p class="text-gray-600 text-sm">Fondatrice, EcoStyle</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Les conseils et le soutien que j'ai reçus de la communauté ont été inestimables pour le lancement de ma marque de mode durable."</p>
+                    <div class="flex text-primary-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white font-bold">
+                            LM
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Leila Moreau</h4>
+                            <p class="text-gray-600 text-sm">Directrice Marketing</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Les événements de networking d'Initiative Ladies sont exceptionnels. J'ai rencontré des femmes incroyables qui m'ont inspirée et motivée."</p>
+                    <div class="flex text-primary-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 font-serif">Initiative<span class="text-primary-400">Ladies</span></h3>
+                    <p class="text-gray-400 mb-4">Promouvoir l'entrepreneuriat féminin & inspirer les leaders de demain.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Magazine</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Événements</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Communauté</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Ressources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Articles</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Podcasts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Vidéos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Guide pratique</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Mentorat</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos actualités et conseils.</p>
+                    <form>
+                        <div class="flex">
+                            <input type="email" placeholder="Votre email" class="bg-gray-800 text-white px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500 w-full">
+                            <button type="submit" class="bg-primary-500 hover:bg-primary-600 px-4 py-3 rounded-r-lg transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">© 2023 Initiative Ladies. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (menuButton) {
+                menuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                });
+            }
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.mobile-menu') && !event.target.closest('.mobile-menu-button')) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+
+            // Animation on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
