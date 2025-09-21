@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunité Exclusive - Monde Littéraire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .premium-border {
+            border: 1px solid rgba(180, 150, 100, 0.3);
+            box-shadow: 0 0 30px rgba(180, 150, 100, 0.1);
+        }
+        
+        .gold-text {
+            background: linear-gradient(to right, #d4af37 0%, #f9e076 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        .premium-bg {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
+        
+        .mystery-element {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mystery-element::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+            animation: shine 8s infinite linear;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #d4af37;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #d4af37 }
+        }
+        
+        .cursive-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .invest-card {
+            transition: all 0.3s ease;
+        }
+        
+        .invest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab-button {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(135deg, #d4af37 0%, #f9e076 100%);
+            color: #0f172a;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #d4af37 0%, #f9e076 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4" ng-app="writingApp" ng-controller="WritingController">
+    <div class="max-w-6xl w-full premium-bg rounded-xl premium-border p-8 md:p-12 relative overflow-hidden">
+        
+        <!-- Fond avec éléments mystérieux -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 text-6xl floating" style="animation-delay: 0s;">✒️</div>
+            <div class="absolute bottom-10 right-10 text-6xl floating" style="animation-delay: 1.5s;">📖</div>
+            <div class="absolute top-1/3 right-1/4 text-4xl floating" style="animation-delay: 0.7s;">💼</div>
+            <div class="absolute bottom-1/4 left-1/3 text-5xl floating" style="animation-delay: 2s;">💰</div>
+        </div>
+        
+        <!-- Contenu principal -->
+        <div class="relative z-10">
+            <header class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 gold-text serif-font">Opportunité Exclusive dans le Monde Littéraire en RDC</h1>
+                <div class="w-24 h-1 bg-gradient-to-r from-yellow-700 to-yellow-400 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 italic">Pour écrivains passionnés et investisseurs visionnaires</p>
+            </header>
+            
+            <!-- Section à onglets -->
+            <div class="mb-12">
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <div class="tab-button rounded-full px-6 py-2 premium-border" 
+                         ng-class="{'active': activeTab === 'writers'}" 
+                         ng-click="activeTab = 'writers'">
+                        <i class="fas fa-quill-pen mr-2"></i> Pour les Écrivains
+                    </div>
+                    <div class="tab-button rounded-full px-6 py-2 premium-border" 
+                         ng-class="{'active': activeTab === 'investors'}" 
+                         ng-click="activeTab = 'investors'">
+                        <i class="fas fa-chart-line mr-2"></i> Pour les Investisseurs
+                    </div>
+                </div>
+                
+                <!-- Contenu des onglets -->
+                <div ng-show="activeTab === 'writers'" class="animate-fade-in">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 mb-8 mystery-element">
+                        <p class="text-lg mb-4 text-justify">Vous possédez ce don rare de transformer les mots en émotions, les phrases en voyages, les histoires en univers complets ?</p>
+                        <p class="text-lg mb-4 text-justify">Nous détectons et valorisons les talents littéraires exceptionnels pour des projets ambitieux qui marqueront les esprits.</p>
+                        <p class="text-lg text-justify">Si l'écriture est pour vous bien plus qu'un passe-temps, si vous sentez que les livres font partie de votre essence, alors cette invitation vous est destinée.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                        <div class="bg-gray-800 bg-opacity-30 rounded-lg p-6 text-center premium-border animate-fade-in">
+                            <div class="text-3xl gold-text mb-4"><i class="fas fa-quill-pen"></i></div>
+                            <h3 class="text-xl font-semibold gold-text mb-2 cursive-font">Créativité</h3>
+                            <p class="text-gray-300">Libérez votre imagination sans limites</p>
+                        </div>
+                        
+                        <div class="bg-gray-800 bg-opacity-30 rounded-lg p-6 text-center premium-border animate-fade-in delay-1">
+                            <div class="text-3xl gold-text mb-4"><i class="fas fa-crown"></i></div>
+                            <h3 class="text-xl font-semibold gold-text mb-2 cursive-font">Excellence</h3>
+                            <p class="text-gray-300">Des projets d'envergure pour talents rares</p>
+                        </div>
+                        
+                        <div class="bg-gray-800 bg-opacity-30 rounded-lg p-6 text-center premium-border animate-fade-in delay-2">
+                            <div class="text-3xl gold-text mb-4"><i class="fas fa-lock-open"></i></div>
+                            <h3 class="text-xl font-semibold gold-text mb-2 cursive-font">Opportunité</h3>
+                            <p class="text-gray-300">Accédez à des collaborations exclusives</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div ng-show="activeTab === 'investors'" class="animate-fade-in">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 mb-8 mystery-element">
+                        <p class="text-lg mb-4 text-justify">Vous recherchez un investissement à forte valeur ajoutée, alliant passion et rendement ? Le monde littéraire offre des opportunités uniques pour les investisseurs visionnaires.</p>
+                        <p class="text-lg mb-4 text-justify">Nous connectons des investisseurs avisés avec des projets littéraires prometteurs, créant ainsi un écosystème où le talent rencontre le capital.</p>
+                        <p class="text-lg text-justify">Investissez dans des œuvres qui marqueront leur temps et généreront des retours substantiels, tout en participant à l'émergence de la culture de demain.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                        <div class="bg-gray-800 bg-opacity-30 rounded-lg p-6 text-center premium-border invest-card">
+                            <div class="text-3xl gold-text mb-4"><i class="fas fa-chart-line"></i></div>
+                            <h3 class="text-xl font-semibold gold-text mb-2 cursive-font">Rendement</h3>
+                            <p class="text-gray-300">Des opportunités d'investissement à fort potentiel</p>
+                        </div>
+                        
+                        <div class="bg-gray-800 bg-opacity-30 rounded-lg p-6 text-center premium-border invest-card">
+                            <div class="text-3xl gold-text mb-4"><i class="fas fa-handshake"></i></div>
+                            <h3 class="text-xl font-semibold gold-text mb-2 cursive-font">Partenariats</h3>
+                            <p class="text-gray-300">Collaborez avec des talents littéraires prometteurs</p>
+                        </div>
+                        
+                        <div class="bg-gray-800 bg-opacity-30 rounded-lg p-6 text-center premium-border invest-card">
+                            <div class="text-3xl gold-text mb-4"><i class="fas fa-medal"></i></div>
+                            <h3 class="text-xl font-semibold gold-text mb-2 cursive-font">Prestige</h3>
+                            <p class="text-gray-300">Associez votre nom à des œuvres d'exception</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 bg-opacity-30 rounded-lg p-6 premium-border">
+                        <h3 class="text-xl font-semibold gold-text mb-4 text-center cursive-font">Pourquoi investir dans l'édition ?</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                            <div>
+                                <p class="stat-number">15%</p>
+                                <p class="text-sm">Croissance annuelle moyenne</p>
+                            </div>
+                            <div>
+                                <p class="stat-number">72%</p>
+                                <p class="text-sm">Des best-sellers sont réédités</p>
+                            </div>
+                            <div>
+                                <p class="stat-number">3.5x</p>
+                                <p class="text-sm">Retour sur investissement moyen</p>
+                            </div>
+                            <div>
+                                <p class="stat-number">89%</p>
+                                <p class="text-sm">Taux de satisfaction</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mb-8">
+                <p class="text-xl italic gold-text serif-font animate-fade-in delay-2">"Investir dans la culture, c'est participer à l'émergence des œuvres qui définiront notre époque."</p>
+            </div>
+            
+            <footer class="text-center">
+                <p class="text-lg mb-6 animate-fade-in delay-3">Rejoignez notre cercle restreint de passionnés et visionnaires</p>
+                
+                <!-- Bouton WhatsApp -->
+                <button id="whatsappButton" class="bg-gradient-to-r from-green-700 to-green-500 hover:from-green-600 hover:to-green-400 text-white font-semibold py-4 px-8 rounded-full flex items-center justify-center mx-auto shadow-lg hover:shadow-xl transition-all duration-300 premium-border animate-fade-in delay-3">
+                    <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                    <span>Nous contacter sur WhatsApp</span>
+                </button>
+                
+                <p class="text-sm text-gray-500 mt-6 animate-fade-in delay-3">© 2025 Société Littéraire Exclusive. Tous droits réservés.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        angular.module('writingApp', [])
+        .controller('WritingController', ['$scope', function($scope) {
+            // Initialisation
+            $scope.activeTab = 'writers';
+            
+            $scope.init = function() {
+                console.log("Application initialisée");
+            };
+            
+            // Fonction pour ouvrir WhatsApp
+            $scope.openWhatsApp = function() {
+                const phoneNumber = "+243978058289";
+                const message = encodeURIComponent("Je suis intéressé par l'écriture et les livres. Je veux en savoir plus");
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+            };
+            
+            // Initialisation
+            $scope.init();
+        }]);
+        
+        // Ajouter l'événement au bouton WhatsApp
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('whatsappButton').addEventListener('click', function() {
+                const phoneNumber = "+243978058289";
+                const message = encodeURIComponent("Je suis intéressé par l'écriture et les livres. Je veux en savoir plus");
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+            });
+            
+            // Effet de machine à écrire pour le titre
+            const titleElement = document.querySelector('h1');
+            const originalText = titleElement.textContent;
+            titleElement.textContent = '';
+            titleElement.classList.add('typewriter');
+            
+            setTimeout(function() {
+                titleElement.classList.remove('typewriter');
+                titleElement.textContent = originalText;
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
