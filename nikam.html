@@ -3,349 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikam Création - Agence Événementielle & Communication</title>
-    <!-- Tailwind CSS via CDN -->
+    <title>Nikam Création Events - Agence Événementielle & Communication</title>
+    <meta name="description" content="Nikam Création Events est une agence événementielle et de communication qui accompagne particuliers et entreprises dans la réalisation de projets uniques et mémorables.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome pour les icônes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
-        /* Styles personnalisés pour un design premium */
-        body {
-            font-family: 'Montserrat', sans-serif;
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-great-vibes { font-family: 'Great Vibes', cursive; }
+        .font-open-sans { font-family: 'Open Sans', sans-serif; }
+        .text-primary { color: #3B0318; }
+        .bg-primary { background-color: #3B0318; }
+        .text-accent { color: #FAG0E6; }
+        .bg-accent { background-color: #FAG0E6; }
+        .text-secondary { color: #E0AA3E; }
+        .bg-secondary { background-color: #E0AA3E; }
+        .hero-bg {
+            background: linear-gradient(rgba(59, 3, 24, 0.7), rgba(59, 3, 24, 0.5)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%233B0318"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23E0AA3E" stroke-width="1"/></svg>');
+            background-size: cover;
+            background-position: center;
         }
-        
-        .heading-font {
-            font-family: 'Playfair Display', serif;
+        .section-padding {
+            padding: 5rem 0;
         }
-        
-        .gold-gradient {
-            background: linear-gradient(135deg, #D4AF37 0%, #F9F295 100%);
-        }
-        
-        .hover-gold:hover {
-            color: #D4AF37;
-            transition: color 0.3s ease;
-        }
-        
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-        }
-        
-        .premium-card {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .premium-card:hover {
+        .hover-lift:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .service-bg {
-            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .testimonial-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body class="bg-white text-gray-800">
+<body class="font-open-sans text-gray-800">
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex items-center">
-                <h1 class="heading-font text-2xl font-bold text-gray-800">NIKAM<span class="gold-gradient bg-clip-text text-transparent">.CREATION</span></h1>
+    <header x-data="{ open: false }" class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <h1 class="font-playfair text-2xl font-bold text-primary">NIKAM.CREATION</h1>
+                    <span class="ml-2 text-secondary font-semibold">EVENTS</span>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button @click="open = !open" class="text-primary focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Desktop menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-primary hover:text-secondary transition-colors">À propos</a>
+                    <a href="#services" class="text-primary hover:text-secondary transition-colors">Services</a>
+                    <a href="#value" class="text-primary hover:text-secondary transition-colors">Valeur ajoutée</a>
+                    <a href="#projects" class="text-primary hover:text-secondary transition-colors">Projets</a>
+                    <a href="#contact" class="text-primary hover:text-secondary transition-colors">Contact</a>
+                </nav>
             </div>
             
-            <!-- Menu Desktop -->
-            <div class="hidden md:flex space-x-8">
-                <a href="#accueil" class="hover-gold font-medium">Accueil</a>
-                <a href="#services" class="hover-gold font-medium">Services</a>
-                <a href="#portfolio" class="hover-gold font-medium">Portfolio</a>
-                <a href="#a-propos" class="hover-gold font-medium">À propos</a>
-                <a href="#contact" class="hover-gold font-medium">Contact</a>
-            </div>
-            
-            <!-- Bouton Contact Desktop -->
-            <div class="hidden md:block">
-                <a href="#contact" class="bg-black text-white px-6 py-2 rounded-full font-medium hover:bg-gray-800 transition duration-300">Nous contacter</a>
-            </div>
-            
-            <!-- Menu Mobile -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+            <!-- Mobile menu -->
+            <div x-show="open" class="md:hidden py-4 border-t border-gray-200">
+                <nav class="flex flex-col space-y-4">
+                    <a href="#about" class="text-primary hover:text-secondary transition-colors" @click="open = false">À propos</a>
+                    <a href="#services" class="text-primary hover:text-secondary transition-colors" @click="open = false">Services</a>
+                    <a href="#value" class="text-primary hover:text-secondary transition-colors" @click="open = false">Valeur ajoutée</a>
+                    <a href="#projects" class="text-primary hover:text-secondary transition-colors" @click="open = false">Projets</a>
+                    <a href="#contact" class="text-primary hover:text-secondary transition-colors" @click="open = false">Contact</a>
+                </nav>
             </div>
         </div>
-        
-        <!-- Menu Mobile Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
-            <div class="flex flex-col space-y-4">
-                <a href="#accueil" class="hover-gold font-medium">Accueil</a>
-                <a href="#services" class="hover-gold font-medium">Services</a>
-                <a href="#portfolio" class="hover-gold font-medium">Portfolio</a>
-                <a href="#a-propos" class="hover-gold font-medium">À propos</a>
-                <a href="#contact" class="hover-gold font-medium">Contact</a>
-                <a href="#contact" class="bg-black text-white px-6 py-2 rounded-full font-medium text-center hover:bg-gray-800 transition duration-300">Nous contacter</a>
-            </div>
-        </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="accueil" class="hero-bg text-white pt-32 pb-20 md:pt-40 md:pb-28">
+    <section class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="heading-font text-4xl md:text-6xl font-bold mb-6">On crée l'ambiance, vous vivez l'émotion</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Agence Événementielle & Communication de prestige à Kinshasa, RDC</p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="#services" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black transition duration-300">Découvrir nos services</a>
-                <a href="#contact" class="gold-gradient text-black px-8 py-3 rounded-full font-medium hover:opacity-90 transition duration-300">Un projet ? Parlons-en</a>
+            <h2 class="font-great-vibes text-5xl md:text-7xl mb-4">C'est de faire vibrer vos instants</h2>
+            <h1 class="font-playfair text-4xl md:text-6xl font-bold mb-8">NIKAM.CREATION EVENTS</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10">Agence événementielle et de communication qui transforme vos idées en expériences mémorables</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-secondary hover:bg-yellow-500 text-white font-semibold py-3 px-8 rounded-full transition-colors">Nous contacter</a>
+                <a href="#services" class="bg-transparent border-2 border-white hover:bg-white hover:text-primary text-white font-semibold py-3 px-8 rounded-full transition-colors">Nos services</a>
             </div>
         </div>
     </section>
 
-    <!-- Statistiques -->
-    <section class="bg-gray-100 py-12">
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="p-6">
-                    <h3 class="heading-font text-4xl font-bold gold-gradient bg-clip-text text-transparent mb-2">11</h3>
-                    <p class="text-gray-600">posts</p>
+            <div class="text-center mb-16">
+                <span class="text-secondary font-semibold">À propos de nous</span>
+                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Notre histoire</h2>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <p class="text-lg mb-6">
+                    <span class="font-bold text-primary">NIKAM Création Events</span> est une agence événementielle et de communication qui accompagne particuliers et entreprises dans la réalisation de projets uniques et mémorables.
+                </p>
+                <p class="text-lg mb-6">
+                    Nous accompagnons nos clients dans la conception, l'organisation et la mise en valeur de leurs projets, qu'il s'agisse d'événements privés, corporatifs ou d'une stratégie de communication globale. Notre force réside dans l'alliance de la créativité et de la rigueur professionnelle, en mettant toujours le client au centre de nos priorités.
+                </p>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md mt-10">
+                    <h3 class="font-playfair text-2xl text-primary mb-4">Notre mission</h3>
+                    <p class="mb-6">
+                        Transformer vos idées en expériences, et donner vie à vos événements tout en bâtissant une image forte grâce à une communication efficace. Nous voulons que chaque événement, chaque campagne, soit le reflet de votre personnalité, de vos valeurs et de vos rêves.
+                    </p>
+                    <p class="mb-6">
+                        Chez <span class="font-bold text-primary">NIKAM</span>, nous croyons qu'un projet bien pensé et bien exécuté a le pouvoir de marquer les esprits et de créer du lien.
+                    </p>
+                    <h3 class="font-playfair text-2xl text-primary mb-4">Notre vision</h3>
+                    <p>
+                        Nous aspirons à devenir une référence en matière d'événementiel et de communication, non seulement par notre créativité, mais surtout par notre capacité à raconter des histoires à travers chaque projet. Notre vision est de bâtir un monde où les événements ne sont pas de simples rendez-vous, mais des expériences immersives qui inspirent, rassemblent et laissent une empreinte durable.
+                    </p>
                 </div>
-                <div class="p-6">
-                    <h3 class="heading-font text-4xl font-bold gold-gradient bg-clip-text text-transparent mb-2">65</h3>
-                    <p class="text-gray-600">followers</p>
-                </div>
-                <div class="p-6">
-                    <h3 class="heading-font text-4xl font-bold gold-gradient bg-clip-text text-transparent mb-2">19</h3>
-                    <p class="text-gray-600">following</p>
+                
+                <div class="mt-10 text-center">
+                    <p class="text-xl font-semibold text-primary">Créativité, professionnalisme, accessibilité, authenticité.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <blockquote class="max-w-3xl mx-auto">
+                <p class="font-playfair text-2xl md:text-3xl italic mb-4">"Les détails créent la perfection, et la perfection n'est pas un détail."</p>
+                <footer class="text-lg">– Léonard de Vinci</footer>
+            </blockquote>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="service-bg py-20">
+    <section id="services" class="section-padding">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="heading-font text-3xl md:text-4xl font-bold mb-4">Nos Services Premium</h2>
-                <div class="section-divider w-24 mx-auto my-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">Nous proposons une gamme complète de services événementiels et de communication pour rendre chaque occasion mémorable.</p>
+                <span class="text-secondary font-semibold">Nos services</span>
+                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Ce que nous proposons</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="premium-card bg-white rounded-lg p-8">
-                    <div class="gold-gradient w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-glass-cheers text-white text-2xl"></i>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Service Événementiel -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover-lift">
+                    <h3 class="font-playfair text-2xl text-primary mb-6 pb-2 border-b-2 border-secondary">Service Événementiel</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Organisation & coordination complète</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Conception du concept de l'événement (thème, couleurs, ambiance)</li>
+                            <li>Élaboration du budget et suivi des dépenses</li>
+                            <li>Recherche et gestion des prestataires</li>
+                            <li>Supervision le jour J</li>
+                        </ul>
                     </div>
-                    <h3 class="heading-font text-xl font-bold mb-4">Organisation d'Événements</h3>
-                    <p class="text-gray-600 mb-4">De la planification à l'exécution, nous créons des événements sur mesure qui marquent les esprits.</p>
-                    <ul class="text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Mariages et cérémonies</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Événements d'entreprise</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Fêtes privées</li>
-                    </ul>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Mariages & événements privés</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Création de thèmes personnalisés</li>
+                            <li>Décorations uniques</li>
+                            <li>Coordination des prestataires beauté</li>
+                            <li>Animation musicale et artistique</li>
+                            <li>Sweet table et buffets thématiques</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Événements corporatifs & conférences</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Organisation de séminaires, workshops et conférences</li>
+                            <li>Scénographie et mise en valeur de la marque</li>
+                            <li>Gestion technique (son, lumière, vidéo)</li>
+                            <li>Création de supports</li>
+                            <li>Gestion des relations presse et médias</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg text-primary mb-2">Célébrations & lancements</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Anniversaires, baptêmes, fêtes familiales</li>
+                            <li>Lancements de produits / services</li>
+                            <li>Soirées d'entreprise</li>
+                            <li>Expériences immersives adaptées à la cible</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <!-- Service 2 -->
-                <div class="premium-card bg-white rounded-lg p-8">
-                    <div class="gold-gradient w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-bullhorn text-white text-2xl"></i>
+                <!-- Service de Communication -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover-lift">
+                    <h3 class="font-playfair text-2xl text-primary mb-6 pb-2 border-b-2 border-secondary">Service de Communication</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Stratégie de communication</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Analyse de votre image de marque et positionnement</li>
+                            <li>Définition de la ligne éditoriale et du ton de communication</li>
+                            <li>Plan de communication sur mesure</li>
+                        </ul>
                     </div>
-                    <h3 class="heading-font text-xl font-bold mb-4">Stratégie de Communication</h3>
-                    <p class="text-gray-600 mb-4">Nous développons des stratégies de communication percutantes pour valoriser votre image.</p>
-                    <ul class="text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Gestion des réseaux sociaux</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Relations presse</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Stratégie de marque</li>
-                    </ul>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="premium-card bg-white rounded-lg p-8">
-                    <div class="gold-gradient w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-palette text-white text-2xl"></i>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Social Media Management</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Gestion complète de vos pages</li>
+                            <li>Création de contenu</li>
+                            <li>Planification et calendrier éditorial</li>
+                            <li>Animation des communautés</li>
+                        </ul>
                     </div>
-                    <h3 class="heading-font text-xl font-bold mb-4">Design Événementiel</h3>
-                    <p class="text-gray-600 mb-4">Notre équipe créative conçoit des décors et ambiances uniques qui subliment vos événements.</p>
-                    <ul class="text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Décoration sur mesure</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Éclairage et sonorisation</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Mood boards personnalisés</li>
-                    </ul>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Création visuelle & identité</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Logos, chartes graphiques, affiches et flyers</li>
+                            <li>Catalogues événementiels ou produits</li>
+                            <li>Contenu visuel pour réseaux sociaux</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-lg text-primary mb-2">Relations publiques & médias</h4>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Rédaction de communiqués et dossiers de presse</li>
+                            <li>Mise en avant de vos projets dans les médias</li>
+                            <li>Mise en relation avec influenceurs et leaders d'opinion</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Recrutement Banner -->
-    <section class="bg-black text-white py-12">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="heading-font text-2xl md:text-3xl font-bold mb-4">NIKAM.CREATION RECRUTE !</h2>
-            <p class="text-lg mb-6">Rejoignez notre équipe dynamique et passionnée</p>
-            <a href="#contact" class="gold-gradient text-black px-8 py-3 rounded-full font-medium inline-block hover:opacity-90 transition duration-300">Postuler maintenant</a>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-gray-50">
+    <!-- Value Section -->
+    <section id="value" class="section-padding bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="heading-font text-3xl md:text-4xl font-bold mb-4">Notre Portfolio</h2>
-                <div class="section-divider w-24 mx-auto my-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">Découvrez quelques-uns de nos événements les plus marquants.</p>
+                <span class="text-secondary font-semibold">Notre valeur ajoutée</span>
+                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Pourquoi nous choisir</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Portfolio Item 1 -->
-                <div class="premium-card bg-white rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519677100203-7c7bc6a186f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="p-6">
-                        <h3 class="heading-font text-xl font-bold mb-2">Garden Party Élégante</h3>
-                        <p class="text-gray-600 mb-4">Organisation complète d'une garden party pour 150 invités avec décoration florale sur mesure.</p>
-                        <a href="#" class="text-black font-medium hover-gold">Voir plus <i class="fas fa-arrow-right ml-1"></i></a>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                        <h3 class="font-playfair text-xl text-primary mb-4">Créativité jeune et innovante</h3>
+                        <p>Nous apportons une approche fraîche et moderne à chaque projet, en combinant tendances actuelles et classiques intemporels.</p>
                     </div>
-                </div>
-                
-                <!-- Portfolio Item 2 -->
-                <div class="premium-card bg-white rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="p-6">
-                        <h3 class="heading-font text-xl font-bold mb-2">Lancement de Produit</h3>
-                        <p class="text-gray-600 mb-4">Événement corporate pour le lancement d'une nouvelle gamme de produits de luxe.</p>
-                        <a href="#" class="text-black font-medium hover-gold">Voir plus <i class="fas fa-arrow-right ml-1"></i></a>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                        <h3 class="font-playfair text-xl text-primary mb-4">Réseau de partenaires exclusifs</h3>
+                        <p>Nous collaborons avec les meilleurs prestataires : décorateurs, maquilleuses, coiffeuses, traiteurs, photographes et salles prestigieuses.</p>
                     </div>
-                </div>
-                
-                <!-- Portfolio Item 3 -->
-                <div class="premium-card bg-white rounded-lg overflow-hidden">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="p-6">
-                        <h3 class="heading-font text-xl font-bold mb-2">Mariage de Rêve</h3>
-                        <p class="text-gray-600 mb-4">Cérémonie et réception de mariage avec une attention particulière aux détails et à l'ambiance.</p>
-                        <a href="#" class="text-black font-medium hover-gold">Voir plus <i class="fas fa-arrow-right ml-1"></i></a>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                        <h3 class="font-playfair text-xl text-primary mb-4">Service double : événementiel + communication</h3>
+                        <p>Bénéficiez d'une approche intégrée qui assure la cohérence entre votre événement et votre communication.</p>
                     </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="border-2 border-black text-black px-8 py-3 rounded-full font-medium hover:bg-black hover:text-white transition duration-300">Voir tout le portfolio</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- À propos Section -->
-    <section id="a-propos" class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12">
-                    <h2 class="heading-font text-3xl md:text-4xl font-bold mb-6">À propos de Nikam Création</h2>
-                    <div class="section-divider w-24 my-6"></div>
-                    <p class="text-gray-600 mb-6">Fondée à Kinshasa, Nikam Création est une agence événementielle et de communication de référence, spécialisée dans la création d'expériences mémorables.</p>
-                    <p class="text-gray-600 mb-6">Notre mission est de transformer vos idées en réalité, en créant des ambiances uniques qui captivent et émerveillent vos invités.</p>
-                    <p class="text-gray-600 mb-8">Avec une équipe de professionnels passionnés, nous nous engageons à offrir un service d'excellence, alliant créativité, rigueur et attention aux détails.</p>
-                    <a href="#contact" class="gold-gradient text-black px-8 py-3 rounded-full font-medium inline-block hover:opacity-90 transition duration-300">En savoir plus sur nous</a>
-                </div>
-                <div class="lg:w-1/2">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="premium-card h-64 bg-cover bg-center rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1551135049-8a33b5883817?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                        <div class="premium-card h-64 bg-cover bg-center rounded-lg mt-8" style="background-image: url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                        <h3 class="font-playfair text-xl text-primary mb-4">Expérience personnalisée</h3>
+                        <p>Chaque client est unique, c'est pourquoi nous adaptons notre approche à vos besoins spécifiques et à votre personnalité.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift md:col-span-2">
+                        <h3 class="font-playfair text-xl text-primary mb-4">Prix accessibles grâce à des formules packagées</h3>
+                        <p>Nous proposons différentes formules adaptées à tous les budgets, sans compromis sur la qualité et le professionnalisme.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section d'avertissement -->
-    <section class="py-16 bg-red-50">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="heading-font text-2xl md:text-3xl font-bold mb-6 text-red-700">5 ORGANISATIONS QUI PEUVENT RUINER VOTRE MARIAGE!</h2>
-            <p class="text-gray-700 mb-8 max-w-3xl mx-auto">Ne laissez pas votre événement le plus important être gâché par un manque de professionnalisme. Faites confiance à Nikam Création pour un service irréprochable.</p>
-            <a href="#contact" class="bg-red-700 text-white px-8 py-3 rounded-full font-medium hover:bg-red-800 transition duration-300">Éviter les pièges</a>
-        </div>
-    </section>
-
-    <!-- Témoignages -->
-    <section class="testimonial-bg text-white py-20">
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="heading-font text-3xl md:text-4xl font-bold mb-4">Ce que disent nos clients</h2>
-                <div class="section-divider w-24 mx-auto my-6"></div>
+                <span class="text-secondary font-semibold">Nos réalisations</span>
+                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Projets & Réalisations</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Témoignage 1 -->
-                <div class="premium-card bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-8">
+                    <h3 class="font-playfair text-2xl text-primary mb-4">Anniversaire floral chic (20 pers.)</h3>
+                    <p class="text-sm text-gray-600 mb-6">
+                        <strong>Note :</strong> Il s'agit d'un projet préparatoire (catalogue personnalisé), élaboré comme si l'événement devait être produit. Cela démontre notre capacité à conceptualiser, organiser et donner vie à une idée d'événement, du thème jusqu'aux moindres détails.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Contexte</h4>
+                        <p>
+                            Pour célébrer un anniversaire intimiste de 20 invités, la cliente souhaitait une ambiance chic et élégante, avec des notes florales, colorées et une atmosphère chaleureuse. L'objectif était de créer un moment unique, où chaque détail reflète douceur, convivialité et raffinement.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Catalogue personnalisé</h4>
+                        <p>
+                            Le <strong>catalogue personnalisé</strong> est un document conçu sur mesure pour chaque client, qui présente l'ambiance, la décoration, le menu et l'animation de son événement. Il permet de visualiser le concept avant sa réalisation et de s'assurer que chaque détail correspond aux attentes, tout en reflétant notre créativité et notre professionnalisme.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-lg text-primary mb-2">Palette de couleurs</h4>
+                        <p>
+                            Le code couleur retenu mettait en avant le rose, le jaune, l'orange et le beige, un dégradé chaleureux rappelant les nuances d'un sunrise. Ces teintes ont été pensées pour transmettre de la fraîcheur, de la joie et un esprit festif, tout en conservant une élégance intemporelle.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mt-8">
                         <div>
-                            <h4 class="font-bold">Marie K.</h4>
-                            <p class="text-gray-300">Mariage</p>
+                            <h4 class="font-semibold text-lg text-primary mb-2">Décoration</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Une longue table habillée d'une nappe claire, sublimée par une décoration florale harmonieuse</li>
+                                <li>Des lanternes pour illuminer l'allée et créer une ambiance intimiste</li>
+                                <li>Un photobooth avec arche florale et ballons organiques pour immortaliser l'événement</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-lg text-primary mb-2">Restauration</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Un coin buffet et sweet table avec cupcakes, cake pops et le gâteau central</li>
+                                <li>Apportant gourmandise et couleur</li>
+                            </ul>
+                            
+                            <h4 class="font-semibold text-lg text-primary mb-2 mt-4">Animation</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Une animation musicale chill, assurée par un DJ</li>
+                                <li>Pour accompagner l'événement sans jamais briser l'élégance recherchée</li>
+                            </ul>
                         </div>
                     </div>
-                    <p class="italic">"Nikam Création a transformé notre journée en un véritable conte de fées. Leur attention aux détails et leur professionnalisme ont dépassé toutes nos attentes."</p>
-                    <div class="flex text-yellow-400 mt-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <!-- Témoignage 2 -->
-                <div class="premium-card bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
-                        <div>
-                            <h4 class="font-bold">David M.</h4>
-                            <p class="text-gray-300">Événement d'entreprise</p>
-                        </div>
-                    </div>
-                    <p class="italic">"L'équipe de Nikam a su comprendre parfaitement notre vision et l'a exécutée avec une précision remarquable. Notre lancement de produit a été un succès retentissant."</p>
-                    <div class="flex text-yellow-400 mt-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <!-- Témoignage 3 -->
-                <div class="premium-card bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
-                        <div>
-                            <h4 class="font-bold">Sophie T.</h4>
-                            <p class="text-gray-300">Anniversaire</p>
-                        </div>
-                    </div>
-                    <p class="italic">"La garden party organisée par Nikam Création était tout simplement magique. Chaque détail était soigné et l'ambiance était parfaite. Je recommande vivement!"</p>
-                    <div class="flex text-yellow-400 mt-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                    
+                    <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                        <p>
+                            Ce catalogue personnalisé a permis à la cliente de se projeter et d'imaginer son anniversaire idéal avant toute mise en place.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -353,100 +350,77 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-100">
+    <section id="contact" class="section-padding bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="heading-font text-3xl md:text-4xl font-bold mb-4">Contactez-nous</h2>
-                <div class="section-divider w-24 mx-auto my-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">Un projet ? Une question ? N'hésitez pas à nous contacter, nous serons ravis de vous accompagner.</p>
+                <span class="text-secondary font-semibold">Contactez-nous</span>
+                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Travaillons ensemble</h2>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Formulaire de contact -->
-                <div class="premium-card bg-white rounded-lg p-8">
-                    <h3 class="heading-font text-2xl font-bold mb-6">Envoyez-nous un message</h3>
-                    <form id="contact-form">
-                        <div class="mb-6">
-                            <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required>
-                        </div>
-                        <div class="mb-6">
-                            <label for="email" class="block text-gray-700 mb-2">Adresse email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required>
-                        </div>
-                        <div class="mb-6">
-                            <label for="phone" class="block text-gray-700 mb-2">Numéro de téléphone</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300">
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition duration-300" required></textarea>
-                        </div>
-                        <button type="submit" class="gold-gradient text-black px-8 py-3 rounded-full font-medium w-full hover:opacity-90 transition duration-300">Envoyer le message</button>
-                    </form>
-                </div>
-                
-                <!-- Informations de contact -->
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
                 <div>
-                    <h3 class="heading-font text-2xl font-bold mb-6">Nos coordonnées</h3>
-                    <div class="space-y-6">
+                    <h3 class="font-playfair text-2xl text-primary mb-6">Nos coordonnées</h3>
+                    
+                    <div class="space-y-4">
                         <div class="flex items-start">
-                            <div class="gold-gradient w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-map-marker-alt text-white"></i>
+                            <div class="bg-primary text-white p-3 rounded-full mr-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
                             </div>
                             <div>
-                                <h4 class="font-bold mb-1">Adresse</h4>
-                                <p class="text-gray-600">Kinshasa, République Démocratique du Congo</p>
+                                <h4 class="font-semibold text-primary">Téléphone</h4>
+                                <p>+243 (0) 847 386 954</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="gold-gradient w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-phone-alt text-white"></i>
+                            <div class="bg-primary text-white p-3 rounded-full mr-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
                             </div>
                             <div>
-                                <h4 class="font-bold mb-1">Téléphone</h4>
-                                <p class="text-gray-600">+243 XX XXX XXXX</p>
+                                <h4 class="font-semibold text-primary">Email</h4>
+                                <p>nikam.creationevents@gmail.com</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="gold-gradient w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-envelope text-white"></i>
+                            <div class="bg-primary text-white p-3 rounded-full mr-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                </svg>
                             </div>
                             <div>
-                                <h4 class="font-bold mb-1">Email</h4>
-                                <p class="text-gray-600">contact@nikamcreation.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="gold-gradient w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-clock text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Horaires d'ouverture</h4>
-                                <p class="text-gray-600">Lun - Ven: 9h00 - 18h00<br>Samedi: 10h00 - 16h00</p>
+                                <h4 class="font-semibold text-primary">Instagram</h4>
+                                <p>@nikam.creation_events</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="mt-10">
-                        <h4 class="font-bold mb-4">Suivez-nous sur les réseaux sociaux</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition duration-300">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition duration-300">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition duration-300">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition duration-300">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </div>
+                    <div class="mt-8">
+                        <h3 class="font-playfair text-xl text-primary mb-4">Notre philosophie</h3>
+                        <p class="mb-4">
+                            Au-delà d'un simple prestataire, nous nous considérons comme des <strong>créateurs d'émotions</strong>. Chaque projet que nous réalisons est porté par une conviction : derrière chaque événement et chaque message, il y a une histoire à raconter.
+                        </p>
+                        <p>
+                            Nous croyons que <strong>l'événementiel</strong> et la <strong>communication</strong> sont plus que des services : ce sont des <strong>ponts humains</strong>, des instants suspendus qui <strong>relient</strong> des personnes, des idées et des rêves.
+                        </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-playfair text-2xl text-primary mb-6">Envoyez-nous un message</h3>
+              
+                    <!-- WhatsApp Button -->
+                    <div class="mt-6">
+                        <a href="https://wa.me/243847386954?text=Bonjour%20Nikam%20j'ai%20besoin%20de%20votre%20expertise" target="_blank" class="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-md transition-colors">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.187-3.55-8.444z"/>
+                            </svg>
+                            Contactez-nous sur WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
@@ -454,112 +428,60 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-12">
+    <footer class="bg-primary text-white py-12">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="heading-font text-xl font-bold mb-4">NIKAM.CREATION</h3>
-                    <p class="text-gray-400">Agence Événementielle & Communication de prestige à Kinshasa, RDC.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="font-playfair text-2xl">NIKAM.CREATION</h2>
+                    <p class="text-secondary font-semibold">EVENTS</p>
                 </div>
                 
-                <div>
-                    <h4 class="font-bold mb-4">Liens rapides</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition duration-300">Accueil</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
-                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition duration-300">Portfolio</a></li>
-                        <li><a href="#a-propos" class="text-gray-400 hover:text-white transition duration-300">À propos</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
-                    </ul>
+                <div class="text-center md:text-right">
+                    <p class="font-great-vibes text-2xl mb-2">C'est de faire vibrer vos instants</p>
+                    <p>&copy; 2025 Nikam Création Events. Tous droits réservés.</p>
                 </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Services</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Organisation d'événements</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Stratégie de communication</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Design événementiel</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Garden Party</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Mariages</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Newsletter</h4>
-                    <p class="text-gray-400 mb-4">Inscrivez-vous pour recevoir nos actualités et offres spéciales.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg w-full text-black focus:outline-none">
-                        <button type="submit" class="gold-gradient text-black px-4 rounded-r-lg font-medium">S'inscrire</button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 NIKAM.CREATION. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Script JavaScript -->
     <script>
-        // Fonction pour gérer le menu mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Toggle du menu mobile
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const eventType = formData.get('eventType');
+            const message = formData.get('message');
             
-            // Fermer le menu mobile lorsqu'on clique sur un lien
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
+            // In a real implementation, you would send this data to a server
+            // For this demo, we'll just show an alert
+            alert(`Merci ${name} ! Votre message a été envoyé. Nous vous contacterons bientôt.`);
             
-            // Gestion du formulaire de contact
-            const contactForm = document.getElementById('contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Récupération des valeurs du formulaire
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const phone = document.getElementById('phone').value;
-                    const message = document.getElementById('message').value;
-                    
-                    // Ici, vous pouvez ajouter le code pour envoyer le formulaire
-                    // Par exemple, via AJAX ou en redirigeant vers un service d'envoi d'email
-                    
-                    // Simulation d'envoi réussi
-                    alert(`Merci ${name} ! Votre message a été envoyé. Nous vous répondrons dans les plus brefs délais.`);
-                    contactForm.reset();
-                });
-            }
-            
-            // Animation de défilement fluide pour les ancres
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+            // Reset form
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
 </body>
 </html>
-                            
