@@ -3,458 +3,1272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Souki - Produits capillaires naturels pour cheveux crépus</title>
-    <meta name="description" content="Découvrez les produits capillaires naturels et premium Souki, spécialement conçus pour révéler la beauté des cheveux crépus. Fabriqué au Congo avec des ingrédients naturels.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'souki-gold': '#D4AF37',
-                        'souki-green': '#2E7D32',
-                        'souki-black': '#0F0F0F',
-                    },
-                    fontFamily: {
-                        'display': ['Playfair Display', 'serif'],
-                        'body': ['Montserrat', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 1s ease-in-out',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <title>AfroSuki - Kolisa Suki</title>
+    <link rel="icon" type="image/x-icon" href="favicon.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .hero-bg {
-            background: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232E7D32" opacity="0.2"/></svg>');
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-light: #f9f9f9;
+            --accent-color: #3a7c5e;
+            --accent-light: #5ba37c;
+            --text-dark: #333;
+            --text-light: #777;
+            --border-color: #eaeaea;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+  background-color: var(--accent-color); /* optionnel */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* pour couper l'image si elle dépasse */
+}
+
+.loading-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* adapte l'image au cercle */
+}
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background-color: #ddd;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background-color: black;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .logo {
+  /* pour centrer ou dimensionner ton conteneur si besoin */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;      /* taille que tu veux */
+  height: 50px;
+}
+
+.logo img {
+  width: 100%;       /* l’image prend toute la place */
+  height: 100%;
+  object-fit: contain; /* ou cover si tu veux remplir */
+}
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+    .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--accent-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: auto; /* Ajout de cette ligne */
+}    
+
+        /* Hero Section */
+        .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+    margin-top: 44px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: -1;
+}
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 5%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+            background-color: white;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            border-radius: 10px;
+        }
+        
+        .about-image img {
+  width: 100%;
+  border-radius: 16px;    /* coins arrondis */
+  object-fit: cover;
+  display: block;
+}
+
+.about-image .caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 5%;
+            background-color: var(--primary-light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 250px;
+            background-color: #f5f5f5;
             background-size: cover;
             background-position: center;
         }
-        
-        .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .product-info {
+            padding: 1.5rem;
         }
-        
-        .product-card:hover {
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .product-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .buy-button:hover {
+            background-color: var(--accent-light);
+        }
+
+        /* Featured Product */
+        .featured-product {
+            padding: 5rem 5%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+            background-color: white;
+        }
+
+        .featured-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            border-radius: 10px;
+        }
+
+        .featured-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .featured-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        /* Baby Care Section */
+        .baby-care {
+            padding: 5rem 5%;
+            background-color: var(--primary-light);
+        }
+
+        .baby-care-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .baby-step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .baby-step:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 5%;
+            text-align: center;
+            background-color: white;
+        }
+
+        .testimonials-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slide {
+            display: none;
+            padding: 2rem;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        .testimonial-video {
+            width: 100%;
+            height: 400px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .carousel-controls {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background-color: var(--accent-color);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 5rem 5%;
+            text-align: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1522338140262-f46f5913618a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: white;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px 0 0 5px;
+            background-color: #f9f9f9;
+            color: var(--text-dark);
+        }
+
+        .newsletter-button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            font-weight: 600;
+            cursor: pointer;
         }
         
-        .btn-gold {
-            transition: all 0.3s ease;
+        .whatsapp-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+   /* Vert WhatsApp */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    background-color: var(--accent-color);
+  
+}
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
-        
-        .btn-gold:hover {
-            background-color: #b8941f;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+
+        /* Cart */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: var(--transition);
+            padding: 2rem;
+            overflow-y: auto;
         }
-        
-        .fade-in-section {
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .cart-item-price {
+            color: var(--accent-color);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: right;
+            color: var(--text-dark);
+        }
+
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        
-        .is-visible {
+
+        .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .logo-container {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .logo-leaf {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            transform: rotate(25deg);
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: var(--transition);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about, .featured-product {
+                flex-direction: column;
+            }
+
+            .about-image, .featured-image {
+                width: 100%;
+            }
         }
     </style>
 </head>
-<body class="bg-white text-souki-black font-body">
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-logo">
+            <img src="favicon.jpg" alt="Logo" />
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
     <!-- Header -->
-    <header class="fixed w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="logo-container">
-                    <div class="w-10 h-10 bg-souki-gold rounded-full flex items-center justify-center mr-2">
-                        <i class="fas fa-female text-white"></i>
-                    </div>
-                    <div class="logo-leaf w-4 h-4 bg-souki-green rounded-full flex items-center justify-center">
-                        <i class="fas fa-leaf text-white text-xs"></i>
-                    </div>
-                </div>
-                <span class="text-xl font-display font-bold">SOUKI</span>
-            </div>
-            
-            <nav class="hidden md:flex space-x-8">
-                <a href="#about" class="hover:text-souki-gold transition-colors">À propos</a>
-                <a href="#products" class="hover:text-souki-gold transition-colors">Produits</a>
-                <a href="#values" class="hover:text-souki-gold transition-colors">Valeurs</a>
-                <a href="#events" class="hover:text-souki-gold transition-colors">Événements</a>
-                <a href="#contact" class="hover:text-souki-gold transition-colors">Contact</a>
-            </nav>
-            
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-souki-black">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 absolute w-full shadow-lg">
-            <a href="#about" class="block py-2 hover:text-souki-gold">À propos</a>
-            <a href="#products" class="block py-2 hover:text-souki-gold">Produits</a>
-            <a href="#values" class="block py-2 hover:text-souki-gold">Valeurs</a>
-            <a href="#events" class="block py-2 hover:text-souki-gold">Événements</a>
-            <a href="#contact" class="block py-2 hover:text-souki-gold">Contact</a>
-        </div>
+    <header>
+        <div class="logo">
+  <img src="favicon.jpg" alt="Logo Souki">
+</div>
+        <button class="mobile-menu-btn">☰</button>
+        <nav>
+            <ul>
+                <li><a href="#about">Notre Histoire</a></li>
+                <li><a href="#products">Nos Produits</a></li>
+                <li><a href="#featured">Produit Phare</a></li>
+                <li><a href="#baby-care">Soins Bébé</a></li>
+                <li><a href="#testimonials">Témoignages</a></li>
+                <li><a href="#" id="cart-icon">Panier (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center pt-16 pb-10">
-        <div class="container mx-auto px-4 flex flex-col items-center text-center animate-fade-in">
-            <div class="mb-8">
-                <div class="logo-container mx-auto mb-6">
-                    <div class="w-24 h-24 bg-souki-gold rounded-full flex items-center justify-center">
-                        <i class="fas fa-female text-white text-4xl"></i>
-                    </div>
-                    <div class="logo-leaf w-8 h-8 bg-souki-green rounded-full flex items-center justify-center">
-                        <i class="fas fa-leaf text-white text-sm"></i>
-                    </div>
-                </div>
-                <h1 class="text-4xl md:text-6xl font-display font-bold text-white mb-4">SOUKI</h1>
-                <p class="text-xl md:text-2xl text-white max-w-2xl mx-auto">La beauté des cheveux crépus révélée par la nature.</p>
-            </div>
-            
-            <a href="#products" class="btn-gold bg-souki-gold text-white font-medium py-3 px-8 rounded-full mt-8 inline-block">
-                Découvrez nos produits
-            </a>
-        </div>
-    </section>
+<section class="hero">
+    <video autoplay muted loop class="hero-video">
+        <source src="hero1.mp4" type="video/mp4">
+        <!-- Vous pouvez ajouter d'autres formats pour la compatibilité -->
+    </video>
+    <h1>La beauté des cheveux crépus</h1>
+    <p>Des soins naturels, accessibles et efficaces pour révéler la beauté de vos cheveux afro, bouclés et crépus.</p>
+    <a href="#products" class="cta-button">Découvrir nos produits</a>
+</section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 md:py-24 bg-white fade-in-section">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6">À propos de Souki</h2>
-                    <p class="text-lg mb-4">Née au cœur du Congo, Souki puise son essence dans la richesse de la nature africaine pour révéler la beauté authentique des cheveux crépus.</p>
-                    <p class="text-lg">Notre mission est de valoriser les cheveux naturels avec des soins capillaires haut de gamme, biologiques et respectueux de votre beauté naturelle.</p>
-                </div>
-                <div class="md:w-1/2">
-                    <div class="bg-souki-green bg-opacity-10 rounded-2xl p-6">
-                        <div class="aspect-w-16 aspect-h-9 bg-souki-gold bg-opacity-20 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-spa text-souki-gold text-6xl"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="about" class="about fade-in">
+        <div class="about-image"></div
+         <img src="portrait1.jpg" alt="Noémie, Fondatrice AfroSuki">
+    <div class="caption">Noémie, Fondatrice AfroSuki</div>
+  </div>
+        <div class="about-content">
+            <h2>Notre Histoire</h2>
+            <p>Mon parcours capillaire naturel a commencé avec des difficultés que beaucoup de femmes peuvent comprendre. Ayant grandi entre le Congo et le Royaume-Uni, j'ai fait face aux mêmes défis que tant d'entre nous avec des cheveux afro, bouclés et crépus : les défrisages agressifs, l'accès limité à de bons produits et les dommages constants.</p>
+            <p>À 19 ans, j'ai décidé que ça suffisait — j'ai fait le "big chop" et suis revenue à mes cheveux naturels. Voir mes boucles repousser en bonne santé pour la première fois a été l'une des meilleures décisions de ma vie.</p>
+            <p>Souki est née de cette expérience. C'est la réponse aux difficultés que j'ai connues et à la frustration exprimée par ma communauté. Pour moi, Souki ne se limite pas aux soins capillaires. Il s'agit de rendre les produits pour cheveux naturels accessibles, d'aider les gens à embrasser leur vraie beauté et de montrer que prendre soin de ses cheveux ne doit pas coûter une fortune.</p>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="py-16 md:py-24 bg-gray-50 fade-in-section">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-4">Nos Produits</h2>
-            <p class="text-center text-lg mb-12 max-w-2xl mx-auto">Découvrez notre gamme de produits naturels spécialement formulés pour sublimer les cheveux crépus.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Product 1 -->
-                <div class="product-card bg-white rounded-2xl overflow-hidden shadow-md">
-                    <div class="h-48 bg-souki-gold bg-opacity-10 flex items-center justify-center">
-                        <i class="fas fa-oil-can text-souki-gold text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-display font-semibold mb-2">Huile capillaire réparatrice</h3>
-                        <p class="text-gray-600 mb-4">Une fusion d'huiles essentielles africaines pour nourrir et revitaliser vos cheveux en profondeur.</p>
-                        <a href="https://wa.me/243816658999?text=Je%20souhaite%20commander%20l'huile%20capillaire%20réparatrice%20Souki" class="btn-gold bg-souki-gold text-white font-medium py-2 px-6 rounded-full inline-block">
-                            Acheter
-                        </a>
-                    </div>
+    <section id="products" class="products">
+        <h2 class="section-title">Nos Produits</h2>
+        <div class="products-grid" id="products-container">
+            <!-- Products will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Featured Product -->
+    <section id="featured" class="featured-product fade-in">
+        <div class="featured-image"></div>
+        <div class="featured-content">
+            <h2>Rolling Oil - Soin Ciblé Repousse</h2>
+            <p>Notre huile capillaire N°5 avec applicateur roll-on est spécialement formulée pour les problèmes de chute localisée (tempes, golfes, zones clairsemées). Son application précise et facile stimule la microcirculation et favorise la repousse à la racine.</p>
+            <p>Enrichie d'un mélange d'huiles de ricin, tournesol, olive, coco et pépins de raisin, et boostée aux huiles essentielles de menthe poivrée, arbre à thé et lavande, elle nourrit et revitalise les zones fragilisées.</p>
+            <button class="buy-button" data-product="N°5 : Huile Capillaire – Rolling">Acheter maintenant</button>
+        </div>
+    </section>
+
+    <!-- Baby Care Section -->
+    <section id="baby-care" class="baby-care">
+        <h2 class="section-title">Soins Bébé & Enfants</h2>
+        <div class="baby-care-steps">
+            <div class="baby-step fade-in">
+                <div class="step-icon">🧴</div>
+                <h3>Nettoyer en douceur</h3>
+                <p>Notre shampooing doux Nettoie en douceur le cuir chevelu délicat de bébé sans éliminer les huiles naturelles.</p>
+            </div>
+            <div class="baby-step fade-in">
+                <div class="step-icon">🌸</div>
+                <h3>Nourrir & Démêler</h3>
+                <p>Le fondant Hibiscus adoucit, démêle et apporte de la brillance naturelle sans alourdir.</p>
+            </div>
+            <div class="baby-step fade-in">
+                <div class="step-icon">💧</div>
+                <h3>Protéger & Hydrater</h3>
+                <p>L'huile capillaire bébé scelle l'hydratation et apaise les cuirs chevelus délicats.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <button class="buy-button" data-product="Souki Bebe - Set">Acheter le set complet</button>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <h2 class="section-title">Ils parlent de nous</h2>
+        <div class="testimonials-carousel">
+            <div class="testimonial-slide active">
+                <div class="testimonial-video">
+                    [Vidéo témoignage 1 - À remplacer par une vraie vidéo]
                 </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card bg-white rounded-2xl overflow-hidden shadow-md">
-                    <div class="h-48 bg-souki-green bg-opacity-10 flex items-center justify-center">
-                        <i class="fas fa-soap text-souki-green text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-display font-semibold mb-2">Savon hydratant au beurre de karité</h3>
-                        <p class="text-gray-600 mb-4">Nettoyez et hydratez vos cheveux avec ce savon artisanal enrichi en beurre de karité pur.</p>
-                        <a href="https://wa.me/243816658999?text=Je%20souhaite%20commander%20le%20savon%20hydratant%20au%20beurre%20de%20karité%20Souki" class="btn-gold bg-souki-gold text-white font-medium py-2 px-6 rounded-full inline-block">
-                            Acheter
-                        </a>
-                    </div>
+                <p class="testimonial-text">"Depuis que j'utilise les produits Souki, mes cheveux ont retrouvé leur vitalité. Le shampooing No. 2 nettoie en profondeur sans assécher, et l'huile de scellement hibiscus est divine!"</p>
+                <p class="testimonial-author">- Marie K., Kinshasa</p>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-video">
+                    [Vidéo témoignage 2 - À remplacer par une vraie vidéo]
                 </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card bg-white rounded-2xl overflow-hidden shadow-md">
-                    <div class="h-48 bg-souki-black bg-opacity-10 flex items-center justify-center">
-                        <i class="fas fa-gift text-souki-black text-5xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-display font-semibold mb-2">Coffret beauté Souki</h3>
-                        <p class="text-gray-600 mb-4">Notre sélection premium de produits pour une routine complète de soins capillaires.</p>
-                        <a href="https://wa.me/243816658999?text=Je%20souhaite%20commander%20le%20coffret%20beauté%20Souki" class="btn-gold bg-souki-gold text-white font-medium py-2 px-6 rounded-full inline-block">
-                            Acheter
-                        </a>
-                    </div>
+                <p class="testimonial-text">"Le roll-on repousse a vraiment fait des miracles sur mes tempes. Après 3 mois d'utilisation, mes cheveux repoussent plus forts et plus épais. Je recommande à 100%!"</p>
+                <p class="testimonial-author">- Fatou D., Lubumbashi</p>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-video">
+                    [Vidéo témoignage 3 - À remplacer par une vraie vidéo]
                 </div>
+                <p class="testimonial-text">"J'ai essayé beaucoup de produits pour les cheveux de ma fille, mais ceux de Souki Bébé sont les seuls qui ne lui irritent pas le cuir chevelu. Elle adore l'odeur du fondant hibiscus!"</p>
+                <p class="testimonial-author">- Aminata T., Brazzaville</p>
+            </div>
+            <div class="carousel-controls">
+                <div class="carousel-dot active" data-slide="0"></div>
+                <div class="carousel-dot" data-slide="1"></div>
+                <div class="carousel-dot" data-slide="2"></div>
             </div>
         </div>
     </section>
 
-    <!-- Values Section -->
-    <section id="values" class="py-16 md:py-24 bg-white fade-in-section">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-4">Nos Valeurs</h2>
-            <p class="text-center text-lg mb-12 max-w-2xl mx-auto">Chez Souki, nous croyons en la beauté naturelle et l'authenticité.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Value 1 -->
-                <div class="text-center">
-                    <div class="w-16 h-16 mx-auto bg-souki-green bg-opacity-10 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-leaf text-souki-green text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Naturel et bio</h3>
-                    <p class="text-gray-600">Des ingrédients 100% naturels et biologiques pour prendre soin de vos cheveux.</p>
-                </div>
-                
-                <!-- Value 2 -->
-                <div class="text-center">
-                    <div class="w-16 h-16 mx-auto bg-souki-gold bg-opacity-10 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-crown text-souki-gold text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Fiers de nos cheveux crépus</h3>
-                    <p class="text-gray-600">Nous célébrons et valorisons la beauté naturelle des cheveux afro.</p>
-                </div>
-                
-                <!-- Value 3 -->
-                <div class="text-center">
-                    <div class="w-16 h-16 mx-auto bg-souki-black bg-opacity-10 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-flag text-souki-black text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Made in Congo</h3>
-                    <p class="text-gray-600">Des produits conçus et fabriqués au Congo avec amour et expertise.</p>
-                </div>
-                
-                <!-- Value 4 -->
-                <div class="text-center">
-                    <div class="w-16 h-16 mx-auto bg-souki-gold bg-opacity-10 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-globe-africa text-souki-gold text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Qualité internationale</h3>
-                    <p class="text-gray-600">Des standards de qualité élevés pour une reconnaissance mondiale.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events" class="py-16 md:py-24 bg-souki-green fade-in-section">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
-                <h2 class="text-3xl md:text-4xl font-display font-bold mb-6">Lancement Officiel</h2>
-                <p class="text-lg mb-6">Rejoignez-nous au lancement officiel de Souki à Kinshasa</p>
-                <div class="mb-6">
-                    <p class="font-semibold">Samedi 23.8.2025 à 15:00 – 18:00</p>
-                    <p class="font-semibold">Dimanche 24.8.2025 à 10:00 – 15:00</p>
-                </div>
-                <p class="text-gray-600 mb-8">Beau Vent – référence palais du petit</p>
-                <p class="text-2xl font-display font-semibold text-souki-gold mb-8">Premier arrivé, premier servi !</p>
-                <a href="https://wa.me/243816658999?text=Je%20souhaite%20réserver%20ma%20place%20pour%20le%20lancement%20Souki" class="btn-gold bg-souki-gold text-white font-medium py-3 px-8 rounded-full inline-block">
-                    Je réserve ma place
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="py-16 bg-gray-100 fade-in-section">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-2xl md:text-3xl font-display font-bold mb-4">Recevez nos conseils beauté</h2>
-            <p class="text-lg mb-8 max-w-2xl mx-auto">Inscrivez-vous à notre newsletter pour découvrir des astuces et offres exclusives.</p>
-            
-            <form class="max-w-md mx-auto flex flex-col md:flex-row gap-4">
-                <input type="email" placeholder="Votre email" class="flex-grow px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-souki-gold">
-                <button type="submit" class="btn-gold bg-souki-gold text-white font-medium py-3 px-6 rounded-full">
-                    S'inscrire
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-white fade-in-section">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-4">Contactez-nous</h2>
-            <p class="text-center text-lg mb-12 max-w-2xl mx-auto">Une question, un conseil? Notre équipe est à votre écoute.</p>
-            
-            <div class="flex flex-col md:flex-row gap-12">
-                <div class="md:w-1/2">
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block mb-2">Nom complet</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-souki-gold">
-                        </div>
-                        <div>
-                            <label for="email" class="block mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-souki-gold">
-                        </div>
-                        <div>
-                            <label for="message" class="block mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-souki-gold"></textarea>
-                        </div>
-                        <button type="submit" class="btn-gold bg-souki-gold text-white font-medium py-3 px-8 rounded-full">
-                            Envoyer
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="md:w-1/2">
-                    <div class="bg-souki-gold bg-opacity-10 rounded-2xl p-8 h-full">
-                        <h3 class="text-xl font-semibold mb-6">Nos coordonnées</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-souki-gold bg-opacity-20 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-phone text-souki-gold"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Téléphone / WhatsApp</p>
-                                    <p>+243 81 665 8999</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-souki-gold bg-opacity-20 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-envelope text-souki-gold"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Email</p>
-                                    <p>contact@souki.cd</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pt-6">
-                                <h4 class="font-semibold mb-4">Suivez-nous sur les réseaux sociaux</h4>
-                                <div class="flex space-x-4">
-                                    <a href="#" class="w-10 h-10 bg-souki-black rounded-full flex items-center justify-center">
-                                        <i class="fab fa-instagram text-white"></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-souki-black rounded-full flex items-center justify-center">
-                                        <i class="fab fa-facebook-f text-white"></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-souki-black rounded-full flex items-center justify-center">
-                                        <i class="fab fa-tiktok text-white"></i>
-                                    </a>
-                                    <a href="https://wa.me/243816658999" class="w-10 h-10 bg-souki-black rounded-full flex items-center justify-center">
-                                        <i class="fab fa-whatsapp text-white"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Final CTA -->
+    <section class="final-cta fade-in">
+        <h2>Prêt à transformer votre routine capillaire?</h2>
+        <p>Rejoignez la communauté Souki et découvrez la beauté de vos cheveux naturels.</p>
+        <a href="#products" class="cta-button">Commander maintenant</a>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-souki-black text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <div class="flex justify-center mb-6">
-                    <div class="logo-container">
-                        <div class="w-12 h-12 bg-souki-gold rounded-full flex items-center justify-center">
-                            <i class="fas fa-female text-white"></i>
-                        </div>
-                        <div class="logo-leaf w-4 h-4 bg-souki-green rounded-full flex items-center justify-center">
-                            <i class="fas fa-leaf text-white text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="text-xl font-display font-bold mb-4">SOUKI</p>
-                <p class="max-w-md mx-auto mb-8">La beauté au naturel, par et pour nous.</p>
-                
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#about" class="hover:text-souki-gold">À propos</a>
-                    <a href="#products" class="hover:text-souki-gold">Produits</a>
-                    <a href="#contact" class="hover:text-souki-gold">Contact</a>
-                    <a href="#" class="hover:text-souki-gold">Mentions légales</a>
-                </div>
-                
-                <p class="text-sm text-gray-400">© 2023 Souki. Tous droits réservés.</p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Souki</h3>
+                <p>La beauté des cheveux crépus. Des soins naturels, accessibles et efficaces.</p>
             </div>
+            <div class="footer-column">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="#about">Notre Histoire</a></li>
+                    <li><a href="#products">Nos Produits</a></li>
+                    <li><a href="#baby-care">Soins Bébé</a></li>
+                    <li><a href="#testimonials">Témoignages</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Email: info@souki.com</li>
+                    <li>Téléphone: +243 81 665 4999</li>
+                    <li>WhatsApp: +243 81 665 4999</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Inscrivez-vous pour recevoir nos offres exclusives et conseils capillaires.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-button">S'inscrire</button>
+                </form>
+                <div class="footer-column">
+    <h3>Chaîne WhatsApp</h3>
+    <p>Rejoignez notre chaîne WhatsApp pour recevoir nos offres exclusives et conseils capillaires directement sur votre téléphone.</p>
+    <a href="https://whatsapp.com/channel/0029VbBEZpf0LKZI7odOB93S" 
+       class="whatsapp-button" 
+       target="_blank">
+         Rejoindre la chaîne Afrosuki
+    </a>
+</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AfroSuki. Tous droits réservés.</p>
+            <p>
+  Fait avec du ❤️ par 
+  <a href="https://roifidele.com" target="_blank" rel="noopener" style="color: violet; font-weight: bold;">
+    ROI FIDÈLE
+  </a>
+</p>
         </div>
     </footer>
 
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+            <button class="close-cart">×</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-total">
+            Total: <span id="cart-total-price">0</span> €
+        </div>
+        <a href="#" class="checkout-button" id="checkout-button">Passer la commande</a>
+    </div>
+
     <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-        
-        // Fade-in animation on scroll
-        const fadeElements = document.querySelectorAll('.fade-in-section');
-        
-        const fadeInObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+        // Products Data
+        const products = [
+            {
+                id: 1,
+                name: "N°2 : Cleanser PURIFIER",
+                description: "Nettoie en douceur. Réveille les racines. Ce shampooing moisturisant purifie le cuir chevelu sans le décaper.",
+                price: "18",
+                image: "https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 2,
+                name: "N°3 : Fondant Hibiscus Nourrissant",
+                description: "Brillance florale • Démêlage léger. Adoucit, nourrit et démêle avec des fleurs d'hibiscus.",
+                price: "20",
+                image: "https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 3,
+                name: "N°3 : Fondant Bulukutu",
+                description: "Apaisant • Fondant botanique • Nutrition en profondeur. Adoucit avec des feuilles de Bulukutu.",
+                price: "22",
+                image: "https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 4,
+                name: "N°4 : Huile de Scellage Bulukutu",
+                description: "Scelle l'hydratation • Protège • Fait briller. Huile légère infusée aux feuilles de Bulukutu.",
+                price: "25",
+                image: "https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 5,
+                name: "N°4 Huile de Scellage Moringa",
+                description: "Scelle l'hydratation • Protège • Fait briller. Huile nutritive infusée aux feuilles de Moringa.",
+                price: "25",
+                image: "https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 6,
+                name: "N°4 : Huile de Scellage Hibiscus (Ngai Ngai)",
+                description: "Scelle l'hydratation • Protège • Fait briller. Huile délicate infusée aux fleurs d'hibiscus.",
+                price: "26",
+                image: "https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 7,
+                name: "N°5 : Huile Capillaire – Rolling",
+                description: "Stimule • Cible • Favorise la repousse. Soin ciblé avec applicateur roll-on pour les zones fragilisées.",
+                price: "30",
+                image: "https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 8,
+                name: "Souki Bebe - Set",
+                description: "Routine Douceur – Bébé & Enfants. Set complet de soins pour les plus jeunes boucles et crépus.",
+                price: "45",
+                image: "https://images.unsplash.com/photo-1594736797933-d0d69e0f8d7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('souki-cart')) || [];
+
+        // DOM Elements
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingProgress = document.querySelector('.loading-progress');
+        const productsContainer = document.getElementById('products-container');
+        const cartIcon = document.getElementById('cart-icon');
+        const cartCount = document.getElementById('cart-count');
+        const cartSidebar = document.querySelector('.cart-sidebar');
+        const cartOverlay = document.querySelector('.cart-overlay');
+        const closeCart = document.querySelector('.close-cart');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const checkoutButton = document.getElementById('checkout-button');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navUl = document.querySelector('nav ul');
+
+        // Loading Screen Animation
+        window.addEventListener('load', () => {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                loadingProgress.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 300);
                 }
+            }, 100);
+        });
+
+        // Render Products
+        function renderProducts() {
+            productsContainer.innerHTML = '';
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card fade-in';
+                productCard.innerHTML = `
+                    <div class="product-image" style="background-image: url('${product.image}')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">${product.price} €</div>
+                        <button class="buy-button" data-product="${product.name}">Acheter maintenant</button>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
             });
-        }, {
-            threshold: 0.1
-        });
-        
-        fadeElements.forEach(element => {
-            fadeInObserver.observe(element);
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+            
+            // Add event listeners to buy buttons
+            document.querySelectorAll('.buy-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productName = this.getAttribute('data-product');
+                    addToCart(productName);
+                });
+            });
+        }
+
+        // Add to Cart
+        function addToCart(productName) {
+            const product = products.find(p => p.name === productName);
+            if (product) {
+                const existingItem = cart.find(item => item.id === product.id);
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: parseFloat(product.price),
+                        quantity: 1
                     });
                 }
+                
+                updateCart();
+                openCart();
+            }
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        // Update Cart
+        function updateCart() {
+            // Save to localStorage
+            localStorage.setItem('souki-cart', JSON.stringify(cart));
+            
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            cartItems.innerHTML = '';
+            let totalPrice = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-image"></div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${item.price} € x ${item.quantity}</div>
+                    </div>
+                    <button class="remove-item" data-id="${item.id}">Supprimer</button>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Update total price
+            cartTotalPrice.textContent = totalPrice.toFixed(2);
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(productId);
+                });
+            });
+            
+            // Update checkout button
+            if (cart.length > 0) {
+                const productNames = cart.map(item => `${item.name} (x${item.quantity})`).join(', ');
+                checkoutButton.href = `https://wa.me/243816654999?text=${encodeURIComponent(`Je veux l'excellence pour mes cheveux et pour ceux de mon entourage, je souhaite acheter: ${productNames}`)}`;
+            } else {
+                checkoutButton.href = '#';
+            }
+        }
+
+        // Open Cart
+        function openCart() {
+            cartSidebar.classList.add('active');
+            cartOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Cart
+        function closeCartSidebar() {
+            cartSidebar.classList.remove('active');
+            cartOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Testimonials Carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Auto-advance carousel
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Scroll Animations
+        function checkScroll() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCart();
+            checkScroll();
+            
+            // Cart events
+            cartIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                openCart();
+            });
+            
+            closeCart.addEventListener('click', closeCartSidebar);
+            cartOverlay.addEventListener('click', closeCartSidebar);
+            
+            // Mobile menu
+            mobileMenuBtn.addEventListener('click', () => {
+                navUl.classList.toggle('active');
+            });
+            
+            // Carousel dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+            
+            // Newsletter form
+            document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('.newsletter-input').value;
+                alert(`Merci de vous être inscrit avec l'adresse: ${email}`);
+                e.target.reset();
             });
         });
+
+        window.addEventListener('scroll', checkScroll);
     </script>
 </body>
 </html>
