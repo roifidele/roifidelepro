@@ -3,346 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikam Création Events - Agence Événementielle & Communication</title>
-    <meta name="description" content="Nikam Création Events est une agence événementielle et de communication qui accompagne particuliers et entreprises dans la réalisation de projets uniques et mémorables.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+    <title>Jewelry by Alex - Bijoux en Acier Inoxydable</title>
+    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- Angular via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        .font-playfair { font-family: 'Playfair Display', serif; }
-        .font-great-vibes { font-family: 'Great Vibes', cursive; }
-        .font-open-sans { font-family: 'Open Sans', sans-serif; }
-        .text-primary { color: #3B0318; }
-        .bg-primary { background-color: #3B0318; }
-        .text-accent { color: #FAG0E6; }
-        .bg-accent { background-color: #FAG0E6; }
-        .text-secondary { color: #E0AA3E; }
-        .bg-secondary { background-color: #E0AA3E; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
         .hero-bg {
-            background: linear-gradient(rgba(59, 3, 24, 0.7), rgba(59, 3, 24, 0.5)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%233B0318"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23E0AA3E" stroke-width="1"/></svg>');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
         }
-        .section-padding {
-            padding: 5rem 0;
-        }
-        .hover-lift {
+        .product-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .hover-lift:hover {
+        .product-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body class="font-open-sans text-gray-800">
-    <!-- Navigation -->
-    <header x-data="{ open: false }" class="fixed w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center">
-                    <h1 class="font-playfair text-2xl font-bold text-primary">NIKAM.CREATION</h1>
-                    <span class="ml-2 text-secondary font-semibold">EVENTS</span>
-                </div>
-                
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button @click="open = !open" class="text-primary focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <!-- Desktop menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-primary hover:text-secondary transition-colors">À propos</a>
-                    <a href="#services" class="text-primary hover:text-secondary transition-colors">Services</a>
-                    <a href="#value" class="text-primary hover:text-secondary transition-colors">Valeur ajoutée</a>
-                    <a href="#projects" class="text-primary hover:text-secondary transition-colors">Projets</a>
-                    <a href="#contact" class="text-primary hover:text-secondary transition-colors">Contact</a>
-                </nav>
+<body ng-app="jewelryApp" ng-controller="MainController" class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="heading-font text-2xl font-bold text-gray-800">Jewelry by Alex</h1>
             </div>
-            
-            <!-- Mobile menu -->
-            <div x-show="open" class="md:hidden py-4 border-t border-gray-200">
-                <nav class="flex flex-col space-y-4">
-                    <a href="#about" class="text-primary hover:text-secondary transition-colors" @click="open = false">À propos</a>
-                    <a href="#services" class="text-primary hover:text-secondary transition-colors" @click="open = false">Services</a>
-                    <a href="#value" class="text-primary hover:text-secondary transition-colors" @click="open = false">Valeur ajoutée</a>
-                    <a href="#projects" class="text-primary hover:text-secondary transition-colors" @click="open = false">Projets</a>
-                    <a href="#contact" class="text-primary hover:text-secondary transition-colors" @click="open = false">Contact</a>
-                </nav>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#accueil" class="text-gray-700 hover:text-amber-600 font-medium">Accueil</a>
+                <a href="#produits" class="text-gray-700 hover:text-amber-600 font-medium">Produits</a>
+                <a href="#apropos" class="text-gray-700 hover:text-amber-600 font-medium">À propos</a>
+                <a href="#contact" class="text-gray-700 hover:text-amber-600 font-medium">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-gray-700 hover:text-amber-600">
+                    <i class="fab fa-tiktok text-xl"></i>
+                </a>
+                <button class="md:hidden text-gray-700" id="mobile-menu-button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white py-4 px-4 hidden">
+            <div class="flex flex-col space-y-4">
+                <a href="#accueil" class="text-gray-700 hover:text-amber-600 font-medium">Accueil</a>
+                <a href="#produits" class="text-gray-700 hover:text-amber-600 font-medium">Produits</a>
+                <a href="#apropos" class="text-gray-700 hover:text-amber-600 font-medium">À propos</a>
+                <a href="#contact" class="text-gray-700 hover:text-amber-600 font-medium">Contact</a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
+    <section id="accueil" class="hero-bg text-white py-20 md:py-32">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="font-great-vibes text-5xl md:text-7xl mb-4">C'est l'art de faire vibrer vos instants</h2>
-            <h1 class="font-playfair text-4xl md:text-6xl font-bold mb-8">NIKAM.CREATION EVENTS</h1>
-            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10">Agence événementielle et de communication qui transforme vos idées en expériences mémorables</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#contact" class="bg-secondary hover:bg-yellow-500 text-white font-semibold py-3 px-8 rounded-full transition-colors">Nous contacter</a>
-                <a href="#services" class="bg-transparent border-2 border-white hover:bg-white hover:text-primary text-white font-semibold py-3 px-8 rounded-full transition-colors">Nos services</a>
+            <h2 class="heading-font text-4xl md:text-6xl font-bold mb-6">Bijoux en Acier Inoxydable</h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Découvrez notre collection exclusive de bijoux élégants et durables, créés avec passion à Kinshasa.</p>
+            <a href="#produits" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300">Découvrir la collection</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="produits" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="heading-font text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Nos Collections</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Produit 1 -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-gem text-6xl text-amber-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="heading-font text-xl font-semibold text-gray-800 mb-2">Colliers Élégants</h3>
+                        <p class="text-gray-600 mb-4">Des colliers raffinés qui mettent en valeur votre style unique.</p>
+                        <a href="#" class="inline-block text-amber-600 hover:text-amber-700 font-medium">Voir plus <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Produit 2 -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-ring text-6xl text-amber-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="heading-font text-xl font-semibold text-gray-800 mb-2">Boucles d'Oreilles</h3>
+                        <p class="text-gray-600 mb-4">Des créations uniques qui illuminent votre visage.</p>
+                        <a href="#" class="inline-block text-amber-600 hover:text-amber-700 font-medium">Voir plus <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Produit 3 -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-paperclip text-6xl text-amber-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="heading-font text-xl font-semibold text-gray-800 mb-2">Broches Artistiques</h3>
+                        <p class="text-gray-600 mb-4">Des pièces uniques qui ajoutent une touche d'élégance à vos tenues.</p>
+                        <a href="#" class="inline-block text-amber-600 hover:text-amber-700 font-medium">Voir plus <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section-padding bg-gray-50">
+    <section id="apropos" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="text-secondary font-semibold">À propos de nous</span>
-                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Notre histoire</h2>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <p class="text-lg mb-6">
-                    <span class="font-bold text-primary">NIKAM Création Events</span> est une agence événementielle et de communication qui accompagne particuliers et entreprises dans la réalisation de projets uniques et mémorables.
-                </p>
-                <p class="text-lg mb-6">
-                    Nous accompagnons nos clients dans la conception, l'organisation et la mise en valeur de leurs projets, qu'il s'agisse d'événements privés, corporatifs ou d'une stratégie de communication globale. Notre force réside dans l'alliance de la créativité et de la rigueur professionnelle, en mettant toujours le client au centre de nos priorités.
-                </p>
-                
-                <div class="bg-white p-8 rounded-lg shadow-md mt-10">
-                    <h3 class="font-playfair text-2xl text-primary mb-4">Notre mission</h3>
-                    <p class="mb-6">
-                        Transformer vos idées en expériences, et donner vie à vos événements tout en bâtissant une image forte grâce à une communication efficace. Nous voulons que chaque événement, chaque campagne, soit le reflet de votre personnalité, de vos valeurs et de vos rêves.
-                    </p>
-                    <p class="mb-6">
-                        Chez <span class="font-bold text-primary">NIKAM</span>, nous croyons qu'un projet bien pensé et bien exécuté a le pouvoir de marquer les esprits et de créer du lien.
-                    </p>
-                    <h3 class="font-playfair text-2xl text-primary mb-4">Notre vision</h3>
-                    <p>
-                        Nous aspirons à devenir une référence en matière d'événementiel et de communication, non seulement par notre créativité, mais surtout par notre capacité à raconter des histoires à travers chaque projet. Notre vision est de bâtir un monde où les événements ne sont pas de simples rendez-vous, mais des expériences immersives qui inspirent, rassemblent et laissent une empreinte durable.
-                    </p>
-                </div>
-                
-                <div class="mt-10 text-center">
-                    <p class="text-xl font-semibold text-primary">Créativité, professionnalisme, accessibilité, authenticité.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section class="py-16 bg-primary text-white">
-        <div class="container mx-auto px-4 text-center">
-            <blockquote class="max-w-3xl mx-auto">
-                <p class="font-playfair text-2xl md:text-3xl italic mb-4">"Les détails créent la perfection, et la perfection n'est pas un détail."</p>
-                <footer class="text-lg">– Léonard de Vinci</footer>
-            </blockquote>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section-padding">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="text-secondary font-semibold">Nos services</span>
-                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Ce que nous proposons</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Service Événementiel -->
-                <div class="bg-white p-8 rounded-lg shadow-md hover-lift">
-                    <h3 class="font-playfair text-2xl text-primary mb-6 pb-2 border-b-2 border-secondary">Service Événementiel</h3>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Organisation & coordination complète</h4>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Conception du concept de l'événement (thème, couleurs, ambiance)</li>
-                            <li>Élaboration du budget et suivi des dépenses</li>
-                            <li>Recherche et gestion des prestataires</li>
-                            <li>Supervision le jour J</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Mariages & événements privés</h4>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Création de thèmes personnalisés</li>
-                            <li>Décorations uniques</li>
-                            <li>Coordination des prestataires beauté</li>
-                            <li>Animation musicale et artistique</li>
-                            <li>Sweet table et buffets thématiques</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Événements corporatifs & conférences</h4>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Organisation de séminaires, workshops et conférences</li>
-                            <li>Scénographie et mise en valeur de la marque</li>
-                            <li>Gestion technique (son, lumière, vidéo)</li>
-                            <li>Création de supports</li>
-                            <li>Gestion des relations presse et médias</li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h4 class="font-semibold text-lg text-primary mb-2">Célébrations & lancements</h4>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Anniversaires, baptêmes, fêtes familiales</li>
-                            <li>Lancements de produits / services</li>
-                            <li>Soirées d'entreprise</li>
-                            <li>Expériences immersives adaptées à la cible</li>
-                        </ul>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="bg-gray-300 h-80 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-store text-6xl text-amber-500"></i>
                     </div>
                 </div>
-                
-                <!-- Service de Communication -->
-                <div class="bg-white p-8 rounded-lg shadow-md hover-lift">
-                    <h3 class="font-playfair text-2xl text-primary mb-6 pb-2 border-b-2 border-secondary">Service de Communication</h3>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Stratégie de communication</h4>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Analyse de votre image de marque et positionnement</li>
-                            <li>Définition de la ligne éditoriale et du ton de communication</li>
-                            <li>Plan de communication sur mesure</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Social Media Management</h4>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Gestion complète de vos pages</li>
-                            <li>Création de contenu</li>
-                            <li>Planification et calendrier éditorial</li>
-                            <li>Animation des communautés</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Création visuelle & identité</h4>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Logos, chartes graphiques, affiches et flyers</li>
-                            <li>Catalogues événementiels ou produits</li>
-                            <li>Contenu visuel pour réseaux sociaux</li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h4 class="font-semibold text-lg text-primary mb-2">Relations publiques & médias</h4>
-                        <ul class="list-disc pl-5 space-y-1">
-                            <li>Rédaction de communiqués et dossiers de presse</li>
-                            <li>Mise en avant de vos projets dans les médias</li>
-                            <li>Mise en relation avec influenceurs et leaders d'opinion</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Value Section -->
-    <section id="value" class="section-padding bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="text-secondary font-semibold">Notre valeur ajoutée</span>
-                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Pourquoi nous choisir</h2>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
-                        <h3 class="font-playfair text-xl text-primary mb-4">Créativité jeune et innovante</h3>
-                        <p>Nous apportons une approche fraîche et moderne à chaque projet, en combinant tendances actuelles et classiques intemporels.</p>
-                    </div>
-                    
-                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
-                        <h3 class="font-playfair text-xl text-primary mb-4">Réseau de partenaires exclusifs</h3>
-                        <p>Nous collaborons avec les meilleurs prestataires : décorateurs, maquilleuses, coiffeuses, traiteurs, photographes et salles prestigieuses.</p>
-                    </div>
-                    
-                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
-                        <h3 class="font-playfair text-xl text-primary mb-4">Service double : événementiel + communication</h3>
-                        <p>Bénéficiez d'une approche intégrée qui assure la cohérence entre votre événement et votre communication.</p>
-                    </div>
-                    
-                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift">
-                        <h3 class="font-playfair text-xl text-primary mb-4">Expérience personnalisée</h3>
-                        <p>Chaque client est unique, c'est pourquoi nous adaptons notre approche à vos besoins spécifiques et à votre personnalité.</p>
-                    </div>
-                    
-                    <div class="bg-white p-6 rounded-lg shadow-md hover-lift md:col-span-2">
-                        <h3 class="font-playfair text-xl text-primary mb-4">Prix accessibles grâce à des formules packagées</h3>
-                        <p>Nous proposons différentes formules adaptées à tous les budgets, sans compromis sur la qualité et le professionnalisme.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section-padding">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="text-secondary font-semibold">Nos réalisations</span>
-                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Projets & Réalisations</h2>
-            </div>
-            
-            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="p-8">
-                    <h3 class="font-playfair text-2xl text-primary mb-4">Anniversaire floral chic (20 pers.)</h3>
-                    <p class="text-sm text-gray-600 mb-6">
-                        <strong>Note :</strong> Il s'agit d'un projet préparatoire (catalogue personnalisé), élaboré comme si l'événement devait être produit. Cela démontre notre capacité à conceptualiser, organiser et donner vie à une idée d'événement, du thème jusqu'aux moindres détails.
-                    </p>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Contexte</h4>
-                        <p>
-                            Pour célébrer un anniversaire intimiste de 20 invités, la cliente souhaitait une ambiance chic et élégante, avec des notes florales, colorées et une atmosphère chaleureuse. L'objectif était de créer un moment unique, où chaque détail reflète douceur, convivialité et raffinement.
-                        </p>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Catalogue personnalisé</h4>
-                        <p>
-                            Le <strong>catalogue personnalisé</strong> est un document conçu sur mesure pour chaque client, qui présente l'ambiance, la décoration, le menu et l'animation de son événement. Il permet de visualiser le concept avant sa réalisation et de s'assurer que chaque détail correspond aux attentes, tout en reflétant notre créativité et notre professionnalisme.
-                        </p>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-lg text-primary mb-2">Palette de couleurs</h4>
-                        <p>
-                            Le code couleur retenu mettait en avant le rose, le jaune, l'orange et le beige, un dégradé chaleureux rappelant les nuances d'un sunrise. Ces teintes ont été pensées pour transmettre de la fraîcheur, de la joie et un esprit festif, tout en conservant une élégance intemporelle.
-                        </p>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-6 mt-8">
-                        <div>
-                            <h4 class="font-semibold text-lg text-primary mb-2">Décoration</h4>
-                            <ul class="list-disc pl-5 space-y-1">
-                                <li>Une longue table habillée d'une nappe claire, sublimée par une décoration florale harmonieuse</li>
-                                <li>Des lanternes pour illuminer l'allée et créer une ambiance intimiste</li>
-                                <li>Un photobooth avec arche florale et ballons organiques pour immortaliser l'événement</li>
-                            </ul>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="heading-font text-3xl md:text-4xl font-bold text-gray-800 mb-6">À propos de Jewelry by Alex</h2>
+                    <p class="text-gray-600 mb-4">Basée à Kinshasa, Jewelry by Alex est une marque de bijoux en acier inoxydable qui allie élégance et durabilité. Notre passion pour la création de pièces uniques se reflète dans chaque bijou que nous concevons.</p>
+                    <p class="text-gray-600 mb-6">Nous nous engageons à offrir des bijoux de haute qualité qui résistent à l'épreuve du temps, tout en restant abordables et accessibles à tous.</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-amber-100 p-4 rounded-lg">
+                            <i class="fas fa-shield-alt text-amber-600 text-2xl"></i>
                         </div>
-                        
                         <div>
-                            <h4 class="font-semibold text-lg text-primary mb-2">Restauration</h4>
-                            <ul class="list-disc pl-5 space-y-1">
-                                <li>Un coin buffet et sweet table avec cupcakes, cake pops et le gâteau central</li>
-                                <li>Apportant gourmandise et couleur</li>
-                            </ul>
-                            
-                            <h4 class="font-semibold text-lg text-primary mb-2 mt-4">Animation</h4>
-                            <ul class="list-disc pl-5 space-y-1">
-                                <li>Une animation musicale chill, assurée par un DJ</li>
-                                <li>Pour accompagner l'événement sans jamais briser l'élégance recherchée</li>
-                            </ul>
+                            <h3 class="font-semibold text-gray-800">Acier Inoxydable de Qualité</h3>
+                            <p class="text-gray-600 text-sm">Matériau résistant et hypoallergénique</p>
                         </div>
                     </div>
-                    
-                    <div class="mt-8 p-4 bg-gray-50 rounded-lg">
-                        <p>
-                            Ce catalogue personnalisé a permis à la cliente de se projeter et d'imaginer son anniversaire idéal avant toute mise en place.
-                        </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="heading-font text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Avis Clients</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Avis 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"J'adore mes nouvelles boucles d'oreilles! Elles sont légères, élégantes et ne provoquent aucune irritation. Je les porte tous les jours!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Marie K.</h4>
+                            <p class="text-gray-500 text-sm">Kinshasa</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Avis 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Le collier que j'ai acheté est magnifique! La finition est impeccable et j'ai reçu de nombreux compliments. Livraison rapide et service impeccable."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">David L.</h4>
+                            <p class="text-gray-500 text-sm">Gombe</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Avis 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"La broche est tout simplement magnifique! Un travail d'artisanat exceptionnel. Je recommande vivement Jewelry by Alex à tous les amateurs de bijoux de qualité."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Sophie M.</h4>
+                            <p class="text-gray-500 text-sm">Lemba</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -350,122 +221,120 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section-padding bg-gray-50">
+    <section id="contact" class="py-16 bg-gray-800 text-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="text-secondary font-semibold">Contactez-nous</span>
-                <h2 class="font-playfair text-4xl md:text-5xl text-primary mt-2">Travaillons ensemble</h2>
-            </div>
-            
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="font-playfair text-2xl text-primary mb-6">Nos coordonnées</h3>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="bg-primary text-white p-3 rounded-full mr-4">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-primary">Téléphone</h4>
-                                <p>+243 (0) 847 386 954</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-primary text-white p-3 rounded-full mr-4">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-primary">Email</h4>
-                                <p>nikam.creationevents@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-primary text-white p-3 rounded-full mr-4">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-primary">Instagram</h4>
-                                <p>@nikam.creation_events</p>
-                            </div>
-                        </div>
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="heading-font text-3xl md:text-4xl font-bold mb-6">Contactez-nous</h2>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Adresse</h3>
+                        <p class="text-gray-300">5, avenue cadeco, Q/lemera C/gombe<br>I'immeuble Adonique, Kinshasa</p>
                     </div>
-                    
-                    <div class="mt-8">
-                        <h3 class="font-playfair text-xl text-primary mb-4">Notre philosophie</h3>
-                        <p class="mb-4">
-                            Au-delà d'un simple prestataire, nous nous considérons comme des <strong>créateurs d'émotions</strong>. Chaque projet que nous réalisons est porté par une conviction : derrière chaque événement et chaque message, il y a une histoire à raconter.
-                        </p>
-                        <p>
-                            Nous croyons que <strong>l'événementiel</strong> et la <strong>communication</strong> sont plus que des services : ce sont des <strong>ponts humains</strong>, des instants suspendus qui <strong>relient</strong> des personnes, des idées et des rêves.
-                        </p>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Téléphone</h3>
+                        <p class="text-gray-300">+243 816617742</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Suivez-nous</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-white hover:text-amber-400 text-2xl">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                
-                <div>
-                    <h3 class="font-playfair text-2xl text-primary mb-6">Envoyez-nous un message</h3>
-              
-                    <!-- WhatsApp Button -->
-                    <div class="mt-6">
-                        <a href="https://wa.me/243847386954?text=Bonjour%20Nikam%20j'ai%20besoin%20de%20votre%20expertise" target="_blank" class="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-md transition-colors">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.187-3.55-8.444z"/>
-                            </svg>
-                            Contactez-nous sur WhatsApp
-                        </a>
-                    </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <form class="bg-gray-700 p-6 rounded-lg">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-300 mb-2">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-300 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                        </div>
+                        <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300">Envoyer</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-primary text-white py-12">
+    <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h2 class="font-playfair text-2xl">NIKAM.CREATION</h2>
-                    <p class="text-secondary font-semibold">EVENTS</p>
+                <div class="mb-4 md:mb-0">
+                    <h2 class="heading-font text-2xl font-bold">Jewelry by Alex</h2>
+                    <p class="text-gray-400 mt-2">Bijoux en acier inoxydable</p>
                 </div>
-                
                 <div class="text-center md:text-right">
-                    <p class="font-great-vibes text-2xl mb-2">C'est de faire vibrer vos instants</p>
-                    <p>&copy; 2025 Nikam Création Events. Tous droits réservés.</p>
+                    <p class="text-gray-400">&copy; 2023 Jewelry by Alex. Tous droits réservés.</p>
+                    <p class="text-gray-400 mt-1">Livraison partout à Kinshasa</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const eventType = formData.get('eventType');
-            const message = formData.get('message');
-            
-            // In a real implementation, you would send this data to a server
-            // For this demo, we'll just show an alert
-            alert(`Merci ${name} ! Votre message a été envoyé. Nous vous contacterons bientôt.`);
-            
-            // Reset form
-            this.reset();
-        });
+        // AngularJS Application
+        var app = angular.module('jewelryApp', []);
         
-        // Smooth scrolling for anchor links
+        app.controller('MainController', function($scope) {
+            // Données pour les produits
+            $scope.products = [
+                {
+                    name: "Colliers Élégants",
+                    description: "Des colliers raffinés qui mettent en valeur votre style unique.",
+                    icon: "fas fa-gem"
+                },
+                {
+                    name: "Boucles d'Oreilles",
+                    description: "Des créations uniques qui illuminent votre visage.",
+                    icon: "fas fa-ring"
+                },
+                {
+                    name: "Broches Artistiques",
+                    description: "Des pièces uniques qui ajoutent une touche d'élégance à vos tenues.",
+                    icon: "fas fa-paperclip"
+                }
+            ];
+            
+            // Données pour les avis
+            $scope.testimonials = [
+                {
+                    name: "Marie K.",
+                    location: "Kinshasa",
+                    text: "J'adore mes nouvelles boucles d'oreilles! Elles sont légères, élégantes et ne provoquent aucune irritation. Je les porte tous les jours!"
+                },
+                {
+                    name: "David L.",
+                    location: "Gombe",
+                    text: "Le collier que j'ai acheté est magnifique! La finition est impeccable et j'ai reçu de nombreux compliments. Livraison rapide et service impeccable."
+                },
+                {
+                    name: "Sophie M.",
+                    location: "Lemba",
+                    text: "La broche est tout simplement magnifique! Un travail d'artisanat exceptionnel. Je recommande vivement Jewelry by Alex à tous les amateurs de bijoux de qualité."
+                }
+            ];
+        });
+
+        // JavaScript pour le menu mobile
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // JavaScript pour le défilement fluide
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -479,6 +348,9 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    
+                    // Fermer le menu mobile si ouvert
+                    document.getElementById('mobile-menu').classList.add('hidden');
                 }
             });
         });
