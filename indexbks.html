@@ -3,348 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groupe BKS - Services de Nettoyage Professionnel</title>
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
-    <!-- Tailwind CSS -->
+    <title>ZOOM RDC | Média Entrepreneurial</title>
+    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
+    <!-- Angular via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Montserrat', sans-serif;
         }
-        
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80');
             background-size: cover;
             background-position: center;
         }
-        
-        .service-card {
+        .card-hover {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .service-card:hover {
+        .card-hover:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
-        .animate-fade-in {
-            animation: fadeIn 1s ease-in-out;
+        .zoom-red {
+            color: #e53e3e;
         }
-        
-        .animate-slide-up {
-            animation: slideUp 0.8s ease-out;
-        }
-        
-        .animate-pulse-slow {
-            animation: pulse 3s infinite;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .floating-whatsapp {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .bg-zoom-red {
+            background-color: #e53e3e;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body ng-app="zoomApp" ng-controller="MainController" class="bg-gray-50">
     <!-- Header -->
-    <header class="fixed w-full bg-white shadow-md z-50">
+    <header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
             <div class="flex items-center">
-                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-2">BKS</div>
-                <span class="text-xl font-bold text-blue-700">Groupe BKS</span>
+                <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center mr-3">
+                    <span class="text-white font-bold text-xl">z</span>
+                    <span class="zoom-red font-bold text-xl">O</span>
+                    <span class="text-white font-bold text-xl">O</span>
+                    <span class="text-white font-bold text-xl">M</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">ZOOM RDC</h1>
+                    <p class="text-xs text-gray-500">Média Entrepreneurial</p>
+                </div>
             </div>
             
-            <!-- Mobile menu button -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-600">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-            
-            <!-- Desktop Navigation -->
+            <!-- Navigation -->
             <nav class="hidden md:flex space-x-8">
-                <a href="#accueil" class="text-blue-600 font-medium hover:text-blue-800 transition">Accueil</a>
-                <a href="#services" class="text-gray-600 font-medium hover:text-blue-600 transition">Services</a>
-                <a href="#contact" class="text-gray-600 font-medium hover:text-blue-600 transition">Contact</a>
+                <a href="#accueil" class="text-gray-700 hover:text-red-600 font-medium">Accueil</a>
+                <a href="#apropos" class="text-gray-700 hover:text-red-600 font-medium">À propos</a>
+                <a href="#publications" class="text-gray-700 hover:text-red-600 font-medium">Publications</a>
+                <a href="#evenements" class="text-gray-700 hover:text-red-600 font-medium">Événements</a>
+                <a href="#contact" class="text-gray-700 hover:text-red-600 font-medium">Contact</a>
             </nav>
+            
+            <!-- Bouton mobile menu -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </div>
         
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 border-t">
-            <div class="flex flex-col space-y-3">
-                <a href="#accueil" class="text-blue-600 font-medium py-2">Accueil</a>
-                <a href="#services" class="text-gray-600 font-medium py-2">Services</a>
-                <a href="#contact" class="text-gray-600 font-medium py-2">Contact</a>
-            </div>
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
+            <a href="#accueil" class="block py-2 text-gray-700 hover:text-red-600">Accueil</a>
+            <a href="#apropos" class="block py-2 text-gray-700 hover:text-red-600">À propos</a>
+            <a href="#publications" class="block py-2 text-gray-700 hover:text-red-600">Publications</a>
+            <a href="#evenements" class="block py-2 text-gray-700 hover:text-red-600">Événements</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-red-600">Contact</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="accueil" class="hero pt-24 pb-20 md:pt-32 md:pb-28 px-4 text-white text-center">
-        <div class="max-w-3xl mx-auto animate-fade-in">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">La propreté sur mesure pour vos espaces !</h1>
-            <p class="text-xl md:text-2xl mb-8">Groupe BKS offre des services de nettoyage professionnel pour vos locaux et résidences</p>
-            <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full inline-block transition duration-300 transform hover:scale-105 animate-pulse-slow">
-                Nous contacter
-            </a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-16 md:py-24 px-4 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">Nos services</h2>
-            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Des solutions de nettoyage adaptées à tous vos besoins, qu'il s'agisse de locaux professionnels ou de résidences privées.</p>
-            
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Vos locaux -->
-                <div class="service-card bg-blue-50 p-8 rounded-xl shadow-md animate-slide-up">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white mr-4">
-                            <i class="fas fa-building text-xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-blue-800">Vos locaux</h3>
-                    </div>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
-                            <span>Nettoyage régulier de vos bureaux et autres espaces de travail</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
-                            <span>Entretien complet et personnalisé</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-blue-600 mt-1 mr-3"></i>
-                            <span>Services de sous-traitance professionnelle</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Vos résidences -->
-                <div class="service-card bg-green-50 p-8 rounded-xl shadow-md animate-slide-up" style="animation-delay: 0.2s;">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white mr-4">
-                            <i class="fas fa-home text-xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-green-800">Vos résidences</h3>
-                    </div>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                            <span>Nettoyage régulier et soigné de vos maisons et appartements</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                            <span>Nettoyage complet avant l'aménagement</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                            <span>Services sur mesure selon vos besoins</span>
-                        </li>
-                    </ul>
-                </div>
+    <section id="accueil" class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">ZOOM RDC</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Raconter la RDC et ceux qui la valorisent. <span class="text-red-400">🇨🇩⭐</span></p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <a href="#apropos" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300">Découvrir</a>
+                <a href="#contact" class="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white px-8 py-3 rounded-lg font-medium transition duration-300">Nous contacter</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="py-16 md:py-24 px-4 bg-gray-100">
-        <div class="container mx-auto max-w-5xl">
+    <!-- À propos Section -->
+    <section id="apropos" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Pourquoi nous choisir ?</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Groupe BKS allie professionnalisme, efficacité et qualité pour vous offrir des services de nettoyage exceptionnels.</p>
+                <h2 class="text-3xl font-bold mb-4">À propos de ZOOM RDC</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-star text-blue-600 text-2xl"></i>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="bg-black rounded-full w-64 h-64 mx-auto flex items-center justify-center">
+                        <div class="text-center">
+                            <span class="text-white font-bold text-4xl">z</span>
+                            <span class="zoom-red font-bold text-4xl">O</span>
+                            <span class="text-white font-bold text-4xl">O</span>
+                            <span class="text-white font-bold text-4xl">M</span>
+                            <p class="text-white text-sm mt-2">media</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Qualité Exceptionnelle</h3>
-                    <p class="text-gray-600">Des services de nettoyage de haute qualité qui répondent aux normes les plus exigeantes.</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-clock text-blue-600 text-2xl"></i>
+                <div class="md:w-1/2">
+                    <p class="text-lg mb-6 text-gray-700">
+                        ZOOM RDC est un média entrepreneurial dédié à la valorisation de la République Démocratique du Congo et de ses talents. 
+                        Notre mission est de raconter les histoires inspirantes des personnes et des initiatives qui contribuent au développement 
+                        et à la promotion de notre pays.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-4 text-center mb-8">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-3xl font-bold text-red-600">{{ publicationsCount }}</p>
+                            <p class="text-gray-600">Publications</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-3xl font-bold text-red-600">{{ followersCount }}</p>
+                            <p class="text-gray-600">Abonnés</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-3xl font-bold text-red-600">{{ followingCount }}</p>
+                            <p class="text-gray-600">Abonnements</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Disponibilité</h3>
-                    <p class="text-gray-600">Nous sommes disponibles pour répondre à vos besoins, même dans les délais les plus serrés.</p>
+                    
+                    <a href="https://instagram.com/zoomrdc_media" target="_blank" class="inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-medium">
+                        <i class="fab fa-instagram mr-2"></i> Suivez-nous sur Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Nos Publications</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">Découvrez nos dernières publications mettant en lumière les talents et initiatives de la RDC.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Publication 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Cheveux libres, Esprit libre</h3>
+                        <p class="text-gray-600 mb-4">Interview inspirante d'une entrepreneure congolaise dans le domaine de la beauté et du bien-être.</p>
+                        <a href="#" class="text-red-600 font-medium flex items-center">
+                            Lire plus <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-tie text-blue-600 text-2xl"></i>
+                <!-- Publication 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">IMPULSE 3</h3>
+                        <p class="text-gray-600 mb-4">Compte-rendu de la conférence entrepreneuriale qui a rassemblé les esprits innovants de la RDC.</p>
+                        <a href="#" class="text-red-600 font-medium flex items-center">
+                            Lire plus <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Personnel Qualifié</h3>
-                    <p class="text-gray-600">Notre équipe est formée aux techniques de nettoyage les plus modernes et efficaces.</p>
+                </div>
+                
+                <!-- Publication 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551836026-d5cbc2f4ce6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Au-delà de la surface</h3>
+                        <p class="text-gray-600 mb-4">Découvrez les coulisses de notre émission phare qui explore les histoires derrière les succès.</p>
+                        <a href="#" class="text-red-600 font-medium flex items-center">
+                            Lire plus <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300">
+                    Voir toutes les publications
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Événements Section -->
+    <section id="evenements" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Nos Événements</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">ZOOM RDC organise et couvre des événements qui promeuvent l'entrepreneuriat et la culture congolaise.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Événement 1 -->
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md card-hover">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 h-48 md:h-auto bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80');"></div>
+                        <div class="md:w-3/5 p-6">
+                            <h3 class="text-xl font-bold mb-2">Le Marché des Ladies</h3>
+                            <p class="text-gray-600 mb-4">Un événement dédié aux femmes entrepreneures pour exposer leurs produits et services.</p>
+                            <div class="flex items-center text-gray-500 mb-4">
+                                <i class="far fa-calendar-alt mr-2"></i>
+                                <span>15 Octobre 2023</span>
+                            </div>
+                            <a href="#" class="text-red-600 font-medium flex items-center">
+                                En savoir plus <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Événement 2 -->
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md card-hover">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 h-48 md:h-auto bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"></div>
+                        <div class="md:w-3/5 p-6">
+                            <h3 class="text-xl font-bold mb-2">IMPULSE 4</h3>
+                            <p class="text-gray-600 mb-4">La prochaine édition de notre conférence phare sur l'innovation et l'entrepreneuriat.</p>
+                            <div class="flex items-center text-gray-500 mb-4">
+                                <i class="far fa-calendar-alt mr-2"></i>
+                                <span>À venir - 2024</span>
+                            </div>
+                            <a href="#" class="text-red-600 font-medium flex items-center">
+                                En savoir plus <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 px-4 bg-white">
-        <div class="container mx-auto max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">Contactez-nous</h2>
-            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Discutons de vos besoins en matière de nettoyage et trouvons la solution parfaite pour vous.</p>
+    <section id="contact" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Contactez-nous</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-4">Vous avez une histoire à partager ou souhaitez collaborer avec nous? N'hésitez pas à nous contacter.</p>
+            </div>
             
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">Nos coordonnées</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-4">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Téléphone</h4>
-                                <p class="text-gray-600">+243 895 378 481</p>
-                                <p class="text-gray-600">+243 819 816 939</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-4">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Email</h4>
-                                <p class="text-gray-600">contact.groupebks@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-4">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800">Adresse</h4>
-                                <p class="text-gray-600">Av de l'église A1,</p>
-                                <p class="text-gray-600">Q. GB Basoko, C. Ngaliema</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
-                    
-                    <form class="space-y-4">
-                        <div>
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-8">
+                    <form id="contact-form">
+                        <div class="mb-6">
                             <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
                         </div>
                         
-                        <div>
-                            <label for="email" class="block text-gray-700 mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 mb-2">Adresse email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
                         </div>
                         
-                        <div>
+                        <div class="mb-6">
                             <label for="message" class="block text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required></textarea>
                         </div>
                         
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 w-full">
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-medium transition duration-300">
                             Envoyer le message
                         </button>
                     </form>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <h3 class="text-xl font-bold mb-4">Suivez-nous sur les réseaux sociaux</h3>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://instagram.com/zoomrdc_media" target="_blank" class="text-gray-700 hover:text-red-600">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-red-600">
+                        <i class="fab fa-facebook text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-red-600">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-red-600">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Groupe BKS</h3>
-                    <p class="text-gray-400">Des services de nettoyage professionnels pour particuliers et entreprises.</p>
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center mr-3 border border-white">
+                            <span class="text-white font-bold">z</span>
+                            <span class="text-red-500 font-bold">O</span>
+                            <span class="text-white font-bold">O</span>
+                            <span class="text-white font-bold">M</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold">ZOOM RDC</h2>
+                            <p class="text-xs text-gray-400">Média Entrepreneurial</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-400 max-w-md">Raconter la RDC et ceux qui la valorisent. 🇨🇩⭐</p>
                 </div>
                 
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Liens rapides</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition">Accueil</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
-                    </ul>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; 2023 ZOOM RDC. Tous droits réservés.</p>
+                    <p class="text-gray-400 mt-2">Créé avec passion pour la RDC</p>
                 </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Contact</h3>
-                    <p class="text-gray-400">+243 895 378 481</p>
-                    <p class="text-gray-400">+243 819 816 939</p>
-                    <p class="text-gray-400">contact.groupebks@gmail.com</p>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Groupe BKS. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/243895378481" target="_blank" class="floating-whatsapp fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg z-50">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-
     <!-- JavaScript -->
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-
-        // Animation on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.animate-slide-up');
+        // Configuration AngularJS
+        var app = angular.module('zoomApp', []);
+        
+        app.controller('MainController', function($scope) {
+            // Données Instagram
+            $scope.publicationsCount = 110;
+            $scope.followersCount = '3.5K';
+            $scope.followingCount = 130;
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.visibility = 'visible';
-                        entry.target.style.animationPlayState = 'running';
-                        observer.unobserve(entry.target);
+            // Animation du compteur
+            $scope.animateCount = function() {
+                let startPublications = 0;
+                let startFollowers = 0;
+                let startFollowing = 0;
+                
+                const publicationsTarget = 110;
+                const followersTarget = 3547;
+                const followingTarget = 130;
+                
+                const publicationsInterval = setInterval(() => {
+                    startPublications += 5;
+                    if (startPublications >= publicationsTarget) {
+                        startPublications = publicationsTarget;
+                        clearInterval(publicationsInterval);
                     }
-                });
-            }, { threshold: 0.1 });
+                    $scope.$apply(() => {
+                        $scope.publicationsCount = startPublications;
+                    });
+                }, 30);
+                
+                const followersInterval = setInterval(() => {
+                    startFollowers += 50;
+                    if (startFollowers >= followersTarget) {
+                        startFollowers = followersTarget;
+                        clearInterval(followersInterval);
+                        $scope.$apply(() => {
+                            $scope.followersCount = '3.5K';
+                        });
+                    } else {
+                        $scope.$apply(() => {
+                            $scope.followersCount = startFollowers;
+                        });
+                    }
+                }, 20);
+                
+                const followingInterval = setInterval(() => {
+                    startFollowing += 3;
+                    if (startFollowing >= followingTarget) {
+                        startFollowing = followingTarget;
+                        clearInterval(followingInterval);
+                    }
+                    $scope.$apply(() => {
+                        $scope.followingCount = startFollowing;
+                    });
+                }, 40);
+            };
             
-            animatedElements.forEach(el => {
-                el.style.visibility = 'hidden';
-                observer.observe(el);
+            // Démarrer l'animation après le chargement de la page
+            setTimeout(() => {
+                $scope.animateCount();
+            }, 1000);
+        });
+
+        // JavaScript pour le menu mobile
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // JavaScript pour la soumission du formulaire
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message! Nous vous répondrons bientôt.');
+            this.reset();
+        });
+
+        // JavaScript pour le défilement fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Fermer le menu mobile si ouvert
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.add('hidden');
+                }
             });
         });
     </script>
