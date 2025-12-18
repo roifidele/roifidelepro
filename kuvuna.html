@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Tropicale - Bar à jus 100% Naturel à Kinshasa</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Angular via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Police Google Fonts pour un style tropical -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .tropical-bg {
+            background: linear-gradient(135deg, #f9f7f0 0%, #e8f5e9 100%);
+        }
+        
+        .heading-font {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+        }
+        
+        .fruit-gradient {
+            background: linear-gradient(to right, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tropical-green {
+            color: #2E7D32;
+        }
+        
+        .bg-tropical-green {
+            background-color: #2E7D32;
+        }
+        
+        .juice-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .juice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="tropical-bg" ng-app="surpriseTropicaleApp" ng-controller="MainController">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-glass-cheers text-3xl tropical-green mr-3"></i>
+                        <span class="text-2xl heading-font tropical-green">Surprise Tropicale</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#accueil" class="tropical-green font-medium hover:text-green-700 px-3 py-2 rounded-md text-sm">Accueil</a>
+                        <a href="#produits" class="text-gray-600 font-medium hover:text-green-700 px-3 py-2 rounded-md text-sm">Nos Produits</a>
+                        <a href="#abonnement" class="text-gray-600 font-medium hover:text-green-700 px-3 py-2 rounded-md text-sm">Abonnements</a>
+                        <a href="#evenements" class="text-gray-600 font-medium hover:text-green-700 px-3 py-2 rounded-md text-sm">Événements</a>
+                        <a href="#contact" class="text-gray-600 font-medium hover:text-green-700 px-3 py-2 rounded-md text-sm">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-600 hover:text-green-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#accueil" class="tropical-green block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+                <a href="#produits" class="text-gray-600 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Nos Produits</a>
+                <a href="#abonnement" class="text-gray-600 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Abonnements</a>
+                <a href="#evenements" class="text-gray-600 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Événements</a>
+                <a href="#contact" class="text-gray-600 hover:text-green-700 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Accueil -->
+    <section id="accueil" class="py-12 md:py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl heading-font mb-6">
+                        <span class="fruit-gradient">Surprise Tropicale</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">Bar à jus 100% Naturel à Kinshasa</h2>
+                    <p class="text-gray-600 text-lg mb-8">
+                        Découvrez la fraîcheur des fruits tropicaux dans chaque gorgée. Nos jus sont préparés avec des fruits frais, sans additifs ni conservateurs, pour vous offrir une expérience gustative unique et revitalisante.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="bg-tropical-green text-white px-6 py-3 rounded-lg font-medium hover:bg-green-800 transition duration-300 flex items-center pulse-animation">
+                            <i class="fas fa-phone-alt mr-2"></i> Commander : 0821750056
+                        </a>
+                        <a href="#produits" class="border-2 border-green-600 text-green-600 px-6 py-3 rounded-lg font-medium hover:bg-green-50 transition duration-300 flex items-center">
+                            <i class="fas fa-glass-whiskey mr-2"></i> Découvrir nos produits
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-r from-green-100 to-yellow-100 rounded-2xl p-2 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1628992682633-bf2d40cb595f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Jus de fruits tropicaux" class="rounded-xl shadow-lg">
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-leaf text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-lg">100% Naturel</p>
+                                <p class="text-gray-600 text-sm">Sans conservateurs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Produits -->
+    <section id="produits" class="py-16 bg-white px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold tropical-green mb-4">Nos Produits</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Découvrez notre gamme de produits frais et naturels préparés quotidiennement avec des ingrédients de qualité.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Jus de fruits -->
+                <div class="juice-card bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-2xl border border-orange-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-orange-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-wine-glass-alt text-orange-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Jus de fruits</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Une sélection de jus pressés à froid à base de fruits tropicaux frais : ananas, mangue, papaye, fruit de la passion et bien plus encore.</p>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="text-gray-700">Pressés à froid</span>
+                    </div>
+                    <div class="flex items-center mt-2">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="text-gray-700">Sans sucre ajouté</span>
+                    </div>
+                </div>
+                
+                <!-- Salade de fruits -->
+                <div class="juice-card bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-2xl border border-green-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-apple-alt text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Salade de fruits</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Un mélange coloré de fruits frais de saison, coupés avec soin pour préserver leurs saveurs et leurs nutriments.</p>
+                    <div class="flex items-center">
+                        <i class="fas fa-heart text-pink-500 mr-2"></i>
+                        <span class="text-gray-700">Fruits de saison</span>
+                    </div>
+                    <div class="flex items-center mt-2">
+                        <i class="fas fa-heart text-pink-500 mr-2"></i>
+                        <span class="text-gray-700">Préparé sur commande</span>
+                    </div>
+                </div>
+                
+                <!-- Smoothies et légumes -->
+                <div class="juice-card bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl border border-purple-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-blender text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Smoothies & Légumes</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Des smoothies équilibrés alliant fruits et légumes frais pour un apport optimal en vitamines et minéraux.</p>
+                    <div class="flex items-center">
+                        <i class="fas fa-carrot text-orange-500 mr-2"></i>
+                        <span class="text-gray-700">Mélanges équilibrés</span>
+                    </div>
+                    <div class="flex items-center mt-2">
+                        <i class="fas fa-carrot text-orange-500 mr-2"></i>
+                        <span class="text-gray-700">Riche en nutriments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Abonnements -->
+    <section id="abonnement" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold tropical-green mb-4">Abonnements Mensuels</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Profitez de nos jus frais régulièrement avec nos formules d'abonnement flexibles.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Abonnement Lois -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-green-200">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white text-center">
+                        <h3 class="text-2xl font-bold">Formule Lois</h3>
+                        <p class="mt-2">Parfaite pour les particuliers</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>4 jus frais par semaine</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Choix libre parmi tous nos jus</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Livraison incluse</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>10% de réduction sur les smoothies</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 text-center">
+                            <a href="#contact" class="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition duration-300 inline-block">
+                                Souscrire maintenant
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Abonnement Semaine -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-yellow-200">
+                    <div class="bg-gradient-to-r from-yellow-500 to-orange-500 p-6 text-white text-center">
+                        <h3 class="text-2xl font-bold">Formule Semaine</h3>
+                        <p class="mt-2">Idéale pour les entreprises</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>20 jus frais par semaine</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Personnalisation des mélanges</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Livraison quotidienne gratuite</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>15% de réduction sur tous les produits</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 text-center">
+                            <a href="#contact" class="bg-yellow-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-600 transition duration-300 inline-block">
+                                Souscrire maintenant
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Événements -->
+    <section id="evenements" class="py-16 bg-white px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold tropical-green mb-4">Événements & Partenariats</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Surprise Tropicale participe à de nombreux événements à Kinshasa et collabore avec des partenaires prestigieux.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Événement en cours -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-calendar-alt text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Événement à venir</h3>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-2">Le Marché des tables</h4>
+                    <p class="text-gray-600 mb-4">21 à 22 Décembre 2024</p>
+                    <p class="text-gray-700">Rencontrez-nous au marché des tables pour déguster nos nouveaux smoothies d'été et participer à nos ateliers de préparation de jus frais.</p>
+                    <div class="mt-6 flex items-center">
+                        <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                        <span class="text-gray-700">Pullman, Kinshasa</span>
+                    </div>
+                </div>
+                
+                <!-- Partenariat -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl border border-purple-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-handshake text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Notre Partenaire</h3>
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-2">Pullman Kinshasa</h4>
+                    <p class="text-gray-700 mb-4">Nous sommes fiers de fournir nos jus et smoothies frais au prestigieux hôtel Pullman de Kinshasa.</p>
+                    <div class="mt-6 flex items-center">
+                        <i class="fas fa-phone-alt text-gray-400 mr-2"></i>
+                        <span class="text-gray-700">+243 81 556 1234</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rentrée scolaire -->
+            <div class="bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl p-8 text-white">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Vive la rentrée scolaire !</h3>
+                    <p class="text-xl mb-6">Dès le mois de septembre, profitez de nos packs "énergie scolaire" spécialement conçus pour les élèves et étudiants.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <div class="bg-white bg-opacity-20 p-4 rounded-lg">
+                            <i class="fas fa-brain text-2xl mb-2"></i>
+                            <p>Boost cérébral</p>
+                        </div>
+                        <div class="bg-white bg-opacity-20 p-4 rounded-lg">
+                            <i class="fas fa-battery-full text-2xl mb-2"></i>
+                            <p>Énergie durable</p>
+                        </div>
+                        <div class="bg-white bg-opacity-20 p-4 rounded-lg">
+                            <i class="fas fa-apple-alt text-2xl mb-2"></i>
+                            <p>Vitamines essentielles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold tropical-green mb-4">Contact & Livraison</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Commandez vos jus frais et profitez de notre service de livraison à Kinshasa.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Informations de contact -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Comment commander ?</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800">Par téléphone</h4>
+                                <p class="text-gray-600 mt-1">Appelez-nous pour passer commande ou pour toute information</p>
+                                <a href="tel:0821750056" class="text-green-600 font-bold text-lg mt-2 inline-block hover:text-green-800">
+                                    <i class="fas fa-phone-volume mr-2"></i> 082 175 0056
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-globe text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800">Notre site web</h4>
+                                <p class="text-gray-600 mt-1">Découvrez plus de détails sur nos produits et promotions</p>
+                                <a href="https://www.surprisetropicale.yinezo.com/" target="_blank" class="text-blue-600 font-bold text-lg mt-2 inline-block hover:text-blue-800">
+                                    <i class="fas fa-external-link-alt mr-2"></i> surprisetropicale.yinezo.com
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-truck text-orange-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800">Livraison</h4>
+                                <p class="text-gray-600 mt-1">Nous livrons dans toute la ville de Kinshasa. Commandez avant 16h pour une livraison le jour même.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulaire de contact -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Demande d'information</h3>
+                    <form ng-submit="submitContactForm()">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2" for="name">Nom complet</label>
+                            <input type="text" id="name" ng-model="contactForm.name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2" for="phone">Numéro de téléphone</label>
+                            <input type="tel" id="phone" ng-model="contactForm.phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2" for="message">Message / Commande</label>
+                            <textarea id="message" ng-model="contactForm.message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+                        </div>
+                        <button type="submit" class="bg-green-600 text-white w-full py-3 rounded-lg font-medium hover:bg-green-700 transition duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i> Envoyer la demande
+                        </button>
+                    </form>
+                    <div ng-if="formSubmitted" class="mt-4 p-4 bg-green-100 text-green-800 rounded-lg">
+                        <i class="fas fa-check-circle mr-2"></i> Merci pour votre message ! Nous vous contacterons bientôt.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-glass-cheers text-3xl text-green-400 mr-3"></i>
+                        <span class="text-2xl heading-font text-white">Surprise Tropicale</span>
+                    </div>
+                    <p class="text-gray-400">Bar à jus 100% naturel à Kinshasa. Fraîcheur, santé et saveurs tropicales dans chaque verre.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Liens rapides</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#produits" class="text-gray-400 hover:text-green-400 transition duration-300"><i class="fas fa-chevron-right mr-2 text-green-500"></i> Nos produits</a></li>
+                        <li><a href="#abonnement" class="text-gray-400 hover:text-green-400 transition duration-300"><i class="fas fa-chevron-right mr-2 text-green-500"></i> Abonnements</a></li>
+                        <li><a href="#evenements" class="text-gray-400 hover:text-green-400 transition duration-300"><i class="fas fa-chevron-right mr-2 text-green-500"></i> Événements</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-green-400 transition duration-300"><i class="fas fa-chevron-right mr-2 text-green-500"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Nous suivre</h4>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="bg-gray-800 hover:bg-green-600 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-green-600 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-green-600 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">
+                        <i class="fas fa-map-marker-alt mr-2 text-green-500"></i> Kinshasa, République Démocratique du Congo
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Surprise Tropicale. Tous droits réservés.</p>
+                <p class="mt-2">Site créé avec passion pour les amoureux des jus frais naturels.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JavaScript et AngularJS -->
+    <script>
+        // Configuration Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                        'heading': ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        };
+        
+        // Application AngularJS
+        var app = angular.module('surpriseTropicaleApp', []);
+        
+        app.controller('MainController', ['$scope', function($scope) {
+            // Données initiales
+            $scope.contactForm = {
+                name: '',
+                phone: '',
+                message: ''
+            };
+            
+            $scope.formSubmitted = false;
+            
+            // Fonction pour soumettre le formulaire de contact
+            $scope.submitContactForm = function() {
+                if ($scope.contactForm.name && $scope.contactForm.phone && $scope.contactForm.message) {
+                    // Ici, normalement, on enverrait les données à un serveur
+                    console.log('Formulaire soumis:', $scope.contactForm);
+                    
+                    // Simulation d'envoi réussi
+                    $scope.formSubmitted = true;
+                    
+                    // Réinitialiser le formulaire après 5 secondes
+                    setTimeout(function() {
+                        $scope.$apply(function() {
+                            $scope.formSubmitted = false;
+                        });
+                    }, 5000);
+                    
+                    // Réinitialiser le formulaire
+                    $scope.contactForm = {
+                        name: '',
+                        phone: '',
+                        message: ''
+                    };
+                }
+            };
+        }]);
+        
+        // JavaScript pour le menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Fermer le menu mobile lorsqu'on clique sur un lien
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Animation de défilement fluide pour les ancres
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Animation au défilement
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les sections pour l'animation
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
+                      
