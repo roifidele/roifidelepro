@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANOINTING BUSINESS - Accessoires Électroniques de Qualité</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Angular via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Police Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #2a5298, #1e3c72);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+    </style>
+</head>
+<body ng-app="anointingApp" ng-controller="MainController" class="bg-gray-50">
+    <!-- En-tête -->
+    <header class="sticky top-0 z-50 shadow-md">
+        <nav class="bg-white px-4 py-3">
+            <div class="container mx-auto flex justify-between items-center">
+                <!-- Logo et nom -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-blue-800">ANOINTING <span class="text-blue-600">BUSINESS</span></h1>
+                </div>
+                
+                <!-- Navigation desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="text-gray-700 hover:text-blue-600 font-medium">Accueil</a>
+                    <a href="#apropos" class="text-gray-700 hover:text-blue-600 font-medium">À propos</a>
+                    <a href="#produits" class="text-gray-700 hover:text-blue-600 font-medium">Produits</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                </div>
+                
+                <!-- Bouton commande -->
+                <div class="hidden md:block">
+                    <button ng-click="showOrderModal()" class="btn-primary text-white px-6 py-2 rounded-full font-medium">
+                        <i class="fas fa-shopping-cart mr-2"></i>Passer commande
+                    </button>
+                </div>
+                
+                <!-- Menu mobile -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Menu mobile caché -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 space-y-4">
+                <a href="#accueil" class="block text-gray-700 hover:text-blue-600 font-medium">Accueil</a>
+                <a href="#apropos" class="block text-gray-700 hover:text-blue-600 font-medium">À propos</a>
+                <a href="#produits" class="block text-gray-700 hover:text-blue-600 font-medium">Produits</a>
+                <a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                <button ng-click="showOrderModal()" class="btn-primary text-white px-6 py-2 rounded-full font-medium w-full">
+                    <i class="fas fa-shopping-cart mr-2"></i>Passer commande
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Section Hero -->
+    <section id="accueil" class="hero-gradient text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Super marché des accessoires électroniques</h2>
+                    <p class="text-xl mb-8 opacity-90">Nous sommes déterminés à vous permettre d'obtenir la satisfaction de percevoir des accessoires électroniques de qualité.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button ng-click="showOrderModal()" class="bg-white text-blue-700 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition">
+                            <i class="fas fa-shopping-bag mr-2"></i>Commander maintenant
+                        </button>
+                        <a href="#produits" class="border-2 border-white text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-white hover:text-blue-700 transition text-center">
+                            <i class="fas fa-box-open mr-2"></i>Voir nos produits
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 bg-blue-300 rounded-full opacity-20 absolute -top-4 -left-4"></div>
+                        <div class="w-64 h-64 md:w-80 md:h-80 bg-blue-400 rounded-full opacity-30 absolute -bottom-4 -right-4"></div>
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Accessoires électroniques" 
+                             class="relative rounded-2xl shadow-2xl w-full max-w-md">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">À propos de nous</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">Découvrez ANOINTING BUSINESS, votre partenaire de confiance pour des accessoires électroniques de qualité supérieure.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="bg-gray-100 p-6 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-blue-700 mb-4">Notre mission</h3>
+                        <p class="text-gray-700 mb-6">Notre entreprise ANOINTING BUSINESS dispose d'un super marché des accessoires électroniques. Nous semblons déterminés à vous permettre d'obtenir la satisfaction de percevoir des accessoires électroniques de qualité.</p>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-check-circle text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Qualité garantie</h4>
+                                <p class="text-gray-600">Tous nos produits sont testés et certifiés</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-shipping-fast text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Livraison rapide</h4>
+                                <p class="text-gray-600">Expédition sous 24-48 heures après commande</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-headset text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Support client</h4>
+                                <p class="text-gray-600">Notre équipe est disponible pour vous aider</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-12">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-6">Pourquoi nous choisir ?</h3>
+                    <p class="text-gray-700 mb-6">Avec ANOINTING BUSINESS, vous bénéficiez d'une large gamme d'accessoires électroniques allant des câbles et chargeurs aux écouteurs, batteries, coques de protection et bien plus encore.</p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-xl">
+                            <i class="fas fa-gem text-blue-600 text-2xl mb-3"></i>
+                            <h4 class="font-bold text-gray-800 mb-2">Produits Premium</h4>
+                            <p class="text-gray-600 text-sm">Sélection rigoureuse des meilleurs produits</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-xl">
+                            <i class="fas fa-tags text-blue-600 text-2xl mb-3"></i>
+                            <h4 class="font-bold text-gray-800 mb-2">Prix compétitifs</h4>
+                            <p class="text-gray-600 text-sm">Meilleurs prix du marché garantis</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-xl">
+                            <i class="fas fa-shield-alt text-blue-600 text-2xl mb-3"></i>
+                            <h4 class="font-bold text-gray-800 mb-2">Garantie</h4>
+                            <p class="text-gray-600 text-sm">Garantie d'un an sur tous nos produits</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-xl">
+                            <i class="fas fa-users text-blue-600 text-2xl mb-3"></i>
+                            <h4 class="font-bold text-gray-800 mb-2">+313 membres</h4>
+                            <p class="text-gray-600 text-sm">Une communauté active et satisfaite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Produits -->
+    <section id="produits" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Nos produits</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">Découvrez notre sélection d'accessoires électroniques de qualité.</p>
+            </div>
+            
+            <!-- Catégories -->
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <button ng-repeat="category in categories" 
+                        ng-class="{'btn-primary text-white': selectedCategory === category.id, 'bg-white text-gray-700': selectedCategory !== category.id}"
+                        ng-click="filterProducts(category.id)"
+                        class="px-5 py-2 rounded-full font-medium border border-gray-300 transition">
+                    {{category.name}}
+                </button>
+            </div>
+            
+            <!-- Produits -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div ng-repeat="product in filteredProducts" class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
+                    <div class="h-48 overflow-hidden">
+                        <img ng-src="{{product.image}}" alt="{{product.name}}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">{{product.name}}</h3>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">{{product.price}} $</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">{{product.description}}</p>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <span class="font-medium">{{product.rating}}</span>
+                                <span class="text-gray-500 text-sm ml-1">({{product.reviews}} avis)</span>
+                            </div>
+                            <button ng-click="addToCart(product)" class="btn-primary text-white px-5 py-2 rounded-full font-medium text-sm">
+                                <i class="fas fa-cart-plus mr-1"></i>Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button ng-click="showOrderModal()" class="btn-primary text-white px-10 py-3 rounded-full font-bold text-lg">
+                    <i class="fas fa-paper-plane mr-2"></i>Passer votre commande maintenant
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Contactez-nous</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">En cas de besoin, n'hésitez pas à nous contacter pour passer vos meilleures commandes.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="bg-blue-50 p-8 rounded-2xl h-full">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-6">Informations de contact</h3>
+                        
+                        <div class="flex items-start mb-8">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Téléphone</h4>
+                                <a href="tel:+243976024083" class="text-blue-700 hover:underline text-lg">+243 976 024 083</a>
+                                <p class="text-gray-600 text-sm mt-1">Disponible du lundi au samedi, 8h-18h</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-8">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-calendar-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Date de création</h4>
+                                <p class="text-gray-700 text-lg">10 Mai 2025</p>
+                                <p class="text-gray-600 text-sm mt-1">Notre entreprise est récente et dynamique</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-users text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Communauté</h4>
+                                <p class="text-gray-700 text-lg">313 membres actifs</p>
+                                <p class="text-gray-600 text-sm mt-1">Rejoignez notre groupe pour plus d'avantages</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-12">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-6">Formulaire de contact</h3>
+                    
+                    <form ng-submit="submitContactForm()" class="space-y-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2" for="name">Nom complet</label>
+                            <input type="text" id="name" ng-model="contactForm.name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2" for="email">Email</label>
+                            <input type="email" id="email" ng-model="contactForm.email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2" for="phone">Téléphone</label>
+                            <input type="tel" id="phone" ng-model="contactForm.phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2" for="message">Message</label>
+                            <textarea id="message" rows="4" ng-model="contactForm.message" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary text-white px-8 py-3 rounded-lg font-bold w-full">
+                            <i class="fas fa-paper-plane mr-2"></i>Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                            <i class="fas fa-bolt text-blue-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold">ANOINTING <span class="text-blue-300">BUSINESS</span></h2>
+                    </div>
+                    <p class="text-blue-200 max-w-md">Votre super marché des accessoires électroniques de qualité. Satisfaction garantie.</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-xl font-bold mb-4">+243 976 024 083</p>
+                    <p class="text-blue-200 mb-4">Créé le 10/05/2025</p>
+                    <div class="flex space-x-4 justify-center md:justify-end">
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center hover:bg-blue-700 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center hover:bg-blue-700 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center hover:bg-blue-700 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center text-blue-300">
+                <p>&copy; 2025 ANOINTING BUSINESS. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de commande -->
+    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-blue-800">Passer votre commande</h3>
+                    <button onclick="closeOrderModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                
+                <div class="mb-8">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4">Produits dans votre panier ({{cart.length}})</h4>
+                    
+                    <div ng-if="cart.length === 0" class="text-center py-8 text-gray-500">
+                        <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+                        <p>Votre panier est vide. Ajoutez des produits avant de passer commande.</p>
+                    </div>
+                    
+                    <div ng-repeat="item in cart" class="flex items-center border-b border-gray-200 py-4">
+                        <div class="w-16 h-16 bg-gray-100 rounded-lg mr-4 flex-shrink-0">
+                            <img ng-src="{{item.image}}" alt="{{item.name}}" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                        <div class="flex-grow">
+                            <h5 class="font-bold text-gray-800">{{item.name}}</h5>
+                            <p class="text-gray-600 text-sm">{{item.price}} $ x {{item.quantity}}</p>
+                        </div>
+                        <div class="font-bold text-blue-700">{{item.price * item.quantity}} $</div>
+                        <button ng-click="removeFromCart(item.id)" class="ml-4 text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div ng-if="cart.length > 0" class="flex justify-between items-center mt-6 pt-6 border-t border-gray-300">
+                        <div class="text-xl font-bold text-gray-800">Total: {{getCartTotal()}} $</div>
+                        <div class="text-sm text-gray-600">Frais de livraison inclus</div>
+                    </div>
+                </div>
+                
+                <form ng-submit="submitOrder()" ng-if="cart.length > 0">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4">Informations de livraison</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2" for="orderName">Nom complet</label>
+                            <input type="text" id="orderName" ng-model="orderForm.name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2" for="orderPhone">Téléphone</label>
+                            <input type="tel" id="orderPhone" ng-model="orderForm.phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-gray-700 font-medium mb-2" for="orderAddress">Adresse de livraison</label>
+                            <textarea id="orderAddress" rows="2" ng-model="orderForm.address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0">
+                        <button type="button" onclick="closeOrderModal()" class="px-8 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition">
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn-primary text-white px-8 py-3 rounded-lg font-bold">
+                            <i class="fas fa-check-circle mr-2"></i>Confirmer la commande
+                        </button>
+                    </div>
+                </form>
+                
+                <div ng-if="cart.length === 0" class="text-center">
+                    <button onclick="closeOrderModal()" class="btn-primary text-white px-8 py-3 rounded-lg font-bold">
+                        <i class="fas fa-shopping-bag mr-2"></i>Voir nos produits
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="fixed top-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center">
+            <i class="fas fa-check-circle mr-3 text-xl"></i>
+            <div>
+                <p class="font-bold" id="notification-title">Succès!</p>
+                <p id="notification-message">Votre action a été réalisée avec succès.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript et Angular -->
+    <script>
+        // Configuration de Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        };
+        
+        // Application Angular
+        angular.module('anointingApp', [])
+        .controller('MainController', ['$scope', function($scope) {
+            // Données de l'entreprise
+            $scope.companyName = "ANOINTING BUSINESS";
+            $scope.companyPhone = "+243 976 024 083";
+            $scope.creationDate = "10 Mai 2025";
+            $scope.membersCount = 313;
+            
+            // Catégories de produits
+            $scope.categories = [
+                {id: 'all', name: 'Tous les produits'},
+                {id: 'cables', name: 'Câbles et chargeurs'},
+                {id: 'audio', name: 'Audio'},
+                {id: 'power', name: 'Alimentation'},
+                {id: 'protection', name: 'Protection'}
+            ];
+            
+            // Produits
+            $scope.products = [
+                {
+                    id: 1,
+                    name: "Chargeur rapide USB-C 65W",
+                    description: "Chargeur rapide compatible avec la plupart des smartphones et tablettes.",
+                    price: 24.99,
+                    category: 'power',
+                    rating: 4.8,
+                    reviews: 124,
+                    image: "https://images.unsplash.com/photo-1594736797933-d0801d866d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: 2,
+                    name: "Écouteurs Bluetooth sans fil",
+                    description: "Écouteurs avec réduction de bruit active et autonomie de 30h.",
+                    price: 59.99,
+                    category: 'audio',
+                    rating: 4.6,
+                    reviews: 89,
+                    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: 3,
+                    name: "Câble USB-C vers Lightning 2m",
+                    description: "Câble de transfert et charge durable avec connecteurs en métal.",
+                    price: 14.99,
+                    category: 'cables',
+                    rating: 4.5,
+                    reviews: 203,
+                    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: 4,
+                    name: "Batterie externe 20000mAh",
+                    description: "Powerbank avec charge rapide et double port USB.",
+                    price: 39.99,
+                    category: 'power',
+                    rating: 4.7,
+                    reviews: 156,
+                    image: "https://images.unsplash.com/photo-1594736797933-d0801d866d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: 5,
+                    name: "Coque de protection smartphone",
+                    description: "Coque antichoc avec design élégant pour toutes les marques.",
+                    price: 12.99,
+                    category: 'protection',
+                    rating: 4.4,
+                    reviews: 78,
+                    image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: 6,
+                    name: "Adaptateur HDMI vers USB-C",
+                    description: "Adaptateur pour connecter votre ordinateur à un écran HDMI.",
+                    price: 19.99,
+                    category: 'cables',
+                    rating: 4.3,
+                    reviews: 45,
+                    image: "https://images.unsplash.com/photo-1589003077984-894e133dabab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                }
+            ];
+            
+            // Panier
+            $scope.cart = [];
+            
+            // Filtre de produits
+            $scope.selectedCategory = 'all';
+            $scope.filteredProducts = $scope.products;
+            
+            $scope.filterProducts = function(categoryId) {
+                $scope.selectedCategory = categoryId;
+                if (categoryId === 'all') {
+                    $scope.filteredProducts = $scope.products;
+                } else {
+                    $scope.filteredProducts = $scope.products.filter(product => product.category === categoryId);
+                }
+            };
+            
+            // Ajouter au panier
+            $scope.addToCart = function(product) {
+                const existingItem = $scope.cart.find(item => item.id === product.id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    $scope.cart.push({
+                        ...product,
+                        quantity: 1
+                    });
+                }
+                
+                showNotification("Produit ajouté", `${product.name} a été ajouté à votre panier.`);
+            };
+            
+            // Retirer du panier
+            $scope.removeFromCart = function(productId) {
+                $scope.cart = $scope.cart.filter(item => item.id !== productId);
+            };
+            
+            // Calculer le total du panier
+            $scope.getCartTotal = function() {
+                return $scope.cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
+            };
+            
+            // Formulaire de contact
+            $scope.contactForm = {
+                name: '',
+                email: '',
+                phone: '',
+                message: ''
+            };
+            
+            $scope.submitContactForm = function() {
+                if ($scope.contactForm.name && $scope.contactForm.email && $scope.contactForm.message) {
+                    showNotification("Message envoyé", "Votre message a été envoyé avec succès. Nous vous contacterons bientôt.");
+                    $scope.contactForm = { name: '', email: '', phone: '', message: '' };
+                    $scope.$apply();
+                }
+            };
+            
+            // Formulaire de commande
+            $scope.orderForm = {
+                name: '',
+                phone: '',
+                address: ''
+            };
+            
+            $scope.submitOrder = function() {
+                if ($scope.orderForm.name && $scope.orderForm.phone && $scope.orderForm.address) {
+                    showNotification("Commande confirmée", `Votre commande de ${$scope.cart.length} produit(s) a été passée avec succès. Total: ${$scope.getCartTotal()} $.`);
+                    
+                    // Réinitialiser le panier et le formulaire
+                    $scope.cart = [];
+                    $scope.orderForm = { name: '', phone: '', address: '' };
+                    
+                    // Fermer le modal
+                    closeOrderModal();
+                    $scope.$apply();
+                }
+            };
+            
+            // Afficher le modal de commande
+            $scope.showOrderModal = function() {
+                document.getElementById('orderModal').style.display = 'flex';
+            };
+        }]);
+        
+        // Fonctions JavaScript pour la gestion du modal et notifications
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+        
+        function showNotification(title, message) {
+            const notification = document.getElementById('notification');
+            const notificationTitle = document.getElementById('notification-title');
+            const notificationMessage = document.getElementById('notification-message');
+            
+            notificationTitle.textContent = title;
+            notificationMessage.textContent = message;
+            
+            notification.classList.remove('translate-x-full');
+            
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+            }, 3000);
+        }
+        
+        // Gestion du menu mobile
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        
+        // Fermer le menu mobile en cliquant sur un lien
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Fermer le modal en cliquant en dehors
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOrderModal();
+            }
+        });
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll pour les ancres
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
