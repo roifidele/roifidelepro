@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVATECH ENGINEERING RDC | Ingénierie & Innovation</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Angular via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles personnalisés */
+        .hero-gradient {
+            background: linear-gradient(rgba(0, 40, 85, 0.9), rgba(0, 20, 60, 0.9)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .novatech-blue {
+            color: #003366;
+        }
+        
+        .bg-novatech-blue {
+            background-color: #003366;
+        }
+        
+        .border-novatech-blue {
+            border-color: #003366;
+        }
+        
+        .novatech-orange {
+            color: #FF6B00;
+        }
+        
+        .bg-novatech-orange {
+            background-color: #FF6B00;
+        }
+    </style>
+</head>
+<body ng-app="novatechApp" class="font-sans">
+    <!-- Application Angular -->
+    <div ng-controller="MainController" class="min-h-screen flex flex-col">
+        
+        <!-- Navigation -->
+        <nav class="bg-white shadow-lg sticky top-0 z-50">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-novatech-blue flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">NE</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold novatech-blue">NOVATECH</h1>
+                        <p class="text-xs text-gray-600">ENGINEERING RDC</p>
+                    </div>
+                </div>
+                
+                <!-- Menu pour mobile -->
+                <button class="md:hidden text-novatech-blue" ng-click="toggleMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+                
+                <!-- Menu pour desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="novatech-blue font-medium hover:text-novatech-orange transition">Accueil</a>
+                    <a href="#services" class="novatech-blue font-medium hover:text-novatech-orange transition">Services</a>
+                    <a href="#apropos" class="novatech-blue font-medium hover:text-novatech-orange transition">À propos</a>
+                    <a href="#contact" class="novatech-blue font-medium hover:text-novatech-orange transition">Contact</a>
+                </div>
+            </div>
+            
+            <!-- Menu mobile -->
+            <div class="md:hidden bg-white shadow-lg" ng-show="menuOpen">
+                <div class="flex flex-col space-y-4 p-4">
+                    <a href="#accueil" class="novatech-blue font-medium hover:text-novatech-orange transition" ng-click="toggleMenu()">Accueil</a>
+                    <a href="#services" class="novatech-blue font-medium hover:text-novatech-orange transition" ng-click="toggleMenu()">Services</a>
+                    <a href="#apropos" class="novatech-blue font-medium hover:text-novatech-orange transition" ng-click="toggleMenu()">À propos</a>
+                    <a href="#contact" class="novatech-blue font-medium hover:text-novatech-orange transition" ng-click="toggleMenu()">Contact</a>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Section Hero -->
+        <section id="accueil" class="hero-gradient text-white py-20 md:py-32">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Allier expertise technique et innovation</h2>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">pour construire le futur de la République Démocratique du Congo</p>
+                <a href="#contact" class="bg-novatech-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg inline-block transition duration-300 transform hover:scale-105">
+                    Discuter de votre projet
+                </a>
+            </div>
+        </section>
+        
+        <!-- Section Services -->
+        <section id="services" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold novatech-blue mb-4">Nos Services</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Nous proposons une gamme complète de services d'ingénierie et de technologie pour répondre aux besoins de développement de la RDC.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-drafting-compass text-2xl novatech-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold novatech-blue mb-2">Ingénierie</h3>
+                            <p class="text-gray-600 mb-4">Études techniques & génie civil pour des infrastructures durables et résilientes.</p>
+                            <a href="#contact" class="text-novatech-orange font-medium hover:underline">En savoir plus →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-building text-2xl novatech-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold novatech-blue mb-2">Architecture</h3>
+                            <p class="text-gray-600 mb-4">Conception & aménagements innovants pour des espaces fonctionnels et esthétiques.</p>
+                            <a href="#contact" class="text-novatech-orange font-medium hover:underline">En savoir plus →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 3 -->
+                    <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-bolt text-2xl novatech-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold novatech-blue mb-2">Électricité</h3>
+                            <p class="text-gray-600 mb-4">Installation & maintenance électriques pour une alimentation fiable et sécurisée.</p>
+                            <a href="#contact" class="text-novatech-orange font-medium hover:underline">En savoir plus →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 4 -->
+                    <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-laptop-code text-2xl novatech-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold novatech-blue mb-2">Électronique & Informatique</h3>
+                            <p class="text-gray-600 mb-4">Automatisation & solutions informatiques pour optimiser vos processus.</p>
+                            <a href="#contact" class="text-novatech-orange font-medium hover:underline">En savoir plus →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 5 -->
+                    <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-satellite-dish text-2xl novatech-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold novatech-blue mb-2">Télécommunications</h3>
+                            <p class="text-gray-600 mb-4">Réseaux & infrastructure technique pour connecter les personnes et les entreprises.</p>
+                            <a href="#contact" class="text-novatech-orange font-medium hover:underline">En savoir plus →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 6 -->
+                    <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-network-wired text-2xl novatech-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold novatech-blue mb-2">Infrastructure Télécom</h3>
+                            <p class="text-gray-600 mb-4">Réseaux & infrastructure télécom pour une connectivité optimale et performante.</p>
+                            <a href="#contact" class="text-novatech-orange font-medium hover:underline">En savoir plus →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section À propos -->
+        <section id="apropos" class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                        <h2 class="text-3xl md:text-4xl font-bold novatech-blue mb-6">NOVATECH ENGINEERING RDC</h2>
+                        <p class="text-gray-600 mb-6">
+                            Forte de son expertise technique et de son engagement envers l'innovation, Novatech Engineering RDC est un acteur majeur dans le développement des infrastructures en République Démocratique du Congo.
+                        </p>
+                        <p class="text-gray-600 mb-6">
+                            Notre mission est de fournir des solutions d'ingénierie de pointe qui répondent aux défis spécifiques du marché congolais, tout en contribuant au développement économique et social du pays.
+                        </p>
+                        <p class="text-gray-600 mb-8">
+                            Avec une équipe d'experts multidisciplinaires, nous combinons savoir-faire technique et approche innovante pour mener à bien des projets complexes et ambitieux.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-novatech-orange text-xl mr-3"></i>
+                                <span class="font-medium">Expertise technique</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-novatech-orange text-xl mr-3"></i>
+                                <span class="font-medium">Solutions innovantes</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-novatech-orange text-xl mr-3"></i>
+                                <span class="font-medium">Qualité garantie</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-novatech-orange text-xl mr-3"></i>
+                                <span class="font-medium">Support local</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2">
+                        <div class="bg-gray-100 rounded-xl p-6 shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Équipe Novatech Engineering RDC" 
+                                 class="rounded-lg w-full h-64 object-cover mb-6">
+                            <h3 class="text-2xl font-bold novatech-blue mb-4">Notre Vision</h3>
+                            <p class="text-gray-600">
+                                Être le partenaire privilégié pour le développement des infrastructures technologiques en RDC, en apportant des solutions durables qui améliorent la qualité de vie et stimulent la croissance économique.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Contact -->
+        <section id="contact" class="py-16 bg-novatech-blue text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Contactez-nous</h2>
+                    <p class="text-xl max-w-2xl mx-auto">Discutons de votre projet et de la manière dont nous pouvons vous accompagner</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Envoyez-nous un message</h3>
+                        
+                        <form id="contactForm" ng-submit="submitForm()" class="space-y-6">
+                            <div>
+                                <label for="name" class="block mb-2">Nom complet</label>
+                                <input type="text" id="name" ng-model="contactForm.name" required class="w-full p-3 rounded-lg text-gray-800">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block mb-2">Adresse email</label>
+                                <input type="email" id="email" ng-model="contactForm.email" required class="w-full p-3 rounded-lg text-gray-800">
+                            </div>
+                            
+                            <div>
+                                <label for="service" class="block mb-2">Service d'intérêt</label>
+                                <select id="service" ng-model="contactForm.service" class="w-full p-3 rounded-lg text-gray-800">
+                                    <option value="">Sélectionnez un service</option>
+                                    <option value="Ingénierie">Ingénierie</option>
+                                    <option value="Architecture">Architecture</option>
+                                    <option value="Électricité">Électricité</option>
+                                    <option value="Électronique & Informatique">Électronique & Informatique</option>
+                                    <option value="Télécommunications">Télécommunications</option>
+                                    <option value="Infrastructure Télécom">Infrastructure Télécom</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block mb-2">Message</label>
+                                <textarea id="message" ng-model="contactForm.message" rows="5" required class="w-full p-3 rounded-lg text-gray-800"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="bg-novatech-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                                <span ng-if="!formSubmitted">Envoyer le message</span>
+                                <span ng-if="formSubmitted">Message envoyé!</span>
+                            </button>
+                            
+                            <div ng-if="formSubmitted" class="mt-4 p-4 bg-green-100 text-green-800 rounded-lg">
+                                <i class="fas fa-check-circle mr-2"></i> Merci pour votre message! Nous vous contacterons bientôt.
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Informations de contact</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Adresse</h4>
+                                    <p class="text-gray-300">Kinshasa, République Démocratique du Congo</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Téléphone</h4>
+                                    <p class="text-gray-300">+243 000 000 000</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Email</h4>
+                                    <p class="text-gray-300">contact@novatech-rdc.cd</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center mr-4">
+                                    <i class="fas fa-clock text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Heures d'ouverture</h4>
+                                    <p class="text-gray-300">Lundi - Vendredi: 8h00 - 18h00</p>
+                                    <p class="text-gray-300">Samedi: 9h00 - 13h00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="text-xl font-bold mb-4">Suivez-nous</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-linkedin-in text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-twitter text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center hover:bg-blue-700 transition">
+                                    <i class="fab fa-facebook-f text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-8">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-novatech-blue flex items-center justify-center">
+                                <span class="text-white font-bold text-xl">NE</span>
+                            </div>
+                            <div>
+                                <h1 class="text-xl font-bold">NOVATECH</h1>
+                                <p class="text-xs text-gray-400">ENGINEERING RDC</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm">© 2023 Novatech Engineering RDC. Tous droits réservés.</p>
+                    </div>
+                    
+                    <div class="text-center md:text-right">
+                        <p class="text-gray-400 mb-2">Allier expertise technique et innovation pour construire le futur.</p>
+                        <div class="flex space-x-4 justify-center md:justify-end">
+                            <a href="#accueil" class="text-gray-400 hover:text-white transition">Accueil</a>
+                            <a href="#services" class="text-gray-400 hover:text-white transition">Services</a>
+                            <a href="#apropos" class="text-gray-400 hover:text-white transition">À propos</a>
+                            <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- JavaScript et AngularJS -->
+    <script>
+        // Application AngularJS
+        angular.module('novatechApp', [])
+        .controller('MainController', ['$scope', function($scope) {
+            $scope.menuOpen = false;
+            $scope.formSubmitted = false;
+            
+            // Objet pour le formulaire de contact
+            $scope.contactForm = {
+                name: '',
+                email: '',
+                service: '',
+                message: ''
+            };
+            
+            // Fonction pour basculer le menu mobile
+            $scope.toggleMenu = function() {
+                $scope.menuOpen = !$scope.menuOpen;
+            };
+            
+            // Fonction pour soumettre le formulaire
+            $scope.submitForm = function() {
+                if ($scope.contactForm.name && $scope.contactForm.email && $scope.contactForm.message) {
+                    // Ici, normalement, vous enverriez les données à un serveur
+                    console.log('Formulaire soumis:', $scope.contactForm);
+                    
+                    // Afficher le message de confirmation
+                    $scope.formSubmitted = true;
+                    
+                    // Réinitialiser le formulaire après 5 secondes
+                    setTimeout(function() {
+                        $scope.$apply(function() {
+                            $scope.contactForm = {
+                                name: '',
+                                email: '',
+                                service: '',
+                                message: ''
+                            };
+                            $scope.formSubmitted = false;
+                        });
+                    }, 5000);
+                }
+            };
+            
+            // Fermer le menu mobile lors du défilement
+            window.addEventListener('scroll', function() {
+                if ($scope.menuOpen) {
+                    $scope.$apply(function() {
+                        $scope.menuOpen = false;
+                    });
+                }
+            });
+        }]);
+        
+        // Smooth scrolling pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation au défilement pour les cartes de service
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les cartes de service
+            document.querySelectorAll('.service-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
