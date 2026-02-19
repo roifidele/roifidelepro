@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI FIDÈLE · dark studio</title>
+  <!-- description, favicon etc. conservés mais allégés pour la démo -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- RESET & DARK MODE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0b0b;
+      font-family: 'Inter', sans-serif;
+      color: #e0e0e0;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ---------- TYPO & BADGES (framer style) ---------- */
+    .eyebrow {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #9b87f5;
+      margin-bottom: 0.5rem;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .display-large {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .chip {
+      background: #1f1f1f;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #b0b0b0;
+      display: inline-block;
+      border: 1px solid #2a2a2a;
+    }
+
+    .stat-number {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: #9b87f5;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- HEADER (minimal) ---------- */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      padding: 24px 0;
+      background: rgba(11,11,11,0.8);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #202020;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: white;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: #9b87f5; }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #d0d0d0;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: white; }
+    .btn-outline-light {
+      border: 1px solid #3a3a3a;
+      background: transparent;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: white;
+    }
+
+    /* ---------- HERO (framer grid) ---------- */
+    .hero {
+      padding: 180px 0 100px 0;
+      background: #0b0b0b;
+      border-bottom: 1px solid #202020;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+    }
+
+    .hero-left p {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin: 20px 0 30px;
+      max-width: 80%;
+    }
+
+    .hero-right {
+      text-align: right;
+    }
+
+    .hero-stat-row {
+      display: flex;
+      gap: 40px;
+      justify-content: flex-end;
+      margin-bottom: 30px;
+    }
+
+    .hero-tagline {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      border-bottom: 2px solid #9b87f5;
+      padding-bottom: 5px;
+      display: inline-block;
+    }
+
+    .badge-pill {
+      background: #1b1b1b;
+      padding: 8px 24px;
+      border-radius: 60px;
+      border: 1px solid #333;
+      font-weight: 500;
+    }
+
+    /* ---------- STATS SECTION (20+, 200+, 500+) ---------- */
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 60px 0;
+      border-bottom: 1px solid #202020;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------- CLIENTS / TRUST section ---------- */
+    .trust-bar {
+      background: #0e0e0e;
+      padding: 30px 0;
+      border-bottom: 1px solid #202020;
+    }
+    .trust-text {
+      font-size: 1.1rem;
+      color: #bbb;
+      letter-spacing: 0.5px;
+    }
+    .trust-text strong { color: white; font-weight: 700; }
+
+    /* ---------- AWARD / DOMINIL (style framer) ---------- */
+    .featured-award {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+      padding: 70px 0;
+      border-bottom: 1px solid #202020;
+    }
+    .award-left .big-number {
+      font-size: 7rem;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 2px #9b87f5;
+      line-height: 0.8;
+    }
+    .award-left p { color: #9b87f5; font-weight: 600; margin-top: 10px; }
+    .award-right p { font-size: 1.5rem; font-weight: 600; color: white; max-width: 500px; }
+
+    /* ---------- SERVICE CARDS (2990, 4990, 6990) ---------- */
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 60px 0;
+      border-bottom: 1px solid #202020;
+    }
+
+    .price-card {
+      background: #121212;
+      border: 1px solid #2a2a2a;
+      border-radius: 30px;
+      padding: 40px 30px;
+      transition: 0.2s;
+    }
+    .price-card:hover { background: #181818; border-color: #9b87f5; }
+    .price-num {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: white;
+      margin: 15px 0 10px;
+    }
+    .price-num small { font-size: 1rem; font-weight: 400; color: #777; }
+    .price-card .badge { color: #9b87f5; font-weight: 600; margin-bottom: 10px; display: block; }
+
+    /* ---------- BRAND/UIUX ROW ---------- */
+    .brand-row {
+      display: flex;
+      gap: 40px;
+      padding: 60px 0;
+      border-bottom: 1px solid #202020;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .brand-item {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      background: #1a1a1a;
+      padding: 12px 32px;
+      border-radius: 80px;
+      border: 1px solid #333;
+    }
+
+    /* ---------- FOOTER / LET'S CREATE ---------- */
+    .cta-block {
+      padding: 100px 0;
+      text-align: center;
+    }
+    .cta-block h2 {
+      font-size: 5rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .cta-block .small-head {
+      color: #9b87f5;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      letter-spacing: 3px;
+    }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid #202020;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ---------- MOBILE / ADAPT ---------- */
+    @media (max-width: 800px) {
+      .container { padding: 0 20px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero-right { text-align: left; }
+      .hero-stat-row { justify-content: flex-start; }
+      .pricing-cards { grid-template-columns: 1fr; }
+      .stats-row { flex-wrap: wrap; gap: 40px; }
+      .featured-award { grid-template-columns: 1fr; }
+      .brand-row { flex-direction: column; align-items: start; }
+      .cta-block h2 { font-size: 3rem; }
+    }
+
+    /* garder les anciens contenus (projets, témoignages) mais les styliser dark */
+    .projects-grid, .testimonials-slider {
+      margin-top: 40px;
+    }
+    .project-card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 24px;
+      padding: 25px;
+    }
+    .testimonial {
+      background: #141414 !important;
+      border: 1px solid #2a2a2a;
+    }
+    .btn-primary {
+      background: #9b87f5;
+      border: none;
+      color: black;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 40px;
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #3a3a3a;
+      color: white;
+    }
+    .section { padding: 60px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">ROI<span>FIDÈLE</span></div>
+      <div class="nav-links">
+        <a href="#">Accueil</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <a href="#" class="btn-outline-light">Devis</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION (exact match photo) -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="eyebrow">Design That Delivers</div>
+        <h1 class="display-large">Real<br>Results</h1>
+        <p>Brand & UI/UX designer based in London · crafting meaningful digital experiences</p>
+        <div class="badge-pill">Trusted by brands, loved by clients</div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stat-row">
+          <div><span class="stat-number">20+</span> <span class="stat-label">Years</span></div>
+          <div><span class="stat-number">200+</span> <span class="stat-label">Brands</span></div>
+          <div><span class="stat-number">500+</span> <span class="stat-label">Projects</span></div>
+        </div>
+        <div class="hero-tagline">Dominil ✦ London</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS ADDITIONAL (20+ Brand & UI/UX etc) -->
+  <div class="container stats-row">
+    <div class="stat-item"><span class="stat-number">20+</span> <span class="stat-label">Brand & UI/UX</span></div>
+    <div class="stat-item"><span class="stat-number">200+</span> <span class="stat-label">in London</span></div>
+    <div class="stat-item"><span class="stat-number">500+</span> <span class="stat-label">Designer based</span></div>
+  </div>
+
+  <!-- TRUST BANNER -->
+  <div class="trust-bar">
+    <div class="container trust-text">
+      <strong>Trusted by Brands,</strong> Loved by Clients — <strong>Crafting Meaningful & Intuitive Digital Experiences</strong>
+    </div>
+  </div>
+
+  <!-- AWARD + DOMINIL (01 / 02 / 03) et phrase "Stand Out" -->
+  <div class="container featured-award">
+    <div class="award-left">
+      <div class="big-number">01</div>
+      <div class="big-number" style="-webkit-text-stroke-color:#555;">02</div>
+      <div class="big-number" style="-webkit-text-stroke-color:#aaa;">03</div>
+      <p>Award-Winning Design That Elevates Your Brand</p>
+    </div>
+    <div class="award-right">
+      <p>Design Solutions That Elevate Your Brand — Stand Out with bold, intuitive experiences.</p>
+      <div style="margin-top: 30px;"><span class="chip">Dominil</span> <span class="chip">London</span> <span class="chip">UI/UX</span></div>
+    </div>
+  </div>
+
+  <!-- PRICING CARDS $2990 / $4990 / $6990 (exact) -->
+  <div class="container pricing-cards">
+    <div class="price-card">
+      <span class="badge">BASIC</span>
+      <div class="price-num">$2990 <small>USD</small></div>
+      <p>Design that delivers real impact · essential brand package</p>
+    </div>
+    <div class="price-card">
+      <span class="badge">PRO</span>
+      <div class="price-num">$4990 <small>USD</small></div>
+      <p>Complete UI/UX & brand strategy · standout digital presence</p>
+    </div>
+    <div class="price-card">
+      <span class="badge">ELITE</span>
+      <div class="price-num">$6990 <small>USD</small></div>
+      <p>Full-scale experience design · award-winning results</p>
+    </div>
+  </div>
+
+  <!-- BRAND & UI/UX ROW (textes flottants "Brand&UI/UX" "DesignerBased" "Crafting" etc) -->
+  <div class="container brand-row">
+    <span class="brand-item">Brand&UI/UX</span>
+    <span class="brand-item">DesignerBased</span>
+    <span class="brand-item">inLondon</span>
+    <span class="brand-item">CraftingMeaningful</span>
+    <span class="brand-item">StandOut</span>
+  </div>
+
+  <!-- MESSAGE EXCEPTIONAL + garder le contenu existant (services, projets, témoignages) avec le nouveau style sombre -->
+  <div class="container cta-block">
+    <div class="small-head">Let's create something</div>
+    <h2>Exceptional<br>Digital Experiences</h2>
+    <a href="#" class="btn-primary" style="margin-top: 40px; display: inline-block;">Start a project</a>
+  </div>
+
+  <!-- ========== VOTRE CONTENU (services, projets, témoignages) avec le dark design ========= -->
+  <section class="section services" id="services">
+    <div class="container">
+      <h2 class="section-title" style="color:white;">Services & formules</h2>
+      <!-- mini tabs -->
+      <div style="display:flex; gap:10px; margin-bottom:40px; flex-wrap:wrap;">
+        <span class="chip" style="background:#9b87f5; color:black;">Startup Launch</span>
+        <span class="chip">Création digitale</span>
+        <span class="chip">Marketing</span>
+        <span class="chip">Outils SaaS</span>
+      </div>
+      <!-- package cards de votre contenu mais harmonisées -->
+      <div class="pricing-cards" style="grid-template-columns:repeat(3,1fr); border-bottom: none; padding-top:0;">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <div class="price-num">$75</div>
+          <ul style="list-style:none; margin:20px 0; color:#aaa;">
+            <li>✓ Atelier idéation</li>
+            <li>✓ Prototype basique</li>
+            <li>✓ Site 3 pages</li>
+          </ul>
+          <a href="#" class="btn-secondary" style="padding:10px 20px;">Choisir</a>
+        </div>
+        <div class="price-card" style="border-color:#9b87f5;">
+          <span style="background:#9b87f5; color:black; padding:4px 12px; border-radius:60px; font-size:0.8rem;">POPULAIRE</span>
+          <h3>Business</h3>
+          <div class="price-num">$190</div>
+          <ul style="list-style:none; margin:20px 0; color:#aaa;">
+            <li>✓ Atelier 4h</li>
+            <li>✓ Site 5-7 pages</li>
+            <li>✓ Identité complète</li>
+          </ul>
+          <a href="#" class="btn-primary" style="padding:10px 24px;">Choisir</a>
+        </div>
+        <div class="price-card">
+          <h3>Premium</h3>
+          <div class="price-num">$250+</div>
+          <ul style="list-style:none; margin:20px 0; color:#aaa;">
+            <li>✓ Application web</li>
+            <li>✓ Branding complet</li>
+            <li>✓ 3 mois support</li>
+          </ul>
+          <a href="#" class="btn-secondary">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETS EN COURS (votre grille, style dark) -->
+  <section class="section projects" style="background:#0b0b0b;">
+    <div class="container">
+      <h2 class="section-title">Projets en cours</h2>
+      <div class="projects-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:30px;">
+        <div class="project-card">
+          <h3 style="color:white;">Mutshele</h3>
+          <div class="chip" style="margin:10px 0;">Éducation</div>
+          <p style="color:#aaa;">Plateforme de partage de notes entre étudiants africains.</p>
+          <a href="#" style="color:#9b87f5;">En savoir plus →</a>
+        </div>
+        <div class="project-card">
+          <h3 style="color:white;">Klasika</h3>
+          <div class="chip">Agritech</div>
+          <p style="color:#aaa;">E-learning pour l'agriculture en Afrique.</p>
+          <a href="#" style="color:#9b87f5;">En savoir plus →</a>
+        </div>
+        <div class="project-card">
+          <h3 style="color:white;">Open Africa Data</h3>
+          <div class="chip">Data</div>
+          <p style="color:#aaa;">Plateforme collaborative de données climatiques.</p>
+          <a href="#" style="color:#9b87f5;">En savoir plus →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS section avec votre contenu -->
+  <section class="section testimonials">
+    <div class="container">
+      <h2 class="section-title">Ils nous font confiance</h2>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:25px;">
+        <div class="testimonial" style="padding:25px; border-radius:24px;">
+          <p style="color:#ccc;">“ROI FIDÈLE a transformé notre façon de voir le monde. Les opportunités s'ouvrent.”</p>
+          <h4 style="color:white; margin-top:15px;">African Temple</h4>
+        </div>
+        <div class="testimonial" style="padding:25px; border-radius:24px;">
+          <p style="color:#ccc;">“Une campagne magnifique, la visibilité de notre média a augmenté dans tout le pays.”</p>
+          <h4 style="color:white;">Marc Antoine</h4>
+        </div>
+        <div class="testimonial" style="padding:25px; border-radius:24px;">
+          <p style="color:#ccc;">“Ce qui n'était qu'un rêve peut enfin devenir réalité.”</p>
+          <h4 style="color:white;">Étudiants UCC</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER simplifié avec l'idée "Let's Create Something" déjà plus haut -->
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+      <div>© ROI FIDÈLE — Kinshasa / London</div>
+      <div style="display:flex; gap:30px;">
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // petits scripts pour garder l'interactivité tabs (simulée)
+    // on laisse l'ancien mais on simplifie: rien de nécessaire ici
+    console.log('dark portfolio match');
+  </script>
+</body>
+</html>
