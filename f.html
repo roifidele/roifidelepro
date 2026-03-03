@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>ROI FIDÈLE - Agence Web & Comms Kinshasa</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Favicon -->
+    <link rel="icon" href="1000797285.png" type="image/png">
+    
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- EmailJS for contact form -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .parallax { background-attachment: fixed; }
+        .fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .hover-scale { transition: transform 0.3s ease; }
+        .hover-scale:hover { transform: scale(1.05); }
+        .timeline-item { position: relative; padding-left: 2rem; border-left: 3px solid #F59E0B; }
+        .carousel-item { transition: opacity 0.5s ease; }
+    </style>
+</head>
+<body class="bg-[#F9FAFB] text-[#111827]">
+
+<div id="app" v-cloak>
+    <!-- Navigation -->
+    <nav class="bg-[#1E40AF] text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-extrabold tracking-tight">
+                    <span class="text-[#F59E0B]">ROI</span> FIDÈLE
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-2xl">
+                    <i :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+                </button>
+                
+                <!-- Desktop menu -->
+                <ul class="hidden md:flex space-x-8 font-medium">
+                    <li v-for="item in menuItems" :key="item.path">
+                        <a :href="item.path" @click.prevent="navigate(item.path)" 
+                           class="hover:text-[#F59E0B] transition duration-300"
+                           :class="{ 'text-[#F59E0B] font-bold': currentRoute === item.path }">
+                            {{ item.name }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Mobile menu -->
+            <ul v-show="mobileMenuOpen" class="md:hidden pb-4 space-y-3">
+                <li v-for="item in menuItems" :key="item.path">
+                    <a :href="item.path" @click.prevent="navigate(item.path); mobileMenuOpen = false" 
+                       class="block py-2 hover:text-[#F59E0B]">
+                        {{ item.name }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content with Router Views -->
+    <main class="min-h-screen">
+        <!-- Home Page -->
+        <div v-if="currentRoute === '/'">
+            <!-- Hero Slider with Parallax -->
+            <div class="relative h-[600px] overflow-hidden" style="background-attachment: fixed;">
+                <div v-for="(slide, index) in heroSlides" :key="index" 
+                     class="absolute inset-0 transition-opacity duration-1000"
+                     :class="{ 'opacity-100': currentSlide === index, 'opacity-0': currentSlide !== index }">
+                    <div class="absolute inset-0 bg-cover bg-center parallax" :style="{ backgroundImage: `url(${slide.image})` }">
+                        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                    </div>
+                    <div class="relative h-full flex items-center justify-center text-center text-white px-4">
+                        <div class="fade-in">
+                            <h1 class="text-5xl md:text-7xl font-extrabold mb-4">{{ slide.title }}</h1>
+                            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">{{ slide.subtitle }}</p>
+                            <a href="#services" @click.prevent="navigate('/services')" 
+                               class="bg-[#F59E0B] text-[#111827] px-8 py-4 rounded-lg font-bold text-lg hover:bg-opacity-90 transition inline-block">
+                                Découvrir nos services
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slider controls -->
+                <button @click="prevSlide" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-30 p-3 rounded-full">
+                    <i class="fas fa-chevron-left text-white text-2xl"></i>
+                </button>
+                <button @click="nextSlide" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-30 p-3 rounded-full">
+                    <i class="fas fa-chevron-right text-white text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Services Cards -->
+            <section class="py-20 px-4 max-w-7xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-center mb-4">Nos Services</h2>
+                <p class="text-center text-xl text-gray-600 mb-12">Des solutions adaptées aux entrepreneurs congolais</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div v-for="service in services" :key="service.name" 
+                         class="bg-white rounded-xl shadow-lg p-8 hover-scale cursor-pointer"
+                         @click="showServiceModal(service)">
+                        <div class="text-[#1E40AF] text-4xl mb-4">
+                            <i :class="service.icon"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">{{ service.name }}</h3>
+                        <p class="text-gray-600 mb-4">{{ service.description }}</p>
+                        <p class="text-[#F59E0B] font-bold text-xl">À partir de {{ service.price }} USD</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Réalisations Carrousel -->
+            <section class="bg-white py-20 px-4">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="text-4xl font-extrabold text-center mb-4">Nos Réalisations</h2>
+                    <p class="text-center text-xl text-gray-600 mb-12">Des projets qui ont transformé nos clients</p>
+                    
+                    <div class="relative">
+                        <div class="overflow-hidden">
+                            <div class="flex transition-transform duration-500 ease-in-out" 
+                                 :style="{ transform: `translateX(-${carouselIndex * 100}%)` }">
+                                <div v-for="project in projects" :key="project.name" 
+                                     class="w-full flex-shrink-0 px-4">
+                                    <div class="bg-[#F9FAFB] rounded-2xl p-8 md:flex items-center gap-8">
+                                        <div class="md:w-1/2 mb-6 md:mb-0">
+                                            <img :src="project.image" :alt="project.name" class="rounded-xl shadow-lg">
+                                        </div>
+                                        <div class="md:w-1/2">
+                                            <h3 class="text-3xl font-bold mb-2">{{ project.name }}</h3>
+                                            <p class="text-[#1E40AF] font-semibold mb-4">{{ project.client }}</p>
+                                            <p class="text-gray-600 mb-6">{{ project.description }}</p>
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <div v-for="(metric, key) in project.metrics" :key="key" 
+                                                     class="text-center p-3 bg-white rounded-lg">
+                                                    <div class="text-2xl font-bold text-[#F59E0B]">{{ metric.value }}</div>
+                                                    <div class="text-sm text-gray-500">{{ metric.label }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button @click="prevCarousel" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#1E40AF] text-white p-3 rounded-full">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button @click="nextCarousel" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#1E40AF] text-white p-3 rounded-full">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA WhatsApp -->
+            <section class="bg-[#1E40AF] text-white py-16 px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <i class="fab fa-whatsapp text-6xl text-[#F59E0B] mb-4"></i>
+                    <h2 class="text-4xl font-extrabold mb-4">Prêt à booster votre présence en ligne ?</h2>
+                    <p class="text-xl mb-8">Contactez-nous directement sur WhatsApp pour un devis gratuit</p>
+                    <a :href="'https://wa.me/243800000000?text=' + encodeURIComponent('Bonjour ROI FIDÈLE, je souhaite plus d\'informations sur vos services')" 
+                       target="_blank"
+                       class="inline-flex items-center bg-[#F59E0B] text-[#111827] px-8 py-4 rounded-lg font-bold text-lg hover:bg-opacity-90 transition">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Envoyer un message WhatsApp
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Services Page -->
+        <div v-else-if="currentRoute === '/services'" class="py-20 px-4 max-w-7xl mx-auto">
+            <h1 class="text-5xl font-extrabold text-center mb-4">Nos Services</h1>
+            <p class="text-center text-xl text-gray-600 mb-16">Des solutions complètes pour votre succès digital</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div v-for="service in allServices" :key="service.name" 
+                     class="bg-white rounded-xl shadow-lg p-8 hover-scale">
+                    <div class="text-[#1E40AF] text-4xl mb-4">
+                        <i :class="service.icon"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">{{ service.name }}</h3>
+                    <p class="text-gray-600 mb-4">{{ service.fullDescription }}</p>
+                    <ul class="space-y-2 mb-6">
+                        <li v-for="feature in service.features" :key="feature" class="flex items-start">
+                            <i class="fas fa-check text-[#F59E0B] mt-1 mr-2"></i>
+                            <span>{{ feature }}</span>
+                        </li>
+                    </ul>
+                    <p class="text-2xl font-bold text-[#1E40AF] mb-4">{{ service.price }} USD</p>
+                    <button @click="showQuoteModal(service)" 
+                            class="w-full bg-[#F59E0B] text-[#111827] py-3 rounded-lg font-bold hover:bg-opacity-90 transition">
+                        Demander un devis
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarifs Page -->
+        <div v-else-if="currentRoute === '/tarifs'" class="py-20 px-4 max-w-7xl mx-auto">
+            <h1 class="text-5xl font-extrabold text-center mb-4">Nos Tarifs</h1>
+            <p class="text-center text-xl text-gray-600 mb-16">Des prix transparents adaptés à votre budget</p>
+            
+            <!-- Taux de change -->
+            <div class="bg-[#1E40AF] text-white p-4 rounded-lg mb-8 text-center">
+                <p class="text-lg">Taux de change: 1 USD = 2800 FC (indicatif)</p>
+            </div>
+            
+            <!-- Tableau des prix -->
+            <div class="overflow-x-auto mb-16">
+                <table class="w-full bg-white rounded-xl shadow-lg">
+                    <thead class="bg-[#1E40AF] text-white">
+                        <tr>
+                            <th class="p-4 text-left">Service</th>
+                            <th class="p-4 text-left">Description</th>
+                            <th class="p-4 text-left">USD</th>
+                            <th class="p-4 text-left">FC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="service in priceTable" :key="service.name" 
+                            class="border-b hover:bg-gray-50">
+                            <td class="p-4 font-bold">{{ service.name }}</td>
+                            <td class="p-4">{{ service.description }}</td>
+                            <td class="p-4 text-[#1E40AF] font-bold">{{ service.usd }}</td>
+                            <td class="p-4 text-[#F59E0B] font-bold">{{ service.fc }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Services additionnels -->
+            <h2 class="text-3xl font-bold mb-6">Services Additionnels</h2>
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div v-for="addon in additionalServices" :key="addon.name" 
+                     class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-2">{{ addon.name }}</h3>
+                    <p class="text-gray-600 mb-4">{{ addon.description }}</p>
+                    <p class="text-2xl font-bold text-[#1E40AF]">{{ addon.price }}/mois</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Accordéon -->
+            <h2 class="text-3xl font-bold mb-6">Questions fréquentes</h2>
+            <div class="space-y-4">
+                <div v-for="(faq, index) in faqs" :key="index" 
+                     class="bg-white rounded-lg shadow-md">
+                    <button @click="toggleFaq(index)" 
+                            class="w-full text-left p-6 flex justify-between items-center">
+                        <span class="font-bold text-lg">{{ faq.question }}</span>
+                        <i :class="faq.open ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+                    </button>
+                    <div v-show="faq.open" class="p-6 pt-0 text-gray-600">
+                        {{ faq.answer }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Réalisations Page -->
+        <div v-else-if="currentRoute === '/realisations'" class="py-20 px-4 max-w-7xl mx-auto">
+            <h1 class="text-5xl font-extrabold text-center mb-4">Nos Réalisations</h1>
+            <p class="text-center text-xl text-gray-600 mb-16">Découvrez comment nous avons transformé nos clients</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div v-for="project in detailedProjects" :key="project.name" 
+                     class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+                    <img :src="project.image" :alt="project.name" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">{{ project.name }}</h3>
+                        <p class="text-[#1E40AF] font-semibold mb-4">{{ project.client }}</p>
+                        <p class="text-gray-600 mb-6">{{ project.fullDescription }}</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div v-for="(metric, key) in project.metrics" :key="key" 
+                                 class="text-center">
+                                <div class="text-xl font-bold text-[#F59E0B]">{{ metric.value }}</div>
+                                <div class="text-sm text-gray-500">{{ metric.label }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- À Propos Page -->
+        <div v-else-if="currentRoute === '/apropos'" class="py-20 px-4 max-w-7xl mx-auto">
+            <h1 class="text-5xl font-extrabold text-center mb-4">À Propos</h1>
+            
+            <!-- Bio Mabila -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-16 md:flex items-center gap-8">
+                <div class="md:w-1/3 mb-6 md:mb-0">
+                    <div class="bg-[#1E40AF] rounded-full w-48 h-48 mx-auto flex items-center justify-center">
+                        <span class="text-white text-6xl font-bold">MF</span>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold mb-4">Mabila Solasa Fidèle</h2>
+                    <p class="text-lg text-gray-600 mb-4">
+                        Étudiant bientôt diplômé en Communications Sociales à l'Université Catholique du Congo, 
+                        passionné par le développement web et la transformation digitale de l'économie congolaise.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-4">
+                        <i class="fas fa-globe text-[#F59E0B] mr-2"></i> Bilingue FR/EN
+                        <span class="mx-4">|</span>
+                        <i class="fas fa-language text-[#F59E0B] mr-2"></i> Apprend le japonais
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        Ma mission : révolutionner l'économie congolaise via le web et les communications 
+                        pour les jeunes entrepreneurs.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Timeline -->
+            <h2 class="text-3xl font-bold mb-8">Notre Parcours</h2>
+            <div class="space-y-8 mb-16">
+                <div v-for="(item, index) in timeline" :key="index" 
+                     class="timeline-item ml-4">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-[#F59E0B] font-bold mb-2">{{ item.year }}</div>
+                        <h3 class="text-xl font-bold mb-2">{{ item.title }}</h3>
+                        <p class="text-gray-600">{{ item.description }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Placeholder -->
+            <div class="bg-gray-800 text-white rounded-xl p-12 text-center">
+                <i class="fas fa-play-circle text-6xl text-[#F59E0B] mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Vidéo de présentation</h3>
+                <p class="text-gray-300">Découvrez notre histoire en images (bientôt disponible)</p>
+            </div>
+        </div>
+
+        <!-- Blog Page -->
+        <div v-else-if="currentRoute === '/blog'" class="py-20 px-4 max-w-7xl mx-auto">
+            <h1 class="text-5xl font-extrabold text-center mb-4">Blog</h1>
+            <p class="text-center text-xl text-gray-600 mb-16">Conseils et actualités pour entrepreneurs congolais</p>
+            
+            <!-- Articles -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div v-for="article in paginatedArticles" :key="article.id" 
+                     class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <img :src="article.image" :alt="article.title" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-[#F59E0B] text-sm mb-2">{{ article.date }}</div>
+                        <h3 class="text-xl font-bold mb-3">{{ article.title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ article.excerpt }}</p>
+                        <a href="#" class="text-[#1E40AF] font-bold hover:text-[#F59E0B]">
+                            Lire la suite <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center space-x-2">
+                <button @click="prevPage" :disabled="currentPage === 1"
+                        class="px-4 py-2 bg-white rounded-lg shadow-md disabled:opacity-50">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button v-for="page in totalPages" :key="page"
+                        @click="goToPage(page)"
+                        class="px-4 py-2 rounded-lg shadow-md"
+                        :class="currentPage === page ? 'bg-[#1E40AF] text-white' : 'bg-white'">
+                    {{ page }}
+                </button>
+                <button @click="nextPage" :disabled="currentPage === totalPages"
+                        class="px-4 py-2 bg-white rounded-lg shadow-md disabled:opacity-50">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div v-else-if="currentRoute === '/contact'" class="py-20 px-4 max-w-7xl mx-auto">
+            <h1 class="text-5xl font-extrabold text-center mb-4">Contactez-nous</h1>
+            <p class="text-center text-xl text-gray-600 mb-16">Nous sommes là pour répondre à vos questions</p>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <form @submit.prevent="sendEmail">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">Nom complet</label>
+                            <input type="text" v-model="contactForm.name" required
+                                   class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-[#1E40AF]">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">Email</label>
+                            <input type="email" v-model="contactForm.email" required
+                                   class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-[#1E40AF]">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">Téléphone</label>
+                            <input type="tel" v-model="contactForm.phone" required
+                                   class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-[#1E40AF]">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-bold mb-2">Message</label>
+                            <textarea v-model="contactForm.message" rows="5" required
+                                      class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:border-[#1E40AF]"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full bg-[#1E40AF] text-white py-3 rounded-lg font-bold hover:bg-opacity-90 transition"
+                                :disabled="sending">
+                            {{ sending ? 'Envoi en cours...' : 'Envoyer le message' }}
+                        </button>
+                        <p v-if="formMessage" class="mt-4 text-center" :class="formMessageType === 'success' ? 'text-green-600' : 'text-red-600'">
+                            {{ formMessage }}
+                        </p>
+                    </form>
+                </div>
+                
+                <!-- Contact Info & Map -->
+                <div>
+                    <div class="bg-[#1E40AF] text-white rounded-xl p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6">Informations</h3>
+                        <div class="space-y-4">
+                            <p><i class="fas fa-map-marker-alt text-[#F59E0B] w-6 mr-2"></i> Kinshasa, RDC</p>
+                            <p><i class="fas fa-phone text-[#F59E0B] w-6 mr-2"></i> +243 800 000 000</p>
+                            <p><i class="fas fa-envelope text-[#F59E0B] w-6 mr-2"></i> contact@roifidele.cd</p>
+                            <p><i class="fab fa-whatsapp text-[#F59E0B] w-6 mr-2"></i> +243 800 000 000</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Map placeholder -->
+                    <div class="bg-gray-200 rounded-xl h-64 flex items-center justify-center">
+                        <i class="fas fa-map text-4xl text-gray-400"></i>
+                        <span class="ml-2 text-gray-500">Carte de Kinshasa</span>
+                    </div>
+                    
+                    <!-- WhatsApp quick contact -->
+                    <div class="mt-8 bg-[#25D366] text-white rounded-xl p-6 text-center">
+                        <i class="fab fa-whatsapp text-4xl mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Contact WhatsApp</h4>
+                        <p class="mb-4">Réponse en moins de 30 minutes</p>
+                        <a :href="'https://wa.me/243800000000'"
+                           target="_blank"
+                           class="inline-block bg-white text-[#25D366] px-6 py-2 rounded-lg font-bold">
+                            Démarrer la conversation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#111827] text-white py-12 px-4 mt-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-2xl font-bold mb-4"><span class="text-[#F59E0B]">ROI</span> FIDÈLE</h3>
+                <p class="text-gray-400">Révolutionner l'économie congolaise via le web et les communications.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Liens rapides</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li v-for="item in menuItems" :key="item.path">
+                        <a :href="item.path" @click.prevent="navigate(item.path)" class="hover:text-[#F59E0B]">
+                            {{ item.name }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Services</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li v-for="service in services" :key="service.name">
+                        <a href="#" @click.prevent="navigate('/services')" class="hover:text-[#F59E0B]">
+                            {{ service.name }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Suivez-nous</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-2xl hover:text-[#F59E0B]"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#F59E0B]"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#F59E0B]"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#F59E0B]"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto text-center text-gray-400 mt-8 pt-8 border-t border-gray-800">
+            © 2024 ROI FIDÈLE - Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold">{{ modalTitle }}</h3>
+                    <button @click="showModal = false" class="text-2xl">&times;</button>
+                </div>
+                <div v-html="modalContent"></div>
+                <div v-if="modalService" class="mt-6">
+                    <button @click="openWhatsApp(modalService)" 
+                            class="w-full bg-[#F59E0B] text-[#111827] py-3 rounded-lg font-bold">
+                        Demander ce devis sur WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const { createApp, ref, computed, onMounted } = Vue;
+
+const app = createApp({
+    setup() {
+        // State
+        const currentRoute = ref('/');
+        const mobileMenuOpen = ref(false);
+        const currentSlide = ref(0);
+        const carouselIndex = ref(0);
+        const showModal = ref(false);
+        const modalTitle = ref('');
+        const modalContent = ref('');
+        const modalService = ref(null);
+        const sending = ref(false);
+        const formMessage = ref('');
+        const formMessageType = ref('success');
+        const currentPage = ref(1);
+        const postsPerPage = 3;
+        
+        const contactForm = ref({
+            name: '',
+            email: '',
+            phone: '',
+            message: ''
+        });
+
+        const faqs = ref([
+            { question: "Quels modes de paiement acceptez-vous ?", answer: "Nous acceptons les paiements en USD et en Francs Congolais (FC) via mobile money, virement bancaire ou espèces.", open: false },
+            { question: "Combien de temps prend la réalisation d'un site ?", answer: "Un site vitrine prend 2-3 semaines, un e-commerce 4-6 semaines selon la complexité.", open: false },
+            { question: "Proposez-vous un service après-vente ?", answer: "Oui, nous offrons des contrats de maintenance à partir de 20$/mois.", open: false },
+            { question: "Puis-je mettre à jour mon site moi-même ?", answer: "Absolument ! Nous vous formons à l'utilisation de l'interface d'administration.", open: false }
+        ]);
+
+        const menuItems = ref([
+            { name: 'Accueil', path: '/' },
+            { name: 'Services', path: '/services' },
+            { name: 'Tarifs', path: '/tarifs' },
+            { name: 'Réalisations', path: '/realisations' },
+            { name: 'À Propos', path: '/apropos' },
+            { name: 'Blog', path: '/blog' },
+            { name: 'Contact', path: '/contact' }
+        ]);
+
+        const heroSlides = ref([
+            { 
+                title: 'ROI FIDÈLE', 
+                subtitle: 'Votre partenaire web à Kinshasa',
+                image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3'
+            },
+            { 
+                title: 'Pour les entrepreneurs', 
+                subtitle: 'Des solutions digitales adaptées au marché congolais',
+                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3'
+            },
+            { 
+                title: 'Innovation & Impact', 
+                subtitle: 'Révolutionnons ensemble l\'économie congolaise',
+                image: 'https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-4.0.3'
+            }
+        ]);
+
+        const services = ref([
+            { 
+                name: 'Site Vitrine', 
+                icon: 'fas fa-building', 
+                description: '5-10 pages professionnelles',
+                fullDescription: 'Site web professionnel de 5 à 10 pages pour présenter votre entreprise',
+                features: ['Design responsive', '5-10 pages', 'Formulaire contact', 'Optimisation SEO'],
+                price: '150'
+            },
+            { 
+                name: 'Portfolio', 
+                icon: 'fas fa-images', 
+                description: 'Galerie + blog intégré',
+                fullDescription: 'Site portfolio avec galerie d\'images et blog pour vos actualités',
+                features: ['Galerie dynamique', 'Blog intégré', 'Catégories', 'Partage social'],
+                price: '200'
+            },
+            { 
+                name: 'E-commerce', 
+                icon: 'fas fa-shopping-cart', 
+                description: 'Boutique en ligne 20 produits',
+                fullDescription: 'Boutique en ligne complète avec catalogue de 20 produits',
+                features: ['20 produits', 'Panier d\'achat', 'Paiement mobile', 'Gestion stocks'],
+                price: '350'
+            }
+        ]);
+
+        const allServices = ref([
+            ...services.value,
+            { 
+                name: 'Sur-mesure', 
+                icon: 'fas fa-code', 
+                description: 'Projets avancés',
+                fullDescription: 'Solution sur mesure pour vos besoins spécifiques',
+                features: ['Développement custom', 'Fonctionnalités avancées', 'Base de données', 'API intégration'],
+                price: '800+'
+            },
+            { 
+                name: 'Site Économie', 
+                icon: 'fas fa-rocket', 
+                description: 'Page unique',
+                fullDescription: 'Site one-page idéal pour démarrer votre présence en ligne',
+                features: ['1 page', 'Design moderne', 'Formulaire contact', 'Hébergement inclus'],
+                price: '55'
+            },
+            { 
+                name: 'Application Web', 
+                icon: 'fas fa-laptop', 
+                description: 'Apps dynamiques',
+                fullDescription: 'Application web interactive et dynamique',
+                features: ['Interface utilisateur', 'Base de données', 'Authentification', 'Tableau de bord'],
+                price: '1200+'
+            }
+        ]);
+
+        const projects = ref([
+            {
+                name: 'Site Vitrine - Blessing Kasasi',
+                client: 'Défenseure droits humains',
+                description: 'Site vitrine avec système de pétitions',
+                image: 'https://images.unsplash.com/photo-1573164713988-9665fc2e6f52?ixlib=rb-4.0.3',
+                metrics: {
+                    traffic: { value: '+40%', label: 'Trafic' },
+                    petitions: { value: '500+', label: 'Signatures' }
+                }
+            },
+            {
+                name: 'Portfolio - Nikam Création Events',
+                client: 'Agence événementielle',
+                description: 'Portfolio avec système de réservation',
+                image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3',
+                metrics: {
+                    views: { value: '10k+', label: 'Vues' },
+                    bookings: { value: '150+', label: 'Réservations' }
+                }
+            },
+            {
+                name: 'E-commerce - Éditions Bosembo',
+                client: 'Maison d\'édition jeunesse',
+                description: 'Boutique en ligne de livres',
+                image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3',
+                metrics: {
+                    sales: { value: '200+', label: 'Ventes' },
+                    books: { value: '50+', label: 'Titres' }
+                }
+            }
+        ]);
+
+        const detailedProjects = ref([
+            {
+                name: 'Site Vitrine avec Pétitions',
+                client: 'Blessing Kasasi - Défenseure droits humains',
+                fullDescription: 'Site vitrine moderne avec système de pétitions en ligne pour mobiliser la communauté',
+                image: 'https://images.unsplash.com/photo-1573164713988-9665fc2e6f52?ixlib=rb-4.0.3',
+                metrics: {
+                    traffic: { value: '+40%', label: 'Trafic' },
+                    petitions: { value: '500+', label: 'Signatures' },
+                    shares: { value: '200+', label: 'Partages' }
+                }
+            },
+            {
+                name: 'Portfolio Événementiel',
+                client: 'Nikam Création Events',
+                fullDescription: 'Portfolio interactif avec galerie et système de réservation en ligne pour événements',
+                image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3',
+                metrics: {
+                    views: { value: '10k+', label: 'Vues' },
+                    bookings: { value: '150+', label: 'Réservations' },
+                    satisfaction: { value: '98%', label: 'Clients' }
+                }
+            },
+            {
+                name: 'E-commerce Livres Jeunesse',
+                client: 'Éditions Bosembo',
+                fullDescription: 'Boutique en ligne complète pour la vente de livres pour enfants et jeunes adultes',
+                image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3',
+                metrics: {
+                    sales: { value: '200+', label: 'Ventes' },
+                    books: { value: '50+', label: 'Titres' },
+                    satisfaction: { value: '4.9/5', label: 'Note' }
+                }
+            }
+        ]);
+
+        const priceTable = ref([
+            { name: 'Site Vitrine', description: '5-10 pages', usd: '150', fc: '342k' },
+            { name: 'Portfolio', description: 'Galerie + blog', usd: '200', fc: '456k' },
+            { name: 'E-commerce', description: '20 produits', usd: '350', fc: '753k' },
+            { name: 'Sur-mesure', description: 'Avancé', usd: '800+', fc: '1.7M+' },
+            { name: 'Économie', description: '1 page', usd: '55', fc: '118k' }
+        ]);
+
+        const additionalServices = ref([
+            { name: 'Maintenance', description: 'Mises à jour et support', price: '20$' },
+            { name: 'Réseaux sociaux', description: 'Gestion complète', price: '100$' },
+            { name: 'Publicité', description: 'Campagnes ads', price: '150$' }
+        ]);
+
+        const timeline = ref([
+            { year: '2022', title: 'Début de l\'aventure', description: 'Création de ROI FIDÈLE avec la vision de révolutionner le web congolais' },
+            { year: '2023', title: 'Premiers clients', description: 'Accompagnement de Blessing Kasasi et Nikam Création Events' },
+            { year: '2024', title: 'Expansion', description: 'Lancement des services e-commerce avec Éditions Bosembo' }
+        ]);
+
+        const blogArticles = ref([
+            { 
+                id: 1, title: 'Pourquoi un site web est crucial pour votre business à Kinshasa', 
+                excerpt: 'Découvrez l\'impact du digital sur les entreprises congolaises...',
+                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3',
+                date: '15 Jan 2024'
+            },
+            { 
+                id: 2, title: 'Les tendances web 2024 en RDC', 
+                excerpt: 'Mobile-first, paiements locaux, et autres tendances à adopter...',
+                image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3',
+                date: '10 Fév 2024'
+            },
+            { 
+                id: 3, title: 'Comment vendre en ligne au Congo', 
+                excerpt: 'Guide complet pour lancer votre e-commerce à Kinshasa...',
+                image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3',
+                date: '5 Mar 2024'
+            },
+            { 
+                id: 4, title: 'SEO local : être trouvé à Kinshasa', 
+                excerpt: 'Optimisez votre visibilité sur les moteurs de recherche locaux...',
+                image: 'https://images.unsplash.com/photo-1571786256017-aee7a0c009b6?ixlib=rb-4.0.3',
+                date: '20 Mar 2024'
+            },
+            { 
+                id: 5, title: 'Les réseaux sociaux pour entrepreneurs', 
+                excerpt: 'Stratégies gagnantes pour développer votre communauté...',
+                image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3',
+                date: '2 Avr 2024'
+            }
+        ]);
+
+        // Computed
+        const paginatedArticles = computed(() => {
+            const start = (currentPage.value - 1) * postsPerPage;
+            const end = start + postsPerPage;
+            return blogArticles.value.slice(start, end);
+        });
+
+        const totalPages = computed(() => Math.ceil(blogArticles.value.length / postsPerPage));
+
+        // Methods
+        const navigate = (path) => {
+            currentRoute.value = path;
+            mobileMenuOpen.value = false;
+            window.scrollTo(0, 0);
+        };
+
+        const nextSlide = () => {
+            currentSlide.value = (currentSlide.value + 1) % heroSlides.value.length;
+        };
+
+        const prevSlide = () => {
+            currentSlide.value = (currentSlide.value - 1 + heroSlides.value.length) % heroSlides.value.length;
+        };
+
+        const nextCarousel = () => {
+            carouselIndex.value = (carouselIndex.value + 1) % projects.value.length;
+        };
+
+        const prevCarousel = () => {
+            carouselIndex.value = (carouselIndex.value - 1 + projects.value.length) % projects.value.length;
+        };
+
+        const toggleFaq = (index) => {
+            faqs.value[index].open = !faqs.value[index].open;
+        };
+
+        const showServiceModal = (service) => {
+            modalTitle.value = service.name;
+            modalContent.value = `
+                <p class="text-gray-600 mb-4">${service.fullDescription}</p>
+                <h4 class="font-bold mb-2">Caractéristiques:</h4>
+                <ul class="list-disc pl-5 mb-4">
+                    ${service.features.map(f => `<li class="text-gray-600">${f}</li>`).join('')}
+                </ul>
+                <p class="text-2xl font-bold text-[#1E40AF]">${service.price} USD</p>
+            `;
+            modalService.value = service;
+            showModal.value = true;
+        };
+
+        const showQuoteModal = (service) => {
+            showServiceModal(service);
+        };
+
+        const openWhatsApp = (service) => {
+            const message = encodeURIComponent(`Bonjour, je suis intéressé par le service "${service.name}" (${service.price} USD). Pouvez-vous me donner plus d'informations ?`);
+            window.open(`https://wa.me/243800000000?text=${message}`, '_blank');
+            showModal.value = false;
+        };
+
+        const sendEmail = () => {
+            sending.value = true;
+            
+            // Simulate email sending
+            setTimeout(() => {
+                formMessage.value = 'Message envoyé avec succès ! Nous vous répondrons dans les 24h.';
+                formMessageType.value = 'success';
+                contactForm.value = { name: '', email: '', phone: '', message: '' };
+                sending.value = false;
+                
+                setTimeout(() => {
+                    formMessage.value = '';
+                }, 5000);
+            }, 1500);
+        };
+
+        const prevPage = () => {
+            if (currentPage.value > 1) currentPage.value--;
+        };
+
+        const nextPage = () => {
+            if (currentPage.value < totalPages.value) currentPage.value++;
+        };
+
+        const goToPage = (page) => {
+            currentPage.value = page;
+        };
+
+        // Auto slide
+        onMounted(() => {
+            setInterval(nextSlide, 5000);
+        });
+
+        return {
+            currentRoute,
+            mobileMenuOpen,
+            currentSlide,
+            carouselIndex,
+            showModal,
+            modalTitle,
+            modalContent,
+            modalService,
+            sending,
+            formMessage,
+            formMessageType,
+            currentPage,
+            totalPages,
+            contactForm,
+            faqs,
+            menuItems,
+            heroSlides,
+            services,
+            allServices,
+            projects,
+            detailedProjects,
+            priceTable,
+            additionalServices,
+            timeline,
+            blogArticles,
+            paginatedArticles,
+            navigate,
+            nextSlide,
+            prevSlide,
+            nextCarousel,
+            prevCarousel,
+            toggleFaq,
+            showServiceModal,
+            showQuoteModal,
+            openWhatsApp,
+            sendEmail,
+            prevPage,
+            nextPage,
+            goToPage
+        };
+    }
+});
+
+app.mount('#app');
+</script>
+
+<style>
+[v-cloak] { display: none; }
+</style>
+
+</body>
+</html>
