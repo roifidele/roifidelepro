@@ -944,7 +944,7 @@
                     <span class="stats-label">années d'expérience</span>
                 </div>
                 <div class="stats-item">
-                    <span class="stats-number">70+</span>
+                    <span class="stats-number">10+</span>
                     <span class="stats-label">projets livrés</span>
                 </div>
                 <div class="stats-item">
@@ -1261,75 +1261,59 @@
         </div>
     </section>
     
-    <!-- Booking Section -->
-    <section class="section booking-section" id="contact">
-        <div class="container">
-            <div class="booking-grid">
-                <div>
-                    <h2 class="booking-title">Parlons de votre projet</h2>
-                    <p class="booking-subtitle">Réservez un appel de 30 minutes. Gratuit, sans engagement.</p>
+    <!-- Remplacer la section booking existante par celle-ci -->
+<section class="section booking-section" id="contact">
+    <div class="container">
+        <div class="booking-grid">
+            <div>
+                <h2 class="booking-title">Parlons de votre projet</h2>
+                <p class="booking-subtitle">Réservez un appel de 30 minutes. Gratuit, sans engagement.</p>
+                
+                <div style="background: var(--primary); color: white; padding: 32px; border-radius: 24px; margin-bottom: 24px;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 12px;">📞 Discovery Call - 30 minutes</h3>
+                    <p style="margin-bottom: 20px; opacity: 0.9;">Échangeons sur votre projet en visioconférence</p>
                     
-                    <h3 style="margin: 32px 0 16px;">Sales</h3>
-                    <div style="background: var(--primary); color: white; padding: 24px; border-radius: 16px; margin-bottom: 24px;">
-                        <h4 style="margin-bottom: 8px;">Discovery Call - 30 minutes</h4>
-                        <p style="margin-bottom: 16px; opacity: 0.9;">🔍 15 minutes d'échange pour comprendre vos besoins</p>
-                        <p style="font-weight: 600;">Objectif : Comprendre vos défis et déterminer si nous pouvons vous aider.</p>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-map-marker-alt" style="font-size: 1.2rem;"></i>
+                            <span><strong>Lieu :</strong> Kinshasa, RDC (Heure locale)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-clock" style="font-size: 1.2rem;"></i>
+                            <span><strong>Fuseau horaire :</strong> West Africa Time (WAT) - Kinshasa</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-calendar-check" style="font-size: 1.2rem;"></i>
+                            <span><strong>Disponibilité :</strong> Lundi - Vendredi, 9h - 18h (Heure de Kinshasa)</span>
+                        </div>
                     </div>
-                    
-                    <ul class="booking-features">
-                        <li><i class="fas fa-check-circle"></i> Disponibilité mutuelle</li>
-                        <li><i class="fas fa-check-circle"></i> (+02:00) SAST - Johannesburg</li>
-                    </ul>
                 </div>
                 
-                <div class="booking-calendar">
-                    <div class="calendar-header">
-                        <i class="fas fa-chevron-left"></i>
-                        <span class="calendar-month">Mars 2026</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                    
-                    <div style="margin-bottom: 24px;">
-                        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-                            <span style="font-weight: 600;">LUN</span>
-                            <span style="font-weight: 600;">MAR</span>
-                            <span style="font-weight: 600;">MER</span>
-                            <span style="font-weight: 600;">JEU</span>
-                            <span style="font-weight: 600;">VEN</span>
-                            <span style="font-weight: 600;">SAM</span>
-                            <span style="font-weight: 600;">DIM</span>
-                        </div>
-                        
-                        <div class="calendar-days">
-                            <span class="calendar-day">23</span>
-                            <span class="calendar-day">24</span>
-                            <span class="calendar-day">25</span>
-                            <span class="calendar-day">26</span>
-                            <span class="calendar-day">27</span>
-                            <span class="calendar-day">28</span>
-                            <span class="calendar-day">1</span>
-                            <span class="calendar-day">2</span>
-                            <span class="calendar-day">3</span>
-                            <span class="calendar-day">4</span>
-                            <span class="calendar-day">5</span>
-                            <span class="calendar-day">6</span>
-                            <span class="calendar-day">7</span>
-                            <span class="calendar-day">8</span>
-                            <span class="calendar-day">9</span>
-                            <span class="calendar-day">10</span>
-                            <span class="calendar-day">11</span>
-                            <span class="calendar-day">12</span>
-                            <span class="calendar-day">13</span>
-                            <span class="calendar-day available">14</span>
-                            <span class="calendar-day">15</span>
-                        </div>
-                    </div>
-                    
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Réserver mon appel gratuit</a>
+                <ul class="booking-features">
+                    <li><i class="fas fa-check-circle"></i> Objectif : Comprendre vos défis et déterminer si nous pouvons vous aider</li>
+                    <li><i class="fas fa-check-circle"></i> Ce que nous explorerons : votre projet, vos objectifs, votre budget</li>
+                    <li><i class="fas fa-check-circle"></i> Aucun engagement - appel strictement conseil</li>
+                </ul>
+            </div>
+            
+            <div class="booking-calendar">
+                <!-- Calendly intégré -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/roifidele/discovery-call?hide_gdpr_banner=1&timezone=Africa/Kinshasa" style="min-width:320px;height:630px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                
+                <!-- Fallback pour mobile ou si Calendly ne charge pas -->
+                <div style="text-align: center; margin-top: 16px;">
+                    <p style="color: var(--gray); font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> Le calendrier est en heure de Kinshasa (WAT)
+                    </p>
+                    <a href="https://calendly.com/roifidele/discovery-call" target="_blank" class="btn btn-outline" style="margin-top: 12px;">
+                        Ouvrir le calendrier dans un nouvel onglet
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     
     <!-- Footer -->
     <footer>
