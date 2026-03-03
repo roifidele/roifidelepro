@@ -1,10 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROI FIDÈLE - Création de site web à Kinshasa</title>
-    <meta name="description" content="ROI FIDELE est une agence digitale en RDC spécialisée dans la création de sites web professionnels, le branding et les stratégies réseaux sociaux. Nous aidons PME, startups et ONG africaines à booster leur visibilité en ligne et à attirer plus de clients. Premier essai gratuit !">
+    <title>ROI FIDÈLE - Agence Web & Comms | Création site web Kinshasa RDC</title>
+    
+    <!-- META TAGS SEO AMÉLIORÉES -->
+    <meta name="description" content="ROI FIDÈLE : Agence digitale à Kinshasa spécialisée dans la création de sites web professionnels, e-commerce et stratégies digitales pour entrepreneurs congolais. Prix fixes, délais tenus. Devis gratuit en 30 min.">
+    <meta name="keywords" content="agence web Kinshasa, création site internet RDC, e-commerce Congo, développement web Kinshasa, marketing digital RDC, site vitrine prix, référencement SEO Congo, agence communication Kinshasa">
+    <meta name="author" content="Mabila Solasa Fidèle">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="ROI FIDÈLE - Agence Web & Comms Kinshasa">
+    <meta property="og:description" content="Création de sites web professionnels pour entrepreneurs congolais. Prix fixes à partir de 50$. Livraison rapide garantie.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.roifidele.com">
+    <meta property="og:image" content="1000797285.png">
+    <meta name="twitter:card" content="summary_large_image">
     
     <!-- Favicon -->
     <link rel="icon" href="1000797285.png" type="image/png">
@@ -12,27 +24,27 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Inter pour matcher le style moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* Reset & Base Styles */
+        /* Reset & Base Styles - Garde les couleurs originales mais nouveau design */
         :root {
             --primary: #6C63FF;
             --primary-dark: #564FD8;
             --secondary: #FF6584;
-            --dark: #2D3748;
-            --dark-gray: #4A5568;
-            --gray: #718096;
-            --light-gray: #EDF2F7;
-            --light: #F7FAFC;
+            --dark: #111827;
+            --dark-gray: #1F2937;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+            --light: #F9FAFB;
             --white: #FFFFFF;
-            --success: #48BB78;
-            --warning: #ED8936;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.2s ease;
         }
         
         * {
@@ -42,116 +54,84 @@
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--dark);
-            line-height: 1.6;
-            background-color: var(--light);
+            line-height: 1.5;
+            background-color: var(--white);
             overflow-x: hidden;
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             line-height: 1.2;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
+            letter-spacing: -0.02em;
         }
         
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
         
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 12px 24px;
-            border-radius: 50px;
+            border-radius: 9999px;
             font-weight: 600;
-            text-align: center;
+            font-size: 16px;
             cursor: pointer;
             transition: var(--transition);
             border: none;
-            font-size: 16px;
+            text-decoration: none;
+            gap: 8px;
         }
         
         .btn-primary {
             background-color: var(--primary);
             color: var(--white);
-            box-shadow: var(--shadow-sm);
         }
         
         .btn-primary:hover {
             background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
         }
         
-        .btn-secondary {
-            background-color: var(--white);
+        .btn-outline {
+            background-color: transparent;
+            color: var(--dark);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--primary);
             color: var(--primary);
-            border: 2px solid var(--primary);
         }
         
-        .btn-secondary:hover {
-            background-color: var(--primary);
-            color: var(--white);
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 18px;
         }
         
         .section {
-            padding: 80px 0;
+            padding: 96px 0;
         }
         
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            position: relative;
-            color: var(--dark);
+        .section-sm {
+            padding: 64px 0;
         }
         
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            margin: 15px auto 30px;
-            border-radius: 2px;
-        }
-        
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray);
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 50px;
-        }
-        
-        /* Header */
+        /* Header - Nouveau design plus épuré */
         header {
             background-color: var(--white);
-            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--light-gray);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            padding: 15px 0;
-            transition: var(--transition);
-        }
-        
-        header.scrolled {
-            padding: 10px 0;
-            box-shadow: var(--shadow-md);
+            padding: 16px 0;
         }
         
         .header-container {
@@ -165,42 +145,38 @@
             align-items: center;
             font-weight: 800;
             font-size: 1.5rem;
-            color: var(--primary);
+            color: var(--dark);
+            text-decoration: none;
         }
         
         .logo img {
             height: 40px;
-            margin-right: 10px;
+            margin-right: 12px;
+        }
+        
+        .logo span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .nav-links {
             display: flex;
+            align-items: center;
             list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
+            gap: 32px;
         }
         
         .nav-links a {
             font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            bottom: -5px;
-            left: 0;
+            color: var(--dark-gray);
+            text-decoration: none;
             transition: var(--transition);
         }
         
-        .nav-links a:hover:after {
-            width: 100%;
+        .nav-links a:hover {
+            color: var(--primary);
         }
         
         .mobile-menu-btn {
@@ -212,674 +188,535 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
+        /* Hero Section - Style 5000.DEV */
         .hero {
-            background: linear-gradient(135deg, #6C63FF 0%, #8E85FF 100%);
-            color: var(--white);
-            padding: 180px 0 100px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
-        }
-        
-        .hero-container {
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-content {
-            flex: 1;
-            padding-right: 40px;
-        }
-        
-        .hero-title {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            position: relative;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .hero-image img {
-            border-radius: 10px;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        /* Features Section */
-        .features {
+            padding: 160px 0 80px;
             background-color: var(--white);
         }
         
-        .features-grid {
+        .hero-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
         
-        .feature-card {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: rgba(108, 99, 255, 0.1);
             color: var(--primary);
-            margin-bottom: 20px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 24px;
         }
         
-        .feature-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--dark);
         }
         
-        .feature-desc {
+        .hero-title span {
+            color: var(--primary);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
             color: var(--gray);
+            margin-bottom: 32px;
+            max-width: 500px;
         }
         
-        /* Services Section */
-        .services {
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        .hero-features {
+            background-color: var(--light-gray);
+            border-radius: 24px;
+            padding: 32px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        
+        .feature-list i {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+        
+        /* Problem Section - Comme dans la capture */
+        .problem-section {
             background-color: var(--light-gray);
         }
         
-        /* Startup Launch Service Styles */
-.service-hero {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.service-hero h3 {
-    font-size: 2rem;
-    color: var(--primary);
-    margin-bottom: 15px;
-}
-
-.hero-subtext {
-    font-size: 1.2rem;
-    color: var(--dark);
-    margin-bottom: 20px;
-}
-
-.service-hero blockquote {
-    font-size: 1.1rem;
-    color: var(--dark-gray);
-    border-left: 4px solid var(--primary);
-    padding-left: 20px;
-    margin: 30px auto;
-    max-width: 700px;
-    font-style: italic;
-}
-
-.service-details-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 60px;
-}
-
-@media (max-width: 768px) {
-    .service-details-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-.service-process h4, 
-.service-target h4,
-.service-packages h4 {
-    font-size: 1.5rem;
-    color: var(--dark);
-    margin-bottom: 25px;
-    position: relative;
-}
-
-.service-process h4:after,
-.service-target h4:after,
-.service-packages h4:after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 3px;
-    background: var(--primary);
-    margin-top: 10px;
-}
-
-.process-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.process-step {
-    display: flex;
-    gap: 15px;
-    align-items: flex-start;
-}
-
-.step-number {
-    background: var(--primary);
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    flex-shrink: 0;
-    margin-top: 3px;
-}
-
-.step-content h5 {
-    font-size: 1.1rem;
-    color: var(--dark);
-    margin-bottom: 5px;
-}
-
-.step-content p {
-    color: var(--gray);
-}
-
-.target-list {
-    list-style: none;
-}
-
-.target-list li {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.target-list i {
-    color: var(--primary);
-    width: 20px;
-    text-align: center;
-}
-
-.service-cta {
-    background: rgba(108, 99, 255, 0.05);
-    padding: 25px;
-    border-radius: 10px;
-    margin-top: 30px;
-    text-align: center;
-}
-
-.service-cta p {
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-
-.packages-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.package-card {
-    background: white;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: var(--shadow-sm);
-    position: relative;
-    transition: var(--transition);
-    border: 1px solid var(--light-gray);
-}
-
-.package-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-}
-
-.package-card.highlighted {
-    border: 2px solid var(--primary);
-    transform: translateY(-10px);
-}
-
-.popular-badge {
-    position: absolute;
-    top: -12px;
-    right: 20px;
-    background: var(--secondary);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-.package-card h5 {
-    font-size: 1.3rem;
-    color: var(--dark);
-    margin-bottom: 10px;
-}
-
-.package-price {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 20px;
-}
-
-.package-features {
-    list-style: none;
-    margin-bottom: 25px;
-}
-
-.package-features li {
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 25px;
-}
-
-.package-features li:before {
-    content: '\f00c';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    left: 0;
-    color: var(--success);
-}
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        
+        .problem-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        
+        .problem-card {
+            background-color: var(--white);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .problem-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .problem-card h3 i {
+            color: var(--secondary);
+        }
+        
+        .problem-card p {
+            color: var(--gray);
+        }
+        
+        /* Difference Section */
+        .difference-section {
+            background-color: var(--white);
+        }
+        
+        .difference-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .difference-card {
+            text-align: center;
+            padding: 32px;
+            border-radius: 24px;
+            background-color: var(--light-gray);
+        }
+        
+        .difference-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+        
+        .difference-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .difference-card p {
+            color: var(--gray);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 80px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            text-align: center;
+        }
+        
+        .stats-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stats-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .stats-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Testimonials - Style étoiles comme dans la photo */
+        .testimonials-section {
+            background-color: var(--light);
+            padding: 96px 0;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .testimonial-rating {
+            color: #FFB800;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--dark);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .testimonial-info h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .testimonial-info p {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: var(--white);
+        }
+        
         .services-tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 40px;
+            gap: 16px;
+            margin: 48px 0;
             flex-wrap: wrap;
-            gap: 10px;
         }
         
         .tab-btn {
-            padding: 10px 20px;
-            background: var(--white);
-            border-radius: 50px;
-            font-weight: 500;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             border: 1px solid var(--light-gray);
+            background: var(--white);
         }
         
         .tab-btn.active {
             background: var(--primary);
-            color: var(--white);
+            color: white;
+            border-color: var(--primary);
         }
         
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
         
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .services-grid {
+        .packages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 32px;
         }
         
-        .service-card {
+        .package-card {
             background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--light-gray);
+            border-radius: 24px;
+            padding: 32px;
             transition: var(--transition);
         }
         
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
+        .package-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
         }
         
-        .service-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .service-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-image img {
-            transform: scale(1.05);
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-        
-        .service-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .service-desc {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-        
-        .service-features li {
-            margin-bottom: 8px;
+        .package-card.highlighted {
+            border: 2px solid var(--primary);
             position: relative;
-            padding-left: 25px;
         }
         
-        .service-features li:before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
+        .popular-badge {
             position: absolute;
-            left: 0;
-            color: var(--success);
-        }
-        
-        /* Projects Section */
-.projects {
-    background-color: var(--white);
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.project-card {
-    background: var(--light);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-}
-
-.project-image {
-    height: 200px;
-    overflow: hidden;
-    background-color: var(--light-gray);
-}
-
-.project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.project-content {
-    padding: 25px;
-}
-
-.project-title {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    color: var(--dark);
-}
-
-.project-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    background-color: var(--primary);
-    color: var(--white);
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.project-desc {
-    color: var(--dark-gray);
-    margin-bottom: 20px;
-}
-
-.project-details {
-    background: rgba(108, 99, 255, 0.05);
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-.project-details p {
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-}
-
-.project-details strong {
-    color: var(--primary);
-}
-        
-        /* Testimonials Section */
-        .testimonials {
-            background-color: var(--white);
-        }
-        
-        .testimonials-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .testimonial {
-            background: var(--light);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: var(--shadow-sm);
-            text-align: center;
-            margin: 20px;
-        }
-        
-        .testimonial-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 20px;
-            border: 3px solid var(--primary);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            color: var(--dark-gray);
-            margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .testimonial-text:before,
-        .testimonial-text:after {
-            content: '"';
-            font-size: 2rem;
-            color: var(--primary);
-            opacity: 0.3;
-            position: absolute;
-        }
-        
-        .testimonial-text:before {
-            top: -15px;
-            left: -10px;
-        }
-        
-        .testimonial-text:after {
-            bottom: -30px;
-            right: -10px;
-        }
-        
-        .testimonial-author {
+            top: -12px;
+            right: 24px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 9999px;
+            font-size: 0.875rem;
             font-weight: 600;
         }
         
-        .testimonial-role {
-            color: var(--gray);
-            font-size: 0.9rem;
+        .package-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
         
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            text-align: center;
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
-        }
-        
-        .cta-container {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .cta-title {
+        .package-price {
             font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .cta-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-btn {
-            background: var(--white);
+            font-weight: 800;
             color: var(--primary);
-            font-size: 1.1rem;
-            padding: 15px 30px;
+            margin-bottom: 24px;
         }
         
-        .cta-btn:hover {
-            background: rgba(255,255,255,0.9);
-            transform: translateY(-2px);
+        .package-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        
+        .package-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--gray);
+        }
+        
+        .package-features i {
+            color: var(--success);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--light);
+        }
+        
+        .faq-grid {
+            max-width: 800px;
+            margin: 48px auto 0;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            padding: 24px;
+            cursor: pointer;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .faq-answer {
+            margin-top: 16px;
+            color: var(--gray);
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-item.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        /* Booking Section */
+        .booking-section {
+            background-color: var(--white);
+        }
+        
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            background: var(--light);
+            border-radius: 32px;
+            padding: 48px;
+        }
+        
+        .booking-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .booking-subtitle {
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+        
+        .booking-features {
+            list-style: none;
+        }
+        
+        .booking-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .booking-features i {
+            color: var(--primary);
+        }
+        
+        .booking-calendar {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 32px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .calendar-month {
+            font-weight: 600;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+        
+        .calendar-day {
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .calendar-day:hover {
+            background: var(--light-gray);
+        }
+        
+        .calendar-day.available {
+            background: var(--primary);
+            color: white;
         }
         
         /* Footer */
         footer {
             background-color: var(--dark);
-            color: var(--light-gray);
-            padding: 60px 0 20px;
+            color: var(--white);
+            padding: 64px 0 32px;
         }
         
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
         }
         
-        .footer-col-title {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--white);
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
         }
         
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: var(--gray);
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--white);
-            padding-left: 5px;
-        }
-        
-        .footer-contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .footer-contact-icon {
-            margin-right: 10px;
+        .footer-logo span {
             color: var(--primary);
+        }
+        
+        .footer-text {
+            color: var(--gray);
+            margin-bottom: 24px;
         }
         
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 16px;
         }
         
         .social-link {
@@ -891,591 +728,605 @@
             align-items: center;
             justify-content: center;
             transition: var(--transition);
+            color: var(--white);
+            text-decoration: none;
         }
         
         .social-link:hover {
             background: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+        }
+        
+        .footer-title {
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--gray);
+        }
+        
+        .footer-contact-item i {
+            color: var(--primary);
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 32px;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: var(--gray);
-            font-size: 0.9rem;
         }
         
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero-container {
-                flex-direction: column;
-            }
-            
-            .hero-content {
-                padding-right: 0;
-                margin-bottom: 40px;
-                text-align: center;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
+        /* Responsive */
+        @media (max-width: 1024px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
         @media (max-width: 768px) {
-            .section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
             .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--white);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: var(--transition);
-                box-shadow: var(--shadow-lg);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
+                display: none;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
             
-            .cta-title {
-                font-size: 2rem;
+            .hero-grid,
+            .problem-grid,
+            .booking-grid {
+                grid-template-columns: 1fr;
             }
-        }
-        
-        @media (max-width: 576px) {
+            
+            .difference-grid,
+            .stats-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
+            .section {
+                padding: 64px 0;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header id="header">
+    <header>
         <div class="container header-container">
             <a href="#" class="logo">
                 <img src="1000797285.png" alt="ROI FIDÈLE Logo">
-                ROI FIDÈLE
+                <span>ROI FIDÈLE</span>
             </a>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
             
-            <ul class="nav-links" id="navLinks">
+            <ul class="nav-links">
                 <li><a href="#home">Accueil</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">À propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                
-                <li><a href="contact.html" class="btn btn-primary">Devis gratuit</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="btn btn-primary">Devis gratuit</a></li>
             </ul>
         </div>
     </header>
     
-    <!-- Hero Section -->
+    <!-- Hero Section - Style 5000.DEV -->
     <section class="hero" id="home">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Votre business mérite d'être vu et de vendre en ligne</h1>
-                <p class="hero-subtitle">Agence digitale 100% orientée résultats pour PME africaines ambitieuses</p>
-                <div class="hero-buttons">
-                    <a href="#services" class="btn btn-primary">Nos services</a>
-                    <a href="contact.html" class="btn btn-secondary">Lancer votre projet dès maintenant</a>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fas fa-bolt"></i> Agence web qui va droit au but
+                    </div>
+                    <h1 class="hero-title">
+                        Une agence web <span>rapide</span> et <span>prix fixes</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Vous cherchez une agence qui respecte les délais et les budgets. Nous livrons des applications fonctionnelles en 2 semaines, sans mauvaise surprise.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary btn-large">
+                            Obtenir un devis en 30 min <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">Livré en 2 semaines</span>
+                            <span class="stat-label">ou remboursé</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Prix fixes</span>
+                            <span class="stat-label">à partir de 50$</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="1010.jpg">
+                
+                <div class="hero-features">
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Application fonctionnelle déployée en ligne</li>
+                        <li><i class="fas fa-check-circle"></i> Code source complet - Vous possédez 100%</li>
+                        <li><i class="fas fa-check-circle"></i> Documentation technique incluse</li>
+                        <li><i class="fas fa-check-circle"></i> Guide de déploiement production</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Features Section -->
-    <section class="section features">
+    <!-- Problem Section - Trouver la bonne agence est difficile -->
+    <section class="section problem-section">
         <div class="container">
-            <h2 class="section-title">Pourquoi choisir ROI FIDÈLE ?</h2>
-            <p class="section-subtitle">Nous aidons les entrepreneurs africains à développer leur présence en ligne et à augmenter leurs ventes</p>
+            <div class="problem-grid">
+                <div>
+                    <h2 class="problem-title">Trouver la bonne agence digitale est difficile</h2>
+                </div>
+                <div class="problem-card">
+                    <h3><i class="fas fa-clock"></i> Délais jamais tenus</h3>
+                    <p>"Encore 2 semaines" se transforme en 2 mois. Les agences traditionnelles sous-estiment systématiquement les délais.</p>
+                </div>
+                <div class="problem-card">
+                    <h3><i class="fas fa-file-invoice"></i> Devis opaques</h3>
+                    <p>Des estimations de "30 à 80 jours-homme" sans aucune garantie. Impossible de prévoir le coût final.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Difference Section -->
+    <section class="section difference-section">
+        <div class="container">
+            <h2 class="problem-title" style="text-align: center; margin-bottom: 24px;">Nous ne sommes pas comme les autres agences</h2>
+            <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 48px;">
+                Un interlocuteur technique unique avec 2+ ans d'expérience. Un processus éprouvé. Des résultats prévisibles.
+            </p>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="feature-title">Résultats mesurables</h3>
-                    <p class="feature-desc">Nous nous engageons sur des KPI concrets : trafic, leads et ventes.</p>
+            <div class="difference-grid">
+                <div class="difference-card">
+                    <div class="difference-icon"><i class="fas fa-tag"></i></div>
+                    <h3>Prix fixes</h3>
+                    <p>50$ par service. Pas de jours-homme, pas d'estimations vagues. Un prix, un scope, une livraison.</p>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <h3 class="feature-title">Prix adaptés</h3>
-                    <p class="feature-desc">Des solutions sur mesure pour tous les budgets, sans compromis qualité.</p>
+                <div class="difference-card">
+                    <div class="difference-icon"><i class="fas fa-clock"></i></div>
+                    <h3>2 semaines</h3>
+                    <p>Livraison garantie en 2 semaines ou intégralement remboursé.</p>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3 class="feature-title">Support réactif</h3>
-                    <p class="feature-desc">Une équipe locale disponible pour vous accompagner à chaque étape.</p>
+                <div class="difference-card">
+                    <div class="difference-icon"><i class="fas fa-code"></i></div>
+                    <h3>Code livré</h3>
+                    <p>Vous repartez avec l'intégralité du code source. Pas de lock-in.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Services Section -->
-    <section class="section services" id="services">
+    <!-- Stats Section -->
+    <section class="stats-section">
         <div class="container">
-            <h2 class="section-title">Nos services phares</h2>
-            <p class="section-subtitle">Des solutions complètes pour booster votre business en ligne</p>
+            <div class="stats-grid">
+                <div class="stats-item">
+                    <span class="stats-number">2+</span>
+                    <span class="stats-label">années d'expérience</span>
+                </div>
+                <div class="stats-item">
+                    <span class="stats-number">10+</span>
+                    <span class="stats-label">projets livrés</span>
+                </div>
+                <div class="stats-item">
+                    <span class="stats-number">94%</span>
+                    <span class="stats-label">clients satisfaits</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section - Avec les nouveaux témoignages -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="problem-title" style="text-align: center;">Ils nous font confiance</h2>
+            <div class="testimonials-grid">
+                <!-- Blessing Kasasi -->
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Juste Wow ! Mon site personnel dépasse toutes mes attentes. L'équipe a su capturer parfaitement ma vision de défenseure des droits humains."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">BK</div>
+                        <div class="testimonial-info">
+                            <h4>Blessing Kasasi</h4>
+                            <p>Défenseure droits humains</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kande Ingrid -->
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"En tout cas merci pour ce travail de qualité! Je sens qu'on fera vraiment long feu ensemble. Notre agence événementielle a pris une nouvelle dimension."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">KI</div>
+                        <div class="testimonial-info">
+                            <h4>Kande Ingrid</h4>
+                            <p>Nikam Création Events</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jack Kutiwu -->
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Derrière la grandeur de plusieurs start-up se cache un héros dans l'ombre et c'est Roi Fidèle. Notre maison d'édition jeunesse a trouvé son partenaire digital."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JK</div>
+                        <div class="testimonial-info">
+                            <h4>Jack Kutiwu</h4>
+                            <p>Éditions Bosembo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section (avec vos prix et infos inchangés) -->
+    <section class="section services-section" id="services">
+        <div class="container">
+            <h2 class="problem-title" style="text-align: center;">Nos services</h2>
+            <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 48px;">
+                Des solutions adaptées aux entrepreneurs congolais, avec des prix transparents
+            </p>
             
             <div class="services-tabs">
-    <button class="tab-btn active" data-tab="startup"> Startup Launch</button>
-    <button class="tab-btn" data-tab="creation">Création digitale</button>
-    <button class="tab-btn" data-tab="marketing">Marketing digital</button>
-    <button class="tab-btn" data-tab="saas">Outils SaaS</button>
-</div>
+                <button class="tab-btn active" data-tab="startup">🚀 Startup Launch</button>
+                <button class="tab-btn" data-tab="creation">💻 Création digitale</button>
+                <button class="tab-btn" data-tab="marketing">📱 Marketing digital</button>
+                <button class="tab-btn" data-tab="saas">⚙️ Outils SaaS</button>
+            </div>
             
+            <!-- Startup Launch Tab -->
             <div class="tab-content active" id="startup">
-    <div class="service-hero">
-        <h3> Création Libre & Lancement Startup</h3>
-        <p class="hero-subtext">Vous avez une idée ? Nous la transformons en réalité.</p>
-        <blockquote>
-            Du concept au produit final, nous vous accompagnons pour créer votre site, votre identité visuelle et vos outils numériques, avec toute la liberté créative nécessaire pour sortir du lot.
-        </blockquote>
-    </div>
-
-    <div class="service-details-container">
-        <div class="service-process">
-            <h4>Ce qu'on fait pour vous</h4>
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h5>Atelier d'idéation</h5>
-                        <p>On discute de l'idée et on propose des concepts originaux.</p>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-name">Starter</div>
+                        <div class="package-price">75$</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Atelier d'idéation (2h)</li>
+                            <li><i class="fas fa-check"></i> Prototype basique</li>
+                            <li><i class="fas fa-check"></i> Site vitrine 3 pages</li>
+                            <li><i class="fas fa-check"></i> Identité visuelle simple</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline" style="width: 100%;">Choisir</a>
+                    </div>
+                    
+                    <div class="package-card highlighted">
+                        <div class="popular-badge">Populaire</div>
+                        <div class="package-name">Business</div>
+                        <div class="package-price">190$</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Atelier complet (4h)</li>
+                            <li><i class="fas fa-check"></i> Prototype avancé</li>
+                            <li><i class="fas fa-check"></i> Site web 5-7 pages</li>
+                            <li><i class="fas fa-check"></i> Identité visuelle complète</li>
+                            <li><i class="fas fa-check"></i> Stratégie de lancement</li>
+                            <li><i class="fas fa-check"></i> 1 mois de support</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Choisir</a>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-name">Premium</div>
+                        <div class="package-price">250$+</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Accompagnement sur-mesure</li>
+                            <li><i class="fas fa-check"></i> Application web/mobile</li>
+                            <li><i class="fas fa-check"></i> Branding complet</li>
+                            <li><i class="fas fa-check"></i> Stratégie digitale 360°</li>
+                            <li><i class="fas fa-check"></i> 3 mois de support</li>
+                            <li><i class="fas fa-check"></i> Formation de l'équipe</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline" style="width: 100%;">Nous contacter</a>
                     </div>
                 </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h5>Prototype rapide</h5>
-                        <p>Maquette interactive en 48-72h pour visualiser le projet.</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h5>Développement complet</h5>
-                        <p>Site web ou application fonctionnelle.</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h5>Identité de marque</h5>
-                        <p>Logo, couleurs, typographie, pitch deck.</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h5>Lancement express</h5>
-                        <p>Stratégie digitale pour toucher les premiers clients ou investisseurs.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="service-target">
-            <h4>Pour qui ?</h4>
-            <ul class="target-list">
-                <li><i class="fas fa-rocket"></i> Startups en phase d'idée ou pré-lancement</li>
-                <li><i class="fas fa-user-tie"></i> Entrepreneurs solo</li>
-                <li><i class="fas fa-sync-alt"></i> Petites entreprises qui veulent un rebranding rapide</li>
-            </ul>
-            
-            <div class="service-cta">
-                <p>Prêt à donner vie à votre idée ?</p>
-                <a href="contact.html" class="btn btn-primary">Lancer mon projet</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="service-packages">
-        <h4>Nos formules de lancement</h4>
-        <div class="packages-grid">
-            <div class="package-card">
-                <h5>Starter</h5>
-                <div class="package-price">$75</div>
-                <ul class="package-features">
-                    <li>Atelier d'idéation (2h)</li>
-                    <li>Prototype basique</li>
-                    <li>Site vitrine 3 pages</li>
-                    <li>Identité visuelle simple</li>
-                </ul>
-                <a href="contact.html" class="btn btn-secondary">Choisir cette formule</a>
             </div>
             
-            <div class="package-card highlighted">
-                <div class="popular-badge">POPULAIRE</div>
-                <h5>Business</h5>
-                <div class="package-price">$190</div>
-                <ul class="package-features">
-                    <li>Atelier complet (4h)</li>
-                    <li>Prototype avancé</li>
-                    <li>Site web 5-7 pages</li>
-                    <li>Identité visuelle complète</li>
-                    <li>Stratégie de lancement</li>
-                    <li>1 mois de support</li>
-                </ul>
-                <a href="contact.html" class="btn btn-primary">Choisir cette formule</a>
-            </div>
-            
-            <div class="package-card">
-                <h5>Premium</h5>
-                <div class="package-price">$250+</div>
-                <ul class="package-features">
-                    <li>Accompagnement sur-mesure</li>
-                    <li>Application web/mobile</li>
-                    <li>Branding complet</li>
-                    <li>Stratégie digitale 360°</li>
-                    <li>3 mois de support</li>
-                    <li>Formation de l'équipe</li>
-                </ul>
-                <a href="contact.html" class="btn btn-secondary">Nous contacter</a>
-            </div>
-        </div>
-    </div>
-</div>
-
+            <!-- Création digitale Tab -->
             <div class="tab-content" id="creation">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="vitrine.jpg">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Site vitrine professionnel</h3>
-                            <div class="service-price">À partir de 50 $</div>
-                            <p class="service-desc">Votre carte de visite en ligne pour crédibiliser votre business.</p>
-                            <ul class="service-features">
-                                <li>3 à 5 pages sur-mesure</li>
-                                <li>Design responsive</li>
-                                <li>Optimisé SEO</li>
-                                <li>Hébergement inclus 1 an</li>
-                            </ul>
-                            <a href="contactvitrine.html" class="btn btn-primary">Commander</a>
-                        </div>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-name">Site Vitrine</div>
+                        <div class="package-price">50$</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> 3 à 5 pages sur-mesure</li>
+                            <li><i class="fas fa-check"></i> Design responsive</li>
+                            <li><i class="fas fa-check"></i> Optimisé SEO</li>
+                            <li><i class="fas fa-check"></i> Hébergement inclus 1 an</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Commander</a>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="ecom.jpg">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Boutique e-commerce</h3>
-                            <div class="service-price">À partir de 100 $</div>
-                            <p class="service-desc">Vendez vos produits 24h/24 avec une boutique clé en main.</p>
-                            <ul class="service-features">
-                                <li>10 fiches produits</li>
-                                <li>Paiements en ligne</li>
-                                <li>Gestion des commandes</li>
-                                <li>Formation incluse</li>
-                            </ul>
-                            <a href="contact.html" class="btn btn-primary">Commander</a>
-                        </div>
+                    <div class="package-card">
+                        <div class="package-name">E-commerce</div>
+                        <div class="package-price">100$</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> 10 fiches produits</li>
+                            <li><i class="fas fa-check"></i> Paiements en ligne</li>
+                            <li><i class="fas fa-check"></i> Gestion des commandes</li>
+                            <li><i class="fas fa-check"></i> Formation incluse</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Commander</a>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="Visuele.jpg">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Pack identité visuelle</h3>
-                            <div class="service-price">45 $</div>
-                            <p class="service-desc">Une image de marque cohérente et professionnelle.</p>
-                            <ul class="service-features">
-                                <li>Logo sur-mesure</li>
-                                <li>Charte graphique</li>
-                                <li>Carte de visite</li>
-                                <li>En-tête réseaux sociaux</li>
-                            </ul>
-                            <a href="contact.html" class="btn btn-primary">Commander</a>
-                        </div>
+                    <div class="package-card">
+                        <div class="package-name">Pack Identité</div>
+                        <div class="package-price">45$</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Logo sur-mesure</li>
+                            <li><i class="fas fa-check"></i> Charte graphique</li>
+                            <li><i class="fas fa-check"></i> Carte de visite</li>
+                            <li><i class="fas fa-check"></i> En-tête réseaux sociaux</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Commander</a>
                     </div>
                 </div>
             </div>
             
+            <!-- Marketing digital Tab -->
             <div class="tab-content" id="marketing">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="fb.jpg">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Campagnes Facebook Ads</h3>
-                            <div class="service-price">45 $/mois</div>
-                            <p class="service-desc">Des publicités ciblées pour attirer vos clients idéaux.</p>
-                            <ul class="service-features">
-                                <li>Audit gratuit</li>
-                                <li>Création des visuels</li>
-                                <li>Optimisation quotidienne</li>
-                                <li>Rapports mensuels</li>
-                            </ul>
-                            <a href="contact.html" class="btn btn-primary">Commander</a>
-                        </div>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-name">Facebook Ads</div>
+                        <div class="package-price">45$/mois</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Audit gratuit</li>
+                            <li><i class="fas fa-check"></i> Création des visuels</li>
+                            <li><i class="fas fa-check"></i> Optimisation quotidienne</li>
+                            <li><i class="fas fa-check"></i> Rapports mensuels</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Commencer</a>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="reso.jpg" >
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Stratégie digitale</h3>
-                            <div class="service-price">100 $</div>
-                            <p class="service-desc">Un plan d'action clair pour développer votre business en ligne.</p>
-                            <ul class="service-features">
-                                <li>Audit complet</li>
-                                <li>Plan marketing 3 mois</li>
-                                <li>Calendrier éditorial</li>
-                                <li>Recommandations personnalisées</li>
-                            </ul>
-                            <a href="contact.html" class="btn btn-primary">Commander</a>
-                        </div>
+                    <div class="package-card">
+                        <div class="package-name">Gestion Réseaux</div>
+                        <div class="package-price">100$/mois</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> 12 publications/mois</li>
+                            <li><i class="fas fa-check"></i> Réponse aux messages</li>
+                            <li><i class="fas fa-check"></i> Stories quotidiennes</li>
+                            <li><i class="fas fa-check"></i> Analyse performances</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Commencer</a>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="gestionreso.jpg">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Gestion réseaux sociaux</h3>
-                            <div class="service-price">100 $/mois</div>
-                            <p class="service-desc">Une présence régulière et professionnelle sur les réseaux.</p>
-                            <ul class="service-features">
-                                <li>12 publications/mois</li>
-                                <li>Réponse aux messages</li>
-                                <li>Stories quotidiennes</li>
-                                <li>Analyse des performances</li>
-                            </ul>
-                            <a href="contact.html" class="btn btn-primary">Commander</a>
-                        </div>
+                    <div class="package-card">
+                        <div class="package-name">Stratégie digitale</div>
+                        <div class="package-price">100$</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Audit complet</li>
+                            <li><i class="fas fa-check"></i> Plan marketing 3 mois</li>
+                            <li><i class="fas fa-check"></i> Calendrier éditorial</li>
+                            <li><i class="fas fa-check"></i> Recommandations</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Réserver</a>
                     </div>
                 </div>
             </div>
             
+            <!-- Outils SaaS Tab -->
             <div class="tab-content" id="saas">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="invoice.jpg">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Outil de facturation</h3>
-                            <div class="service-price">15 $/mois</div>
-                            <p class="service-desc">Générez et envoyez des factures professionnelles en quelques clics.</p>
-                            <ul class="service-features">
-                                <li>Modèles personnalisables</li>
-                                <li>Suivi des paiements</li>
-                                <li>Rapports financiers</li>
-                                <li>Support technique</li>
-                            </ul>
-                            <a href="contact.html" class="btn btn-primary">Essai gratuit</a>
-                        </div>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-name">Facturation</div>
+                        <div class="package-price">15$/mois</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Modèles personnalisables</li>
+                            <li><i class="fas fa-check"></i> Suivi des paiements</li>
+                            <li><i class="fas fa-check"></i> Rapports financiers</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Essai gratuit</a>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="stocks.jpg">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">Gestion des stocks</h3>
-                            <div class="service-price">20 $/mois</div>
-                            <p class="service-desc">Ne perdez plus jamais le contrôle de votre inventaire.</p>
-                            <ul class="service-features">
-                                <li>Interface simple</li>
-                                <li>Alertes de réapprovisionnement</li>
-                                <li>Multi-utilisateurs</li>
-                                <li>Formation incluse</li>
-                            </ul>
-                            <a href="contact.html" class="btn btn-primary">Essai gratuit</a>
-                        </div>
+                    <div class="package-card">
+                        <div class="package-name">Gestion stocks</div>
+                        <div class="package-price">20$/mois</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Interface simple</li>
+                            <li><i class="fas fa-check"></i> Alertes réapprovisionnement</li>
+                            <li><i class="fas fa-check"></i> Multi-utilisateurs</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Essai gratuit</a>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="service-image">
-                            <img src="crm.jpg">
-                        </div>
-                        <div class="service-content">
-                            <h3 class="service-title">CRM WhatsApp</h3>
-                            <div class="service-price">12 $/mois</div>
-                            <p class="service-desc">Gérez efficacement vos contacts et conversations WhatsApp.</p>
-                            <ul class="service-features">
-                                <li>Base de données centralisée</li>
-                                <li>Messages automatisés</li>
-                                <li>Suivi des prospects</li>
-                                <li>Statistiques</li>
-                            </ul>
-                            <a href="contact.html" class="btn btn-primary">Essai gratuit</a>
-                        </div>
+                    <div class="package-card">
+                        <div class="package-name">CRM WhatsApp</div>
+                        <div class="package-price">12$/mois</div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Base de données centralisée</li>
+                            <li><i class="fas fa-check"></i> Messages automatisés</li>
+                            <li><i class="fas fa-check"></i> Suivi des prospects</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">Essai gratuit</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Projets en cours Section -->
-<section class="section projects" id="projects">
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+        <div class="container">
+            <h2 class="problem-title" style="text-align: center;">Questions fréquentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Comment garantissez-vous la maintenabilité du code ?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Nous suivons les meilleures pratiques de développement (code propre, commenté, architecture modulaire) et fournissons une documentation complète. Vous pouvez faire évoluer votre site avec n'importe quel développeur.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Comment se déroule un projet avec vous ?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        1. Appel découverte (30min) - 2. Proposition et devis - 3. Lancement et atelier - 4. Prototype - 5. Développement - 6. Livraison et formation.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Quelle est la différence avec une agence traditionnelle ?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Prix fixes (pas de jours-homme), délais garantis, interlocuteur unique, et vous possédez 100% du code. Pas de surprise, pas de lock-in.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Et si mon projet nécessite plusieurs services ?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Pas de problème ! Nous combinons plusieurs services et offrons un prix package. Contactez-nous pour un devis personnalisé.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Proposez-vous l'hébergement ?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Oui, l'hébergement est inclus la première année. Ensuite, nous proposons des formules de maintenance à partir de 20$/mois.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Remplacer la section booking existante par celle-ci -->
+<section class="section booking-section" id="contact">
     <div class="container">
-        <h2 class="section-title">Nos projets en cours</h2>
-        <p class="section-subtitle">Découvrez les initiatives innovantes que nous développons actuellement en autonomie et pour des clients</p>
-        
-        <div class="projects-grid">
-            <!-- Projet 1 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="1000780572.png" alt="Projet Mutshele">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Mutshele</h3>
-                    <div class="project-tag">Éducation</div>
-                    <p class="project-desc">Plateforme de partage de notes, de cours et de travaux pratiques entre étudiants africains. Une communauté collaborative pour faciliter la réussite académique.</p>
-                    <div class="project-details">
-                        <p><strong>Lancement:</strong> Fin 2025</p>
-                        <p><strong>Fonctionnalités clés:</strong> Partage de documents, système de notation, chat étudiant</p>
+        <div class="booking-grid">
+            <div>
+                <h2 class="booking-title">Parlons de votre projet</h2>
+                <p class="booking-subtitle">Réservez un appel de 30 minutes. Gratuit, sans engagement.</p>
+                
+                <div style="background: var(--primary); color: white; padding: 32px; border-radius: 24px; margin-bottom: 24px;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 12px;">📞 Discovery Call - 30 minutes</h3>
+                    <p style="margin-bottom: 20px; opacity: 0.9;">Échangeons sur votre projet en visioconférence</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-map-marker-alt" style="font-size: 1.2rem;"></i>
+                            <span><strong>Lieu :</strong> Kinshasa, RDC (Heure locale)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-clock" style="font-size: 1.2rem;"></i>
+                            <span><strong>Fuseau horaire :</strong> West Africa Time (WAT) - Kinshasa</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-calendar-check" style="font-size: 1.2rem;"></i>
+                            <span><strong>Disponibilité :</strong> Lundi - Vendredi, 9h - 18h (Heure de Kinshasa)</span>
+                        </div>
                     </div>
-                    <a href="Mutshele.html" class="btn btn-secondary">En savoir plus</a>
                 </div>
+                
+                <ul class="booking-features">
+                    <li><i class="fas fa-check-circle"></i> Objectif : Comprendre vos défis et déterminer si nous pouvons vous aider</li>
+                    <li><i class="fas fa-check-circle"></i> Ce que nous explorerons : votre projet, vos objectifs, votre budget</li>
+                    <li><i class="fas fa-check-circle"></i> Aucun engagement - appel strictement conseil</li>
+                </ul>
             </div>
             
-            <!-- Projet 2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="1000780573.png" alt="Projet Klasika">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Klasika</h3>
-                    <div class="project-tag">Agritech</div>
-                    <p class="project-desc">Plateforme e-learning dédiée à l'agriculture et l'agroalimentaire en Afrique. Formation des jeunes entrepreneurs et professionnels du secteur.</p>
-                    <div class="project-details">
-                        <p><strong>Lancement:</strong> Versin Beta Octobre 2025</p>
-                        <p><strong>Fonctionnalités clés:</strong> Cours certifiants, forum expert, marketplace agricole</p>
-                    </div>
-                    <a href="klasika.html" class="btn btn-secondary">En savoir plus</a>
-                </div>
-            </div>
-            
-            <!-- Projet 3 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="1000797284.png" alt="Projet Open Africa Data Platform">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Open Africa Data Platform</h3>
-                    <div class="project-tag">Data & Environnement</div>
-                    <p class="project-desc">Plateforme collaborative de données agricoles et climatiques ouvertes. Les contributeurs sont récompensés pour leurs observations locales.</p>
-                    <div class="project-details">
-                        <p><strong>Lancement:</strong> Début 2026</p>
-                        <p><strong>Fonctionnalités clés:</strong> Cartographie interactive, système de récompenses, API ouverte</p>
-                    </div>
-                    <a href="aodp.html" class="btn btn-secondary">En savoir plus</a>
+            <div class="booking-calendar">
+                <!-- Calendly intégré avec votre lien personnel -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/thefidelemabila/votre-porjet-avec-roi-didele?hide_gdpr_banner=1&month=2026-03&timezone=Africa/Kinshasa" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                
+                <!-- Fallback pour mobile ou si Calendly ne charge pas -->
+                <div style="text-align: center; margin-top: 16px;">
+                    <p style="color: var(--gray); font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> Le calendrier est en heure de Kinshasa (WAT)
+                    </p>
+                    <a href="https://calendly.com/thefidelemabila/votre-porjet-avec-roi-didele?month=2026-03" target="_blank" class="btn btn-outline" style="margin-top: 12px;">
+                        Ouvrir le calendrier dans un nouvel onglet
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </section>
     
-    <!-- Testimonials Section -->
-    <section class="section testimonials">
-        <div class="container">
-            <h2 class="section-title">Ils nous font confiance</h2>
-            <p class="section-subtitle">Découvrez ce que nos clients disent de notre travail</p>
-            
-            <div class="testimonials-slider">
-                <div class="testimonial">
-                    
-                    <p class="testimonial-text">ROI FIDÈLE a complètement transformé notre façon de voir le monde. En 2 mois de développement de la plateforme OADT, les opportunités commencent déjà à s'offrir à nous.</p>
-                    <h4 class="testimonial-author">African Temple</h4>
-                    <p class="testimonial-role">Équipe Fondatrice de OADT</p>
-                </div>
-                
-                <div class="testimonial">
-                    
-                    <p class="testimonial-text">Leur équipe a créé pour nous une campagne en ligne magnifique. La visibilité de notre média à augmentée dans tout le pays.</p>
-                    <h4 class="testimonial-author">Marc Antoine</h4>
-                    <p class="testimonial-role">RH chez Capital Congo""</p>
-                </div>
-                
-                <div class="testimonial">
-                    
-                    <p class="testimonial-text">Grâce à l'équipe de ROI FIDELE, ce sui n'était qu'un rêve peut enfin devenir réalité</p>
-                    <h4 class="testimonial-author">Étudiants de l'UCC</h4>
-                    <p class="testimonial-role">Fondateur de Mutshele</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container cta-container">
-            <h2 class="cta-title">Prêt à booster votre business en ligne ?</h2>
-            <p class="cta-subtitle">Contactez-nous dès aujourd'hui pour un audit gratuit de votre présence digitale et découvrez comment nous pouvons vous aider à atteindre vos objectifs.</p>
-            <a href="contact.html" class="btn cta-btn">Demander un devis</a>
-        </div>
-    </section>
-    
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h3 class="footer-col-title">ROI FIDÈLE</h3>
-                    <p>Agence digitale spécialisée dans l'accompagnement des PME africaines vers la transformation digitale.</p>
+                <div>
+                    <div class="footer-logo">
+                        <span>ROI</span> FIDÈLE
+                    </div>
+                    <p class="footer-text">
+                        Agence digitale spécialisée dans l'accompagnement des entrepreneurs congolais vers la transformation digitale.
+                    </p>
                     <div class="social-links">
                         <a href="https://www.tiktok.com/@roi_fidele?_t=ZM-8yjcqDBY8aj&_r=1" class="social-link"><i class="fab fa-tiktok"></i></a>
                         <a href="https://www.instagram.com/roi.fidele/profilecard/?igsh=czA0aG1qZnFzdnRi" class="social-link"><i class="fab fa-instagram"></i></a>
@@ -1484,8 +1335,8 @@
                     </div>
                 </div>
                 
-                <div class="footer-col">
-                    <h3 class="footer-col-title">Services</h3>
+                <div>
+                    <h4 class="footer-title">Services</h4>
                     <ul class="footer-links">
                         <li><a href="#">Création de sites web</a></li>
                         <li><a href="#">E-commerce</a></li>
@@ -1495,123 +1346,116 @@
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3 class="footer-col-title">Entreprise</h3>
+                <div>
+                    <h4 class="footer-title">Entreprise</h4>
                     <ul class="footer-links">
                         <li><a href="#">À propos</a></li>
                         <li><a href="#">Équipe</a></li>
                         <li><a href="#">Réalisations</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a href="#">Carrières</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3 class="footer-col-title">Contact</h3>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
                     <div class="footer-contact-item">
-                        <i class="fas fa-map-marker-alt footer-contact-icon"></i>
-                        <span>Kinshasa, République Démocratique du Congo</span>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kinshasa, RDC</span>
                     </div>
                     <div class="footer-contact-item">
-                        <i class="fas fa-phone-alt footer-contact-icon"></i>
+                        <i class="fas fa-phone-alt"></i>
                         <span>+243 978 058 289</span>
                     </div>
                     <div class="footer-contact-item">
-                        <i class="fas fa-envelope footer-contact-icon"></i>
+                        <i class="fas fa-envelope"></i>
                         <span>contact@roifidele.com</span>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 ROI FIDÈLE. Tous droits réservés.</p>
-                <p>Fait avec du ❤️ pour les entrepreneurs Africains</p>
+                <p>&copy; 2026 ROI FIDÈLE. Tous droits réservés. Fait avec ❤️ pour les entrepreneurs Africains</p>
             </div>
         </div>
     </footer>
     
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
+        // Mobile Menu
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        mobileBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (window.innerWidth <= 768) {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '80px';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = 'white';
+                navLinks.style.padding = '24px';
+                navLinks.style.boxShadow = 'var(--shadow-md)';
             }
         });
         
-        // Services tabs
+        // Tabs
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
         
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons and contents
-                tabBtns.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                 // Add active class to clicked button and corresponding content
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
                 btn.classList.add('active');
                 const tabId = btn.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
             });
         });
         
-        // Smooth scrolling for anchor links
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = 'var(--shadow-md)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
         
-        // Simple testimonial slider
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial');
-        
-        function showTestimonial(index) {
-            testimonials.forEach((testimonial, i) => {
-                testimonial.style.display = i === index ? 'block' : 'none';
-            });
-        }
-        
-        function nextTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }
-        
-        // Auto-rotate testimonials every 5 seconds
-        showTestimonial(0);
-        setInterval(nextTestimonial, 5000);
+        // Responsive reset
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'row';
+                navLinks.style.position = 'static';
+                navLinks.style.width = 'auto';
+                navLinks.style.padding = '0';
+                navLinks.style.boxShadow = 'none';
+            } else {
+                navLinks.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
