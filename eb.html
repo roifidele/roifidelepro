@@ -3,499 +3,325 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Next Level Congo | Salons Privés VIP - Cinéma & Gaming</title>
-  <!-- Tailwind CSS CDN -->
+  <title>Next Level Congo | Salons Privés VIP & Gaming</title>
+  <!-- Tailwind CSS + Google Fonts + Font Awesome CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Angular CDN (v18) -->
-  <script src="https://unpkg.com/@angular/core@18.2.0/core.umd.js"></script>
-  <script src="https://unpkg.com/@angular/common@18.2.0/common.umd.js"></script>
-  <script src="https://unpkg.com/@angular/compiler@18.2.0/compiler.umd.js"></script>
-  <script src="https://unpkg.com/@angular/platform-browser@18.2.0/platform-browser.umd.js"></script>
-  <script src="https://unpkg.com/@angular/platform-browser-dynamic@18.2.0/platform-browser-dynamic.umd.js"></script>
-  <script src="https://unpkg.com/@angular/forms@18.2.0/forms.umd.js"></script>
-  <!-- Font Awesome 6 -->
+  <!-- Vue.js 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- Font Awesome 6 (gratuit) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts: Urbanist + Orbitron -->
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Personnalisation du thème Tailwind (overrides) -->
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap');
     * {
-      font-family: 'Urbanist', sans-serif;
+      font-family: 'Inter', sans-serif;
     }
-    .font-gaming {
-      font-family: 'Orbitron', monospace;
+    html {
+      scroll-behavior: smooth;
     }
     body {
-      background: #03010a;
-      overflow-x: hidden;
+      background: #0a0a0f;
     }
-    /* Animated gradient background */
-    .bg-animated {
-      background: radial-gradient(circle at 20% 30%, #0a0218, #020008);
-      position: relative;
+    /* animation personnalisée pour les cartes */
+    .hover-glow {
+      transition: all 0.3s ease;
     }
-    .glow-card {
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
-    }
-    .glow-card:hover {
-      box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+    .hover-glow:hover {
       transform: translateY(-8px);
+      box-shadow: 0 25px 35px -12px rgba(139, 92, 246, 0.3);
     }
-    .glass-deep {
-      background: rgba(8, 12, 25, 0.65);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(139, 92, 246, 0.35);
-      border-radius: 2rem;
+    .btn-primary {
+      transition: all 0.2s ease;
     }
-    .neon-text {
-      text-shadow: 0 0 8px #a855f7, 0 0 20px #7c3aed;
+    .btn-primary:active {
+      transform: scale(0.96);
     }
-    .btn-primary-glow {
-      background: linear-gradient(95deg, #7c3aed, #c026d3);
-      transition: all 0.3s;
+    /* glassmorphisme subtil */
+    .glass-card {
+      background: rgba(20, 20, 35, 0.65);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(139, 92, 246, 0.3);
     }
-    .btn-primary-glow:hover {
-      filter: brightness(1.1);
-      box-shadow: 0 0 20px #a855f7;
-      transform: scale(1.02);
+    .badge-vip {
+      background: linear-gradient(135deg, #8b5cf6, #c084fc);
     }
-    @keyframes float-slow {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-    }
-    .animate-float-slow {
-      animation: float-slow 6s ease-in-out infinite;
-    }
-    @keyframes pulse-border {
-      0% { border-color: rgba(139, 92, 246, 0.3); }
-      100% { border-color: rgba(139, 92, 246, 0.9); }
-    }
-    .input-focus-glow:focus {
-      border-color: #c084fc;
-      box-shadow: 0 0 12px #a855f7;
-      outline: none;
-    }
+    /* scrollbar stylée */
     ::-webkit-scrollbar {
       width: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #0a0415;
+      background: #1e1e2a;
     }
     ::-webkit-scrollbar-thumb {
       background: #8b5cf6;
-      border-radius: 10px;
+      border-radius: 12px;
     }
   </style>
 </head>
-<body class="bg-animated text-gray-100">
+<body class="text-white antialiased">
 
-  <app-root>Loading Next Level Experience...</app-root>
+  <div id="app">
+    <!-- NAVBAR dynamique avec effet sticky -->
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-purple-500/30 shadow-lg">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex flex-wrap justify-between items-center">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-crown text-3xl text-purple-400"></i>
+          <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">NEXT LEVEL</span>
+          <span class="text-sm font-bold bg-white/10 px-2 py-0.5 rounded-full ml-1">Congo</span>
+        </div>
+        <div class="hidden md:flex space-x-8 font-medium">
+          <a href="#concept" class="hover:text-purple-300 transition">Concept</a>
+          <a href="#offres" class="hover:text-purple-300 transition">Offres</a>
+          <a href="#horaires" class="hover:text-purple-300 transition">Horaires</a>
+          <a href="#contact" class="hover:text-purple-300 transition">Contact</a>
+        </div>
+        <button @click="scrollToBooking" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-purple-700/30 transition-all btn-primary flex items-center gap-2">
+          <i class="fa-solid fa-calendar-check"></i> Réserver
+        </button>
+      </div>
+    </nav>
+
+    <!-- SECTION HERO avec animation dynamique -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1920&auto=format')] bg-cover bg-center opacity-30"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-purple-950/30 to-black/80"></div>
+      <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <div class="inline-block px-4 py-1 rounded-full bg-purple-900/60 border border-purple-400/40 mb-6 backdrop-blur-sm">
+          <span class="text-sm font-semibold tracking-wide"><i class="fa-regular fa-star-of-life mr-1"></i> 100% privé · 100% plaisir</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black leading-tight">
+          <span class="bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">Salons Privés</span><br>
+          Cinéma <span class="text-purple-400">&</span> Gaming
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mt-6 font-light">Réservez votre salle exclusive en ligne, réglez sur place. Pop-corn offert, immersion totale.</p>
+        <div class="flex flex-wrap gap-5 justify-center mt-10">
+          <button @click="scrollToBooking" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-2xl shadow-purple-600/40 transition transform hover:scale-105 flex items-center gap-2">
+            <i class="fa-solid fa-ticket"></i> Réserver maintenant
+          </button>
+          <a href="#offres" class="bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 py-4 px-8 rounded-xl text-lg font-semibold transition flex items-center gap-2">
+            <i class="fa-regular fa-circle-play"></i> Découvrir les salons
+          </a>
+        </div>
+        <div class="mt-16 flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-300">
+          <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-purple-400"></i> 10+ ans d'expérience</div>
+          <div class="flex items-center gap-2"><i class="fa-solid fa-globe text-purple-400"></i> Trusted by global brands</div>
+          <div class="flex items-center gap-2"><i class="fa-solid fa-lock text-purple-400"></i> Salles 100% privées</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCEPT SECTION (seamless interactions) -->
+    <section id="concept" class="py-24 px-6 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-purple-400 font-bold tracking-wider text-sm uppercase"><i class="fa-regular fa-gem mr-1"></i> notre ADN</span>
+          <h2 class="text-4xl md:text-5xl font-bold mt-2 leading-tight">Designing for seamless & <span class="text-purple-300">enjoyable interactions</span></h2>
+          <p class="text-gray-300 text-lg mt-6 leading-relaxed">Chez Next Level Congo, nous créons des expériences sur mesure : salle fermée, équipements dernier cri, ambiance cinéma ou gaming. Réservez en ligne, venez, et plongez dans un univers privé rien que pour vous (ou vos amis).</p>
+          <div class="mt-8 flex flex-col gap-4">
+            <div class="flex gap-3 items-start"><i class="fa-solid fa-vr-cardboard text-purple-400 text-2xl mt-1"></i><div><strong class="font-bold">Expérience immersive</strong><p class="text-gray-400">Écrans géants, son surround, consoles next-gen.</p></div></div>
+            <div class="flex gap-3 items-start"><i class="fa-solid fa-champagne-glasses text-purple-400 text-2xl mt-1"></i><div><strong class="font-bold">Salons VIP 18+</strong><p class="text-gray-400">Ambiance premium, intimité absolue, service dédié.</p></div></div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-fuchsia-600 rounded-2xl blur-2xl opacity-40"></div>
+          <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=2070&auto=format" alt="salle gaming cinema" class="rounded-2xl shadow-2xl relative z-10 w-full object-cover h-[380px] md:h-[450px]">
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFERS CARDS : VIP & STANDARD -->
+    <section id="offres" class="py-20 px-6 bg-gradient-to-b from-black to-purple-950/20">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold">Choisissez votre <span class="text-purple-400">expérience</span></h2>
+          <p class="text-gray-300 text-xl mt-3">Film, jeux vidéo, pop-corn offert, 100% privé</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-10">
+          <!-- CARTE VIP -->
+          <div class="glass-card rounded-3xl overflow-hidden hover-glow transition-all duration-300 border border-purple-500/40">
+            <div class="badge-vip px-6 py-2 text-center font-black text-white tracking-wider"><i class="fa-solid fa-crown mr-2"></i> SALON PRIVÉ VIP · 18+</div>
+            <div class="p-8">
+              <div class="flex justify-between items-start">
+                <div><i class="fa-solid fa-gem text-5xl text-purple-300"></i></div>
+                <span class="bg-black/50 px-3 py-1 rounded-full text-sm"><i class="fa-regular fa-clock"></i> Accès illimité</span>
+              </div>
+              <h3 class="text-3xl font-bold mt-4">Premium Experience</h3>
+              <ul class="mt-6 space-y-4 text-gray-200">
+                <li class="flex gap-3"><i class="fa-solid fa-check-circle text-purple-400 mt-1"></i> Salle 100% privée & insonorisée</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check-circle text-purple-400 mt-1"></i> Films récents ou jeux vidéo (PS5/Xbox/PC)</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check-circle text-purple-400 mt-1"></i> 🍿 Pop-corn artisanal offert</li>
+                <li class="flex gap-3"><i class="fa-solid fa-champagne-glasses text-purple-400 mt-1"></i> Service barman & cocktails optionnel</li>
+                <li class="flex gap-3"><i class="fa-solid fa-user-lock text-purple-400 mt-1"></i> Entrée strictement interdite aux mineurs</li>
+              </ul>
+              <div class="mt-8 pt-4 border-t border-white/20">
+                <p class="text-2xl font-bold text-purple-300">À partir de <span class="text-white">—</span> <span class="text-3xl">consulter prix</span></p>
+                <button @click="openWhatsApp('VIP')" class="w-full mt-5 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-500 hover:to-purple-700 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
+                  <i class="fab fa-whatsapp"></i> Réserver via WhatsApp
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARTE STANDARD -->
+          <div class="glass-card rounded-3xl overflow-hidden hover-glow transition-all duration-300 border border-white/20">
+            <div class="bg-gray-800/80 px-6 py-2 text-center font-semibold tracking-wider text-gray-200"><i class="fa-regular fa-face-smile mr-2"></i> SALON STANDARD · Famille & amis</div>
+            <div class="p-8">
+              <div><i class="fa-solid fa-people-group text-5xl text-purple-300"></i></div>
+              <h3 class="text-3xl font-bold mt-4">Family & Fun</h3>
+              <ul class="mt-6 space-y-4 text-gray-200">
+                <li class="flex gap-3"><i class="fa-solid fa-check-circle text-purple-400 mt-1"></i> Salle privée (accessible à tous les âges)</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check-circle text-purple-400 mt-1"></i> Films ou jeux vidéo multi-génération</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check-circle text-purple-400 mt-1"></i> 🍿 Pop-corn offert pour toute la groupe</li>
+                <li class="flex gap-3"><i class="fa-solid fa-couch text-purple-400 mt-1"></i> Ambiance cosy et conviviale</li>
+                <li class="flex gap-3"><i class="fa-solid fa-ban text-purple-400 mt-1"></i> Nourriture extérieure interdite (snacks dispo)</li>
+              </ul>
+              <div class="mt-8 pt-4 border-t border-white/20">
+                <p class="text-xl font-semibold text-gray-300">Tarifs doux · Paiement sur place</p>
+                <button @click="openWhatsApp('Standard')" class="w-full mt-5 bg-white/10 hover:bg-white/20 border border-white/30 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
+                  <i class="fab fa-whatsapp"></i> Réserver maintenant
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center text-sm text-gray-400 mt-12 bg-black/40 rounded-2xl p-4 max-w-2xl mx-auto">
+          <i class="fa-solid fa-circle-info mr-2"></i> Réservation en ligne rapide → paiement uniquement sur place. Consommation disponible (boissons, snacks). VIP interdit -18 ans.
+        </div>
+      </div>
+    </section>
+
+    <!-- RÈGLES ET INFO GAMING/CINÉMA -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-black/40 rounded-2xl p-6 border-l-4 border-purple-500">
+          <i class="fa-solid fa-ban text-3xl text-purple-400 mb-3"></i>
+          <h4 class="text-xl font-bold">Règles essentielles</h4>
+          <p class="text-gray-300 mt-2">❌ Nourriture & boissons extérieures interdites.<br>✅ Consommation disponible sur place (snacks, softs, cocktails VIP).<br>🔞 VIP réservé aux 18 ans et +, pièce d'identité exigée.</p>
+        </div>
+        <div class="bg-black/40 rounded-2xl p-6 border-l-4 border-purple-500">
+          <i class="fa-solid fa-gamepad text-3xl text-purple-400 mb-3"></i>
+          <h4 class="text-xl font-bold">Gaming Zone</h4>
+          <p class="text-gray-300 mt-2">Configurations PC gaming, PS5, Xbox Series X, manettes sans fil, écrans 4K. Parfait pour du compétitif ou du fun en groupe.</p>
+        </div>
+        <div class="bg-black/40 rounded-2xl p-6 border-l-4 border-purple-500">
+          <i class="fa-solid fa-film text-3xl text-purple-400 mb-3"></i>
+          <h4 class="text-xl font-bold">Cinéma privé</h4>
+          <p class="text-gray-300 mt-2">Projection 4K, son Dolby Atmos, fauteuils inclinables. Choisissez le film de votre choix parmi un catalogue premium.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HORAIRES + TEMOIGNAGES (amélioration avec feedback clients) -->
+    <section id="horaires" class="py-20 px-6 bg-black/40">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+        <div class="bg-purple-950/30 rounded-2xl p-8 backdrop-blur-sm">
+          <div class="flex items-center gap-3 mb-6"><i class="fa-regular fa-clock text-4xl text-purple-300"></i><h3 class="text-3xl font-bold">Horaires d’ouverture</h3></div>
+          <ul class="space-y-4 text-xl">
+            <li class="flex justify-between border-b border-white/20 pb-2"><span>Lundi - Samedi</span><span class="font-mono font-bold">10h00 – 21h00</span></li>
+            <li class="flex justify-between pt-2"><span>Dimanche</span><span class="font-mono font-bold">12h00 – 21h00</span></li>
+          </ul>
+          <div class="mt-8 bg-white/5 p-4 rounded-xl"><i class="fa-regular fa-calendar-alt mr-2"></i> Ouvert tous les jours, réservation fortement conseillée le weekend.</div>
+        </div>
+        <!-- AVIS CLIENTS (simulés dynamiques avec Vue) -->
+        <div class="bg-black/50 rounded-2xl p-8 border border-purple-500/30">
+          <div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-star text-yellow-400"></i><i class="fa-solid fa-star text-yellow-400"></i><i class="fa-solid fa-star text-yellow-400"></i><i class="fa-solid fa-star text-yellow-400"></i><i class="fa-solid fa-star text-yellow-400"></i><span class="ml-2 font-bold">4.9/5 · 120+ avis</span></div>
+          <h3 class="text-2xl font-bold mb-6">Ce que nos clients disent</h3>
+          <div class="space-y-5">
+            <div v-for="testimonial in testimonials" :key="testimonial.id" class="bg-white/5 p-4 rounded-xl">
+              <p class="italic text-gray-200">"{{ testimonial.text }}"</p>
+              <div class="flex items-center gap-2 mt-3"><i class="fa-regular fa-circle-user text-purple-300"></i><span class="font-semibold">{{ testimonial.name }}</span><span class="text-xs text-gray-400">{{ testimonial.type }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERIE MINI & RAPPEL EXPERIENCE -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold">Immersion <span class="text-purple-400">visuelle</span></h2>
+        <p class="text-gray-300">Ambiance unique de nos salons privés</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="rounded-xl overflow-hidden h-48 bg-purple-800/30"><img src="https://images.unsplash.com/photo-1596443686812-2f45229eebc3?w=600&auto=format" class="w-full h-full object-cover hover:scale-110 transition duration-500" alt="salle gaming"></div>
+        <div class="rounded-xl overflow-hidden h-48 bg-purple-800/30"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format" class="w-full h-full object-cover hover:scale-110 transition duration-500" alt="cinema"></div>
+        <div class="rounded-xl overflow-hidden h-48 bg-purple-800/30"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=600&auto=format" class="w-full h-full object-cover hover:scale-110 transition duration-500" alt="vr gaming"></div>
+        <div class="rounded-xl overflow-hidden h-48 bg-purple-800/30"><img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600&auto=format" class="w-full h-full object-cover hover:scale-110 transition duration-500" alt="popcorn lounge"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT & RESERVATION (WhatsApp + réseaux) -->
+    <footer id="contact" class="bg-black/90 border-t border-purple-500/30 py-16 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="flex items-center gap-2 text-3xl font-black"><i class="fa-solid fa-crown text-purple-400"></i> NEXT LEVEL CONGO</div>
+            <p class="text-gray-400 mt-2">Créativité, innovation et storytelling — depuis 10 ans, nous offrons des expériences uniques à Kinshasa et au-delà.</p>
+            <div class="flex gap-5 mt-6 text-2xl">
+              <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-tiktok"></i></a>
+              <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="mt-6 space-y-2">
+              <p><i class="fa-brands fa-whatsapp mr-2 text-green-400"></i> Réservation directe : <strong>+243 123 456 789</strong> (WhatsApp)</p>
+              <p><i class="fa-regular fa-envelope mr-2"></i> contact@nextlevelcongo.com</p>
+              <p><i class="fa-solid fa-location-dot mr-2"></i> Kinshasa / Gombe, RDC</p>
+            </div>
+          </div>
+          <div class="bg-purple-950/40 rounded-2xl p-8 text-center backdrop-blur-md">
+            <h3 class="text-2xl font-bold">Prêt à vivre l’expérience ?</h3>
+            <p class="text-gray-200 mt-2">Réservez votre salon en quelques secondes, on vous attend !</p>
+            <button @click="scrollToBooking" class="mt-6 bg-purple-600 w-full py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-purple-500 transition flex justify-center gap-2 items-center">
+              <i class="fa-solid fa-ticket-alt"></i> Réserver maintenant
+            </button>
+            <p class="text-xs text-gray-400 mt-4"><i class="fa-regular fa-credit-card"></i> Paiement sécurisé sur place. Aucun frais en ligne.</p>
+          </div>
+        </div>
+        <div class="text-center text-gray-500 text-sm pt-12 border-t border-white/10 mt-10">
+          © 2025 NEXT LEVEL CONGO — Designing for seamless & enjoyable interactions. Tous droits réservés.
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script>
-    // Angular modules
-    const { Component, NgModule } = ng.core;
-    const { BrowserModule } = ng.platformBrowser;
-    const { FormsModule } = ng.forms;
+    const { createApp, ref } = Vue;
 
-    // App Component
-    class NextLevelApp {
-      constructor() {
-        // State
-        this.step = 'offers'; // offers, form, confirmation
-        this.selectedType = null; // 'vip' or 'standard'
-        this.isSubmitting = false;
-        this.toast = { show: false, message: '' };
-        
-        // Formulaire réservation
-        this.booking = {
-          fullName: '',
-          email: '',
-          phone: '',
-          date: '',
-          timeSlot: '',
-          guests: 2,
-          occasion: ''
+    const app = createApp({
+      setup() {
+        // Témoignages pour renforcer la crédibilité (amélioration demandée)
+        const testimonials = ref([
+          { id: 1, name: "Grace M.", type: "VIP Salon", text: "Incroyable expérience ! Salle privée, ambiance au top et pop-corn délicieux. Idéal pour un date ou entre amis." },
+          { id: 2, name: "Hervé K.", type: "Session Gaming", text: "Matos gaming de fou, PS5 et écrans 4K. Mon groupe a adoré, on revient chaque mois !" },
+          { id: 3, name: "Linda T.", type: "Famille", text: "Parfait pour une sortie en famille. Les enfants étaient ravis, et le personnel très accueillant." }
+        ]);
+
+        // fonction scroll vers la section réservation (envoie vers les offres avec un scroll fluide)
+        const scrollToBooking = () => {
+          const offreSection = document.getElementById('offres');
+          if (offreSection) {
+            offreSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         };
-        
-        this.timeSlots = [
-          '10:00 - 12:00', 
-          '12:30 - 14:30', 
-          '15:00 - 17:00', 
-          '17:30 - 19:30', 
-          '20:00 - 22:00'
-        ];
-        
-        this.confirmedBooking = null;
-        
-        // Available dates : min = today
-        const today = new Date().toISOString().split('T')[0];
-        this.minDate = today;
-      }
-      
-      // Sélection VIP ou Standard
-      selectOffer(type) {
-        this.selectedType = type;
-        this.step = 'form';
-        window.scrollTo({ top: document.getElementById('reservePanel').offsetTop - 40, behavior: 'smooth' });
-      }
-      
-      goBackToOffers() {
-        this.step = 'offers';
-        this.selectedType = null;
-      }
-      
-      // Validation et soumission (simulée)
-      submitReservation() {
-        // Validations simples
-        if (!this.booking.fullName.trim()) {
-          this.showToastMsg('Veuillez indiquer votre nom complet');
-          return;
-        }
-        if (!this.booking.email.includes('@') || !this.booking.email) {
-          this.showToastMsg('Email valide requis');
-          return;
-        }
-        if (!this.booking.phone.trim()) {
-          this.showToastMsg('Numéro de téléphone requis');
-          return;
-        }
-        if (!this.booking.date) {
-          this.showToastMsg('Sélectionnez une date');
-          return;
-        }
-        if (!this.booking.timeSlot) {
-          this.showToastMsg('Choisissez un créneau horaire');
-          return;
-        }
-        
-        this.isSubmitting = true;
-        // Simulation API
-        setTimeout(() => {
-          const id = 'NLC' + Math.floor(Math.random() * 90000) + 1000;
-          this.confirmedBooking = {
-            ...this.booking,
-            offer: this.selectedType,
-            reservationId: id,
-            date: this.booking.date,
-            timeSlot: this.booking.timeSlot
-          };
-          this.isSubmitting = false;
-          this.step = 'confirmation';
-          window.scrollTo({ top: document.getElementById('reservePanel').offsetTop - 40, behavior: 'smooth' });
-        }, 800);
-      }
-      
-      // Réinitialiser après confirmation
-      resetBooking() {
-        this.step = 'offers';
-        this.selectedType = null;
-        this.booking = {
-          fullName: '', email: '', phone: '', date: '', timeSlot: '', guests: 2, occasion: ''
+
+        // ouverture WhatsApp pré-rempli
+        const openWhatsApp = (typeOffer) => {
+          let message = `Bonjour Next Level Congo, je souhaite réserver un salon ${typeOffer}. J'aimerais connaître les disponibilités et tarifs. Merci !`;
+          const phone = "243123456789"; // numéro exemple, à modifier en réel
+          const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+          window.open(url, '_blank');
         };
-        this.confirmedBooking = null;
+
+        return {
+          testimonials,
+          scrollToBooking,
+          openWhatsApp
+        };
       }
-      
-      // Redirection WhatsApp (booking direct)
-      whatsappDirect() {
-        let message = `Bonjour Next Level Congo ! Je souhaite réserver un salon ${this.selectedType === 'vip' ? 'VIP 18+' : 'Standard'}. Nom: ${this.booking.fullName || 'Client'}. Tél: ${this.booking.phone || 'non spécifié'}.`;
-        if(this.booking.date) message += ` Date souhaitée: ${this.booking.date}.`;
-        const url = `https://wa.me/243826123456?text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank');
-      }
-      
-      showToastMsg(msg) {
-        this.toast.message = msg;
-        this.toast.show = true;
-        setTimeout(() => { this.toast.show = false; }, 3200);
-      }
-      
-      getOfferLabel() {
-        return this.selectedType === 'vip' ? 'VIP 18+ (Premium)' : 'Standard (Familial)';
-      }
-      
-      getOfferIcon() {
-        return this.selectedType === 'vip' ? 'fa-crown' : 'fa-film';
-      }
-    }
-    
-    // Définition du composant avec template
-    NextLevelApp.annotations = [
-      new Component({
-        selector: 'app-root',
-        template: `
-          <!-- Toast Notifications -->
-          <div *ngIf="toast.show" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[100] bg-gradient-to-r from-purple-800 to-fuchsia-800 text-white px-7 py-3 rounded-full shadow-2xl border border-purple-300 font-bold flex items-center gap-3 backdrop-blur-md text-sm md:text-base animate-pulse">
-            <i class="fas fa-bell"></i> {{ toast.message }}
-          </div>
-          
-          <!-- HERO SECTION ÉPIC -->
-          <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-25 blur-sm scale-110"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-purple-950/50 to-black"></div>
-            
-            <div class="relative z-10 text-center px-6 max-w-6xl mx-auto animate-float-slow">
-              <div class="inline-flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-purple-500 rounded-full px-5 py-2 mb-6">
-                <i class="fas fa-map-pin text-purple-400 text-sm"></i>
-                <span class="text-xs font-gaming tracking-wider">KINSHASA · PREMIUM LOUNGE</span>
-              </div>
-              <h1 class="text-6xl md:text-8xl font-gaming font-black tracking-tighter">
-                <span class="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent">NEXT LEVEL</span><br>
-                <span class="text-white drop-shadow-2xl">CONGO</span>
-              </h1>
-              <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mt-6 font-light">Salons privés · Cinéma immersif 4K · Gaming Next-Gen<br>Réservez en ligne, vivez l'instant, payez sur place.</p>
-              
-              <div class="flex flex-wrap justify-center gap-5 mt-12">
-                <button (click)="selectOffer('vip')" class="btn-primary-glow px-8 py-4 rounded-full text-lg font-bold flex items-center gap-3 shadow-2xl transition">
-                  <i class="fas fa-gem text-yellow-300"></i> SALON VIP 18+
-                </button>
-                <button (click)="selectOffer('standard')" class="bg-gray-900/80 backdrop-blur border border-purple-500/50 hover:bg-gray-800/90 px-8 py-4 rounded-full text-lg font-bold flex items-center gap-3 transition">
-                  <i class="fas fa-users"></i> SALON STANDARD
-                </button>
-              </div>
-              
-              <div class="grid grid-cols-2 md:flex md:justify-center gap-6 mt-16 text-sm font-gaming text-purple-300">
-                <div><i class="fas fa-film mr-2"></i> Écran géant</div>
-                <div><i class="fas fa-gamepad mr-2"></i> PS5 / PC Ultra</div>
-                <div><i class="fas fa-popcorn mr-2"></i> Pop-corn offert</div>
-                <div><i class="fas fa-lock mr-2"></i> 100% privé</div>
-              </div>
-            </div>
-            <div class="absolute bottom-6 left-0 right-0 text-center animate-bounce">
-              <a href="#offersSection" class="text-gray-400 hover:text-white text-2xl"><i class="fas fa-chevron-circle-down"></i></a>
-            </div>
-          </section>
-          
-          <!-- SECTION OFFRES DÉTAILLÉES -->
-          <section id="offersSection" class="py-24 px-6 md:px-12 relative">
-            <div class="max-w-7xl mx-auto">
-              <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-gaming font-bold"><span class="bg-gradient-to-r from-purple-300 to-fuchsia-400 bg-clip-text text-transparent">Expériences sur mesure</span></h2>
-                <div class="w-28 h-1 bg-gradient-to-r from-purple-500 to-fuchsia-500 mx-auto mt-4 rounded-full"></div>
-                <p class="text-gray-400 mt-5 text-lg">Deux univers, une promesse : un divertissement d'exception</p>
-              </div>
-              
-              <div class="grid lg:grid-cols-2 gap-10">
-                <!-- CARD VIP ULTRA -->
-                <div class="glow-card rounded-3xl overflow-hidden bg-gradient-to-br from-purple-900/40 to-black/80 border border-purple-500/40 p-1">
-                  <div class="p-8">
-                    <div class="flex justify-between items-start">
-                      <div>
-                        <div class="text-3xl font-gaming font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-purple-300">VIP COLLECTION</div>
-                        <div class="flex items-center gap-2 mt-1"><i class="fas fa-skull text-red-400 text-sm"></i><span class="text-xs font-bold text-red-300">Réservé 18+ · Identité requise</span></div>
-                      </div>
-                      <i class="fas fa-crown text-5xl text-yellow-500/80"></i>
-                    </div>
-                    <ul class="mt-6 space-y-4">
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Salle ultra privée (capacité 2-6 pers)</li>
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Écran cinéma 4K + Son Dolby Atmos</li>
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Gaming : PS5, PC Gaming RTX, manettes pro</li>
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Boisson premium offerte + Pop-corn gourmet</li>
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Service concierge & accès coupe-file</li>
-                    </ul>
-                    <div class="mt-8">
-                      <button (click)="selectOffer('vip')" class="w-full bg-purple-700 hover:bg-purple-600 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition shadow-lg"><i class="fas fa-ticket-alt"></i> RÉSERVER MAINTENANT</button>
-                      <p class="text-center text-xs text-purple-300 mt-3">Paiement à l'arrivée · À partir de 45$/personne</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- CARD STANDARD -->
-                <div class="glow-card rounded-3xl overflow-hidden bg-gradient-to-br from-indigo-900/30 to-black/70 border border-indigo-500/30 p-1">
-                  <div class="p-8">
-                    <div class="flex justify-between">
-                      <div>
-                        <div class="text-3xl font-gaming font-black text-indigo-300">STANDARD</div>
-                        <div class="text-green-400 text-xs mt-1"><i class="fas fa-child"></i> Tout public · Idéal famille/amis</div>
-                      </div>
-                      <i class="fas fa-clapperboard text-5xl text-indigo-400/80"></i>
-                    </div>
-                    <ul class="mt-6 space-y-4">
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Salon confortable et climatisé</li>
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Choix entre films à la demande ou jeux vidéo</li>
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Pop-corn offert à volonté</li>
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Ambiance sécurisée, adaptée aux enfants</li>
-                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Parfait pour anniversaires, sorties en groupe</li>
-                    </ul>
-                    <div class="mt-8">
-                      <button (click)="selectOffer('standard')" class="w-full bg-indigo-700 hover:bg-indigo-600 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition"><i class="fas fa-calendar-check"></i> RÉSERVER STANDARD</button>
-                      <p class="text-center text-xs text-indigo-300 mt-3">À partir de 15$/personne · Paiement sur place</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-          <!-- SECTION RÉSERVATION DYNAMIQUE (ANGULAR) -->
-          <div id="reservePanel" class="px-6 md:px-12 pb-24">
-            <div class="max-w-5xl mx-auto glass-deep p-6 md:p-10 rounded-3xl shadow-2xl transition-all">
-              <!-- ÉTAPE 1 : Choix d'offre si aucune sélection -->
-              <div *ngIf="step === 'offers'" class="text-center py-8">
-                <i class="fas fa-couch text-6xl text-purple-400 mb-5 opacity-80"></i>
-                <h3 class="text-3xl font-gaming font-bold">Prêt à réserver ?</h3>
-                <p class="text-gray-300 mt-3 max-w-lg mx-auto">Sélectionnez une expérience ci-dessus et complétez votre réservation en quelques clics.</p>
-                <div class="flex flex-wrap justify-center gap-4 mt-8">
-                  <button (click)="selectOffer('vip')" class="bg-purple-700/80 hover:bg-purple-700 px-7 py-3 rounded-full font-bold"><i class="fas fa-crown mr-2"></i> VIP 18+</button>
-                  <button (click)="selectOffer('standard')" class="bg-indigo-700/80 hover:bg-indigo-700 px-7 py-3 rounded-full font-bold"><i class="fas fa-users mr-2"></i> Standard</button>
-                </div>
-              </div>
-              
-              <!-- ÉTAPE 2 : Formulaire de réservation -->
-              <div *ngIf="step === 'form' && selectedType" class="transition-all duration-300">
-                <div class="flex flex-wrap justify-between items-center border-b border-purple-500/40 pb-4 mb-6">
-                  <div>
-                    <h3 class="text-2xl md:text-3xl font-gaming font-bold"><i class="fas fa-{{ getOfferIcon() }} mr-3 text-purple-400"></i> Réserver · {{ getOfferLabel() }}</h3>
-                    <p class="text-sm text-purple-300 mt-1">Remplissez vos coordonnées, nous confirmons sous 30 min</p>
-                  </div>
-                  <button (click)="goBackToOffers()" class="text-sm text-purple-300 hover:text-white transition"><i class="fas fa-arrow-left mr-1"></i> Autre offre</button>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-user mr-1"></i> Nom complet *</label>
-                    <input [(ngModel)]="booking.fullName" type="text" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3 focus:input-focus-glow transition" placeholder="Jean-Claude M.">
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-envelope mr-1"></i> Email *</label>
-                    <input [(ngModel)]="booking.email" type="email" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3 focus:input-focus-glow" placeholder="contact@exemple.com">
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-1"><i class="fab fa-whatsapp mr-1"></i> WhatsApp / Téléphone *</label>
-                    <input [(ngModel)]="booking.phone" type="tel" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3" placeholder="+243 8XX XX XX">
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-calendar-day mr-1"></i> Date souhaitée *</label>
-                    <input [(ngModel)]="booking.date" type="date" [min]="minDate" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3 text-white">
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-clock mr-1"></i> Créneau *</label>
-                    <select [(ngModel)]="booking.timeSlot" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3">
-                      <option value="" disabled>-- Choisissez un horaire --</option>
-                      <option *ngFor="let slot of timeSlots" [value]="slot">{{ slot }}</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-user-friends mr-1"></i> Nombre de personnes</label>
-                    <input [(ngModel)]="booking.guests" type="number" min="1" max="12" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3">
-                  </div>
-                  <div class="md:col-span-2">
-                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-gift mr-1"></i> Occasion spéciale (anniversaire, soirée...)</label>
-                    <input [(ngModel)]="booking.occasion" type="text" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3" placeholder="Optionnel, on prépare une surprise !">
-                  </div>
-                </div>
-                
-                <div class="flex flex-wrap justify-between items-center gap-4 mt-8">
-                  <button (click)="whatsappDirect()" class="bg-green-700 hover:bg-green-600 px-6 py-3 rounded-full flex items-center gap-2 font-semibold transition"><i class="fab fa-whatsapp text-xl"></i> Réserver via WhatsApp</button>
-                  <button (click)="submitReservation()" [disabled]="isSubmitting" class="btn-primary-glow px-8 py-3 rounded-full font-bold flex items-center gap-2 disabled:opacity-50">
-                    <i class="fas fa-check-circle"></i> {{ isSubmitting ? 'Envoi...' : 'Confirmer ma réservation' }}
-                  </button>
-                </div>
-                <p class="text-xs text-gray-400 text-center mt-6 flex items-center justify-center gap-2"><i class="fas fa-shield-alt text-purple-400"></i> Réservation sans avance. Paiement 100% sur place. Consommation disponible.</p>
-              </div>
-              
-              <!-- ÉTAPE 3 : Confirmation -->
-              <div *ngIf="step === 'confirmation' && confirmedBooking" class="text-center py-4 animate__animated">
-                <div class="bg-green-800/30 rounded-full w-28 h-28 flex items-center justify-center mx-auto border-2 border-green-400 shadow-xl">
-                  <i class="fas fa-party-horn text-5xl text-green-400"></i>
-                </div>
-                <h3 class="text-3xl font-gaming font-bold mt-5">Réservation confirmée !</h3>
-                <p class="text-gray-300 mt-2 max-w-md mx-auto">Votre salon {{ confirmedBooking.offer === 'vip' ? 'VIP' : 'Standard' }} est réservé.</p>
-                <div class="glass-deep inline-block p-5 mt-6 text-left rounded-2xl border border-purple-500/30">
-                  <p class="flex gap-2"><i class="fas fa-id-card text-purple-400 w-6"></i> <strong>{{ confirmedBooking.fullName }}</strong></p>
-                  <p class="flex gap-2 mt-2"><i class="fas fa-calendar-alt text-purple-400 w-6"></i> {{ confirmedBooking.date }} | {{ confirmedBooking.timeSlot }}</p>
-                  <p class="flex gap-2 mt-2"><i class="fas fa-tag text-purple-400 w-6"></i> Code : <span class="font-mono font-bold">{{ confirmedBooking.reservationId }}</span></p>
-                  <p class="flex gap-2 mt-2"><i class="fas fa-phone-alt text-purple-400 w-6"></i> {{ confirmedBooking.phone }}</p>
-                </div>
-                <div class="flex flex-wrap justify-center gap-5 mt-8">
-                  <button (click)="resetBooking()" class="bg-gray-800 hover:bg-gray-700 px-6 py-2 rounded-full transition"><i class="fas fa-plus-circle"></i> Nouvelle réservation</button>
-                  <a href="https://wa.me/243826123456?text=Bonjour%2C%20j%27ai%20reçu%20ma%20réservation%20NLC" target="_blank" class="bg-green-600 hover:bg-green-500 px-6 py-2 rounded-full flex items-center gap-2"><i class="fab fa-whatsapp"></i> Contacter le support</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- RÈGLEMENT & HORAIRES + TESTIMONIAUX -->
-          <section class="py-16 px-6 bg-black/40 border-t border-purple-900/40">
-            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-              <div class="space-y-5">
-                <div class="flex items-center gap-3"><i class="fas fa-gavel text-purple-400 text-2xl"></i><h3 class="text-2xl font-gaming font-bold">Bon à savoir</h3></div>
-                <ul class="space-y-3 text-gray-300">
-                  <li><i class="fas fa-id-card text-purple-400 w-6"></i> <strong>VIP 18+</strong> : présentation d'une pièce d'identité obligatoire</li>
-                  <li><i class="fas fa-ban text-red-400 w-6"></i> Interdiction d'apporter nourriture/boissons extérieures</li>
-                  <li><i class="fas fa-cocktail text-green-400 w-6"></i> Snacking & boissons premium disponibles sur place</li>
-                  <li><i class="fas fa-hourglass-half w-6"></i> Arriver 10 min avant pour profiter pleinement</li>
-                </ul>
-              </div>
-              <div class="space-y-5">
-                <div class="flex items-center gap-3"><i class="fas fa-clock text-purple-400 text-2xl"></i><h3 class="text-2xl font-gaming font-bold">Horaires d'ouverture</h3></div>
-                <div class="bg-black/50 p-5 rounded-2xl border border-purple-500/20">
-                  <div class="flex justify-between py-2"><span>Lundi → Samedi :</span><span class="font-mono font-bold">10h00 - 21h00</span></div>
-                  <div class="flex justify-between py-2 border-t border-purple-500/20"><span>Dimanche :</span><span class="font-mono font-bold">12h00 - 21h00</span></div>
-                  <p class="text-xs text-purple-300 mt-4"><i class="fas fa-headset"></i> Dernier accueil 45 min avant fermeture</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Témoignages  -->
-            <div class="max-w-7xl mx-auto mt-20">
-              <h3 class="text-center text-3xl font-gaming font-bold mb-10">Ils nous font confiance <i class="fas fa-heart text-pink-500"></i></h3>
-              <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-black/40 p-5 rounded-2xl border-l-4 border-purple-500">
-                  <i class="fas fa-star text-yellow-400 mb-2"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
-                  <p class="italic mt-2">"Ambiance cinéma incroyable, son immersif et salle hyper propre. Le meilleur spot à Kinshasa !"</p>
-                  <p class="font-bold mt-3">— Grace T.</p>
-                </div>
-                <div class="bg-black/40 p-5 rounded-2xl border-l-4 border-fuchsia-500">
-                  <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
-                  <p class="italic mt-2">"VIP gaming de folie, PS5 et bibliothèque de jeux énorme. Expérience premium, je reviens."</p>
-                  <p class="font-bold mt-3">— Arnold K.</p>
-                </div>
-                <div class="bg-black/40 p-5 rounded-2xl border-l-4 border-indigo-500">
-                  <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star-half-alt text-yellow-400"></i>
-                  <p class="italic mt-2">"Super moment en famille, les enfants ont adoré le pop-corn et le film. Je recommande standard."</p>
-                  <p class="font-bold mt-3">— Nathalie M.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-          <!-- FOOTER RÉSEAUX -->
-          <footer class="bg-black/80 backdrop-blur-md py-8 border-t border-purple-800/30">
-            <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between items-center gap-5">
-              <div class="text-center md:text-left">
-                <div class="text-2xl font-gaming font-black bg-gradient-to-r from-purple-400 to-fuchsia-500 bg-clip-text text-transparent">NEXT LEVEL CONGO</div>
-                <p class="text-xs text-gray-400 mt-1">Salons privés · Cinéma & Gaming · Kinshasa</p>
-              </div>
-              <div class="flex gap-6 text-2xl">
-                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-tiktok"></i></a>
-                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/243826123456" class="hover:text-green-400 transition"><i class="fab fa-whatsapp"></i></a>
-              </div>
-              <div class="text-xs text-gray-500">© 2025 — Réservez l'expérience ultime. Paiement sécurisé sur place.</div>
-            </div>
-          </footer>
-        `,
-        styles: [`
-          :host { display: block; }
-          .transition-all { transition: all 0.2s ease; }
-        `]
-      })
-    ];
-    
-    // Module Angular
-    class AppModule {}
-    AppModule.annotations = [
-      new NgModule({
-        imports: [BrowserModule, FormsModule],
-        declarations: [NextLevelApp],
-        bootstrap: [NextLevelApp]
-      })
-    ];
-    
-    // Bootstrap
-    const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-    platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));
+    });
+
+    app.mount('#app');
   </script>
 </body>
 </html>
