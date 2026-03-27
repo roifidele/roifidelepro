@@ -1,407 +1,501 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Éditions Bosembo - Maison d'édition</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'bosembo-blue': '#0057B7',
-                        'bosembo-gold': '#F6BD1F',
-                        'bosembo-terracotta': '#E76F51',
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .logo-torche {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .logo-torche::before {
-            content: "";
-            position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 25px;
-            background-color: #F6BD1F;
-            border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 15px 5px rgba(246, 189, 31, 0.5);
-        }
-        
-        .logo-torche::after {
-            content: "●";
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #0057B7;
-            font-size: 30px;
-        }
-        
-        .book-card {
-            transition: transform 0.3s ease;
-        }
-        
-        .book-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #F6BD1F;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Style spécifique pour la section concours */
-        .writing-contest {
-            background: linear-gradient(135deg, #0057B7 0%, #003a78 100%);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 87, 183, 0.2);
-            overflow: hidden;
-        }
-        
-        .contest-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border-left: 4px solid #F6BD1F;
-        }
-        
-        .contest-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contest-timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .contest-timeline::before {
-            content: "";
-            position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #F6BD1F;
-        }
-        
-        .contest-timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-        }
-        
-        .contest-timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -30px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #0057B7;
-            border: 3px solid #F6BD1F;
-        }
-        
-        .prize-card {
-            background: linear-gradient(135deg, #F6BD1F 0%, #E76F51 100%);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-        
-        .prize-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 25px rgba(246, 189, 31, 0.3);
-        }
-        
-        .floating-pen {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Next Level Congo | Salons Privés VIP - Cinéma & Gaming</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Angular CDN (v18) -->
+  <script src="https://unpkg.com/@angular/core@18.2.0/core.umd.js"></script>
+  <script src="https://unpkg.com/@angular/common@18.2.0/common.umd.js"></script>
+  <script src="https://unpkg.com/@angular/compiler@18.2.0/compiler.umd.js"></script>
+  <script src="https://unpkg.com/@angular/platform-browser@18.2.0/platform-browser.umd.js"></script>
+  <script src="https://unpkg.com/@angular/platform-browser-dynamic@18.2.0/platform-browser-dynamic.umd.js"></script>
+  <script src="https://unpkg.com/@angular/forms@18.2.0/forms.umd.js"></script>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Urbanist + Orbitron -->
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Urbanist', sans-serif;
+    }
+    .font-gaming {
+      font-family: 'Orbitron', monospace;
+    }
+    body {
+      background: #03010a;
+      overflow-x: hidden;
+    }
+    /* Animated gradient background */
+    .bg-animated {
+      background: radial-gradient(circle at 20% 30%, #0a0218, #020008);
+      position: relative;
+    }
+    .glow-card {
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+    }
+    .glow-card:hover {
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+      transform: translateY(-8px);
+    }
+    .glass-deep {
+      background: rgba(8, 12, 25, 0.65);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      border-radius: 2rem;
+    }
+    .neon-text {
+      text-shadow: 0 0 8px #a855f7, 0 0 20px #7c3aed;
+    }
+    .btn-primary-glow {
+      background: linear-gradient(95deg, #7c3aed, #c026d3);
+      transition: all 0.3s;
+    }
+    .btn-primary-glow:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 20px #a855f7;
+      transform: scale(1.02);
+    }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    .animate-float-slow {
+      animation: float-slow 6s ease-in-out infinite;
+    }
+    @keyframes pulse-border {
+      0% { border-color: rgba(139, 92, 246, 0.3); }
+      100% { border-color: rgba(139, 92, 246, 0.9); }
+    }
+    .input-focus-glow:focus {
+      border-color: #c084fc;
+      box-shadow: 0 0 12px #a855f7;
+      outline: none;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0415;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #8b5cf6;
+      border-radius: 10px;
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-800">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="favicon.jpg" alt="Logo Torche" class="logo-torche mr-2 h-10 w-auto">
-                <span class="text-xl font-bold text-bosembo-blue">Éditions Bosembo</span>
-            </div>
+<body class="bg-animated text-gray-100">
+
+  <app-root>Loading Next Level Experience...</app-root>
+
+  <script>
+    // Angular modules
+    const { Component, NgModule } = ng.core;
+    const { BrowserModule } = ng.platformBrowser;
+    const { FormsModule } = ng.forms;
+
+    // App Component
+    class NextLevelApp {
+      constructor() {
+        // State
+        this.step = 'offers'; // offers, form, confirmation
+        this.selectedType = null; // 'vip' or 'standard'
+        this.isSubmitting = false;
+        this.toast = { show: false, message: '' };
+        
+        // Formulaire réservation
+        this.booking = {
+          fullName: '',
+          email: '',
+          phone: '',
+          date: '',
+          timeSlot: '',
+          guests: 2,
+          occasion: ''
+        };
+        
+        this.timeSlots = [
+          '10:00 - 12:00', 
+          '12:30 - 14:30', 
+          '15:00 - 17:00', 
+          '17:30 - 19:30', 
+          '20:00 - 22:00'
+        ];
+        
+        this.confirmedBooking = null;
+        
+        // Available dates : min = today
+        const today = new Date().toISOString().split('T')[0];
+        this.minDate = today;
+      }
+      
+      // Sélection VIP ou Standard
+      selectOffer(type) {
+        this.selectedType = type;
+        this.step = 'form';
+        window.scrollTo({ top: document.getElementById('reservePanel').offsetTop - 40, behavior: 'smooth' });
+      }
+      
+      goBackToOffers() {
+        this.step = 'offers';
+        this.selectedType = null;
+      }
+      
+      // Validation et soumission (simulée)
+      submitReservation() {
+        // Validations simples
+        if (!this.booking.fullName.trim()) {
+          this.showToastMsg('Veuillez indiquer votre nom complet');
+          return;
+        }
+        if (!this.booking.email.includes('@') || !this.booking.email) {
+          this.showToastMsg('Email valide requis');
+          return;
+        }
+        if (!this.booking.phone.trim()) {
+          this.showToastMsg('Numéro de téléphone requis');
+          return;
+        }
+        if (!this.booking.date) {
+          this.showToastMsg('Sélectionnez une date');
+          return;
+        }
+        if (!this.booking.timeSlot) {
+          this.showToastMsg('Choisissez un créneau horaire');
+          return;
+        }
+        
+        this.isSubmitting = true;
+        // Simulation API
+        setTimeout(() => {
+          const id = 'NLC' + Math.floor(Math.random() * 90000) + 1000;
+          this.confirmedBooking = {
+            ...this.booking,
+            offer: this.selectedType,
+            reservationId: id,
+            date: this.booking.date,
+            timeSlot: this.booking.timeSlot
+          };
+          this.isSubmitting = false;
+          this.step = 'confirmation';
+          window.scrollTo({ top: document.getElementById('reservePanel').offsetTop - 40, behavior: 'smooth' });
+        }, 800);
+      }
+      
+      // Réinitialiser après confirmation
+      resetBooking() {
+        this.step = 'offers';
+        this.selectedType = null;
+        this.booking = {
+          fullName: '', email: '', phone: '', date: '', timeSlot: '', guests: 2, occasion: ''
+        };
+        this.confirmedBooking = null;
+      }
+      
+      // Redirection WhatsApp (booking direct)
+      whatsappDirect() {
+        let message = `Bonjour Next Level Congo ! Je souhaite réserver un salon ${this.selectedType === 'vip' ? 'VIP 18+' : 'Standard'}. Nom: ${this.booking.fullName || 'Client'}. Tél: ${this.booking.phone || 'non spécifié'}.`;
+        if(this.booking.date) message += ` Date souhaitée: ${this.booking.date}.`;
+        const url = `https://wa.me/243826123456?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+      }
+      
+      showToastMsg(msg) {
+        this.toast.message = msg;
+        this.toast.show = true;
+        setTimeout(() => { this.toast.show = false; }, 3200);
+      }
+      
+      getOfferLabel() {
+        return this.selectedType === 'vip' ? 'VIP 18+ (Premium)' : 'Standard (Familial)';
+      }
+      
+      getOfferIcon() {
+        return this.selectedType === 'vip' ? 'fa-crown' : 'fa-film';
+      }
+    }
+    
+    // Définition du composant avec template
+    NextLevelApp.annotations = [
+      new Component({
+        selector: 'app-root',
+        template: `
+          <!-- Toast Notifications -->
+          <div *ngIf="toast.show" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[100] bg-gradient-to-r from-purple-800 to-fuchsia-800 text-white px-7 py-3 rounded-full shadow-2xl border border-purple-300 font-bold flex items-center gap-3 backdrop-blur-md text-sm md:text-base animate-pulse">
+            <i class="fas fa-bell"></i> {{ toast.message }}
+          </div>
+          
+          <!-- HERO SECTION ÉPIC -->
+          <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-25 blur-sm scale-110"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-purple-950/50 to-black"></div>
             
-            <div class="hidden md:flex space-x-8">
-                <a href="#accueil" class="nav-link">Accueil</a>
-                <a href="#about" class="nav-link">À propos</a>
-                <a href="#publications" class="nav-link">Publications</a>
-                <a href="#communaute" class="nav-link">Communauté</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-bosembo-blue">
-                    <i class="fas fa-bars text-2xl"></i>
+            <div class="relative z-10 text-center px-6 max-w-6xl mx-auto animate-float-slow">
+              <div class="inline-flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-purple-500 rounded-full px-5 py-2 mb-6">
+                <i class="fas fa-map-pin text-purple-400 text-sm"></i>
+                <span class="text-xs font-gaming tracking-wider">KINSHASA · PREMIUM LOUNGE</span>
+              </div>
+              <h1 class="text-6xl md:text-8xl font-gaming font-black tracking-tighter">
+                <span class="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent">NEXT LEVEL</span><br>
+                <span class="text-white drop-shadow-2xl">CONGO</span>
+              </h1>
+              <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mt-6 font-light">Salons privés · Cinéma immersif 4K · Gaming Next-Gen<br>Réservez en ligne, vivez l'instant, payez sur place.</p>
+              
+              <div class="flex flex-wrap justify-center gap-5 mt-12">
+                <button (click)="selectOffer('vip')" class="btn-primary-glow px-8 py-4 rounded-full text-lg font-bold flex items-center gap-3 shadow-2xl transition">
+                  <i class="fas fa-gem text-yellow-300"></i> SALON VIP 18+
                 </button>
+                <button (click)="selectOffer('standard')" class="bg-gray-900/80 backdrop-blur border border-purple-500/50 hover:bg-gray-800/90 px-8 py-4 rounded-full text-lg font-bold flex items-center gap-3 transition">
+                  <i class="fas fa-users"></i> SALON STANDARD
+                </button>
+              </div>
+              
+              <div class="grid grid-cols-2 md:flex md:justify-center gap-6 mt-16 text-sm font-gaming text-purple-300">
+                <div><i class="fas fa-film mr-2"></i> Écran géant</div>
+                <div><i class="fas fa-gamepad mr-2"></i> PS5 / PC Ultra</div>
+                <div><i class="fas fa-popcorn mr-2"></i> Pop-corn offert</div>
+                <div><i class="fas fa-lock mr-2"></i> 100% privé</div>
+              </div>
             </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
-            <div class="flex flex-col space-y-3">
-                <a href="#accueil" class="nav-link py-2">Accueil</a>
-                <a href="#about" class="nav-link py-2">À propos</a>
-                <a href="#publications" class="nav-link py-2">Publications</a>
-                <a href="#communaute" class="nav-link py-2">Communauté</a>
-                <a href="#contact" class="nav-link py-2">Contact</a>
+            <div class="absolute bottom-6 left-0 right-0 text-center animate-bounce">
+              <a href="#offersSection" class="text-gray-400 hover:text-white text-2xl"><i class="fas fa-chevron-circle-down"></i></a>
             </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="accueil" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-bosembo-blue to-blue-800 text-white">
-        <div class="container mx-auto px-4 flex flex-col items-center">
-            <img src="favicon.jpg" alt="Logo Torche" class="logo-torche mr-2 h-10 w-auto">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6">Éditions Bosembo</h1>
-            <p class="text-xl md:text-2xl text-bosembo-gold font-semibold text-center mb-10">« Lire. Grandir. Inspirer. »</p>
+          </section>
+          
+          <!-- SECTION OFFRES DÉTAILLÉES -->
+          <section id="offersSection" class="py-24 px-6 md:px-12 relative">
+            <div class="max-w-7xl mx-auto">
+              <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-gaming font-bold"><span class="bg-gradient-to-r from-purple-300 to-fuchsia-400 bg-clip-text text-transparent">Expériences sur mesure</span></h2>
+                <div class="w-28 h-1 bg-gradient-to-r from-purple-500 to-fuchsia-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-400 mt-5 text-lg">Deux univers, une promesse : un divertissement d'exception</p>
+              </div>
+              
+              <div class="grid lg:grid-cols-2 gap-10">
+                <!-- CARD VIP ULTRA -->
+                <div class="glow-card rounded-3xl overflow-hidden bg-gradient-to-br from-purple-900/40 to-black/80 border border-purple-500/40 p-1">
+                  <div class="p-8">
+                    <div class="flex justify-between items-start">
+                      <div>
+                        <div class="text-3xl font-gaming font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-purple-300">VIP COLLECTION</div>
+                        <div class="flex items-center gap-2 mt-1"><i class="fas fa-skull text-red-400 text-sm"></i><span class="text-xs font-bold text-red-300">Réservé 18+ · Identité requise</span></div>
+                      </div>
+                      <i class="fas fa-crown text-5xl text-yellow-500/80"></i>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Salle ultra privée (capacité 2-6 pers)</li>
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Écran cinéma 4K + Son Dolby Atmos</li>
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Gaming : PS5, PC Gaming RTX, manettes pro</li>
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Boisson premium offerte + Pop-corn gourmet</li>
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-purple-400 w-5"></i> Service concierge & accès coupe-file</li>
+                    </ul>
+                    <div class="mt-8">
+                      <button (click)="selectOffer('vip')" class="w-full bg-purple-700 hover:bg-purple-600 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition shadow-lg"><i class="fas fa-ticket-alt"></i> RÉSERVER MAINTENANT</button>
+                      <p class="text-center text-xs text-purple-300 mt-3">Paiement à l'arrivée · À partir de 45$/personne</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- CARD STANDARD -->
+                <div class="glow-card rounded-3xl overflow-hidden bg-gradient-to-br from-indigo-900/30 to-black/70 border border-indigo-500/30 p-1">
+                  <div class="p-8">
+                    <div class="flex justify-between">
+                      <div>
+                        <div class="text-3xl font-gaming font-black text-indigo-300">STANDARD</div>
+                        <div class="text-green-400 text-xs mt-1"><i class="fas fa-child"></i> Tout public · Idéal famille/amis</div>
+                      </div>
+                      <i class="fas fa-clapperboard text-5xl text-indigo-400/80"></i>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Salon confortable et climatisé</li>
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Choix entre films à la demande ou jeux vidéo</li>
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Pop-corn offert à volonté</li>
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Ambiance sécurisée, adaptée aux enfants</li>
+                      <li class="flex items-center gap-3"><i class="fas fa-check-circle text-indigo-400"></i> Parfait pour anniversaires, sorties en groupe</li>
+                    </ul>
+                    <div class="mt-8">
+                      <button (click)="selectOffer('standard')" class="w-full bg-indigo-700 hover:bg-indigo-600 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition"><i class="fas fa-calendar-check"></i> RÉSERVER STANDARD</button>
+                      <p class="text-center text-xs text-indigo-300 mt-3">À partir de 15$/personne · Paiement sur place</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- SECTION RÉSERVATION DYNAMIQUE (ANGULAR) -->
+          <div id="reservePanel" class="px-6 md:px-12 pb-24">
+            <div class="max-w-5xl mx-auto glass-deep p-6 md:p-10 rounded-3xl shadow-2xl transition-all">
+              <!-- ÉTAPE 1 : Choix d'offre si aucune sélection -->
+              <div *ngIf="step === 'offers'" class="text-center py-8">
+                <i class="fas fa-couch text-6xl text-purple-400 mb-5 opacity-80"></i>
+                <h3 class="text-3xl font-gaming font-bold">Prêt à réserver ?</h3>
+                <p class="text-gray-300 mt-3 max-w-lg mx-auto">Sélectionnez une expérience ci-dessus et complétez votre réservation en quelques clics.</p>
+                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                  <button (click)="selectOffer('vip')" class="bg-purple-700/80 hover:bg-purple-700 px-7 py-3 rounded-full font-bold"><i class="fas fa-crown mr-2"></i> VIP 18+</button>
+                  <button (click)="selectOffer('standard')" class="bg-indigo-700/80 hover:bg-indigo-700 px-7 py-3 rounded-full font-bold"><i class="fas fa-users mr-2"></i> Standard</button>
+                </div>
+              </div>
+              
+              <!-- ÉTAPE 2 : Formulaire de réservation -->
+              <div *ngIf="step === 'form' && selectedType" class="transition-all duration-300">
+                <div class="flex flex-wrap justify-between items-center border-b border-purple-500/40 pb-4 mb-6">
+                  <div>
+                    <h3 class="text-2xl md:text-3xl font-gaming font-bold"><i class="fas fa-{{ getOfferIcon() }} mr-3 text-purple-400"></i> Réserver · {{ getOfferLabel() }}</h3>
+                    <p class="text-sm text-purple-300 mt-1">Remplissez vos coordonnées, nous confirmons sous 30 min</p>
+                  </div>
+                  <button (click)="goBackToOffers()" class="text-sm text-purple-300 hover:text-white transition"><i class="fas fa-arrow-left mr-1"></i> Autre offre</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-user mr-1"></i> Nom complet *</label>
+                    <input [(ngModel)]="booking.fullName" type="text" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3 focus:input-focus-glow transition" placeholder="Jean-Claude M.">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-envelope mr-1"></i> Email *</label>
+                    <input [(ngModel)]="booking.email" type="email" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3 focus:input-focus-glow" placeholder="contact@exemple.com">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold mb-1"><i class="fab fa-whatsapp mr-1"></i> WhatsApp / Téléphone *</label>
+                    <input [(ngModel)]="booking.phone" type="tel" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3" placeholder="+243 8XX XX XX">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-calendar-day mr-1"></i> Date souhaitée *</label>
+                    <input [(ngModel)]="booking.date" type="date" [min]="minDate" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3 text-white">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-clock mr-1"></i> Créneau *</label>
+                    <select [(ngModel)]="booking.timeSlot" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3">
+                      <option value="" disabled>-- Choisissez un horaire --</option>
+                      <option *ngFor="let slot of timeSlots" [value]="slot">{{ slot }}</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-user-friends mr-1"></i> Nombre de personnes</label>
+                    <input [(ngModel)]="booking.guests" type="number" min="1" max="12" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3">
+                  </div>
+                  <div class="md:col-span-2">
+                    <label class="block text-sm font-semibold mb-1"><i class="fas fa-gift mr-1"></i> Occasion spéciale (anniversaire, soirée...)</label>
+                    <input [(ngModel)]="booking.occasion" type="text" class="w-full bg-black/60 border border-purple-500/40 rounded-xl p-3" placeholder="Optionnel, on prépare une surprise !">
+                  </div>
+                </div>
+                
+                <div class="flex flex-wrap justify-between items-center gap-4 mt-8">
+                  <button (click)="whatsappDirect()" class="bg-green-700 hover:bg-green-600 px-6 py-3 rounded-full flex items-center gap-2 font-semibold transition"><i class="fab fa-whatsapp text-xl"></i> Réserver via WhatsApp</button>
+                  <button (click)="submitReservation()" [disabled]="isSubmitting" class="btn-primary-glow px-8 py-3 rounded-full font-bold flex items-center gap-2 disabled:opacity-50">
+                    <i class="fas fa-check-circle"></i> {{ isSubmitting ? 'Envoi...' : 'Confirmer ma réservation' }}
+                  </button>
+                </div>
+                <p class="text-xs text-gray-400 text-center mt-6 flex items-center justify-center gap-2"><i class="fas fa-shield-alt text-purple-400"></i> Réservation sans avance. Paiement 100% sur place. Consommation disponible.</p>
+              </div>
+              
+              <!-- ÉTAPE 3 : Confirmation -->
+              <div *ngIf="step === 'confirmation' && confirmedBooking" class="text-center py-4 animate__animated">
+                <div class="bg-green-800/30 rounded-full w-28 h-28 flex items-center justify-center mx-auto border-2 border-green-400 shadow-xl">
+                  <i class="fas fa-party-horn text-5xl text-green-400"></i>
+                </div>
+                <h3 class="text-3xl font-gaming font-bold mt-5">Réservation confirmée !</h3>
+                <p class="text-gray-300 mt-2 max-w-md mx-auto">Votre salon {{ confirmedBooking.offer === 'vip' ? 'VIP' : 'Standard' }} est réservé.</p>
+                <div class="glass-deep inline-block p-5 mt-6 text-left rounded-2xl border border-purple-500/30">
+                  <p class="flex gap-2"><i class="fas fa-id-card text-purple-400 w-6"></i> <strong>{{ confirmedBooking.fullName }}</strong></p>
+                  <p class="flex gap-2 mt-2"><i class="fas fa-calendar-alt text-purple-400 w-6"></i> {{ confirmedBooking.date }} | {{ confirmedBooking.timeSlot }}</p>
+                  <p class="flex gap-2 mt-2"><i class="fas fa-tag text-purple-400 w-6"></i> Code : <span class="font-mono font-bold">{{ confirmedBooking.reservationId }}</span></p>
+                  <p class="flex gap-2 mt-2"><i class="fas fa-phone-alt text-purple-400 w-6"></i> {{ confirmedBooking.phone }}</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-5 mt-8">
+                  <button (click)="resetBooking()" class="bg-gray-800 hover:bg-gray-700 px-6 py-2 rounded-full transition"><i class="fas fa-plus-circle"></i> Nouvelle réservation</button>
+                  <a href="https://wa.me/243826123456?text=Bonjour%2C%20j%27ai%20reçu%20ma%20réservation%20NLC" target="_blank" class="bg-green-600 hover:bg-green-500 px-6 py-2 rounded-full flex items-center gap-2"><i class="fab fa-whatsapp"></i> Contacter le support</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- RÈGLEMENT & HORAIRES + TESTIMONIAUX -->
+          <section class="py-16 px-6 bg-black/40 border-t border-purple-900/40">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+              <div class="space-y-5">
+                <div class="flex items-center gap-3"><i class="fas fa-gavel text-purple-400 text-2xl"></i><h3 class="text-2xl font-gaming font-bold">Bon à savoir</h3></div>
+                <ul class="space-y-3 text-gray-300">
+                  <li><i class="fas fa-id-card text-purple-400 w-6"></i> <strong>VIP 18+</strong> : présentation d'une pièce d'identité obligatoire</li>
+                  <li><i class="fas fa-ban text-red-400 w-6"></i> Interdiction d'apporter nourriture/boissons extérieures</li>
+                  <li><i class="fas fa-cocktail text-green-400 w-6"></i> Snacking & boissons premium disponibles sur place</li>
+                  <li><i class="fas fa-hourglass-half w-6"></i> Arriver 10 min avant pour profiter pleinement</li>
+                </ul>
+              </div>
+              <div class="space-y-5">
+                <div class="flex items-center gap-3"><i class="fas fa-clock text-purple-400 text-2xl"></i><h3 class="text-2xl font-gaming font-bold">Horaires d'ouverture</h3></div>
+                <div class="bg-black/50 p-5 rounded-2xl border border-purple-500/20">
+                  <div class="flex justify-between py-2"><span>Lundi → Samedi :</span><span class="font-mono font-bold">10h00 - 21h00</span></div>
+                  <div class="flex justify-between py-2 border-t border-purple-500/20"><span>Dimanche :</span><span class="font-mono font-bold">12h00 - 21h00</span></div>
+                  <p class="text-xs text-purple-300 mt-4"><i class="fas fa-headset"></i> Dernier accueil 45 min avant fermeture</p>
+                </div>
+              </div>
+            </div>
             
-            <div class="flex flex-col md:flex-row gap-4 md:gap-6">
-                <a href="#publications" class="bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300 text-center">
-                    Découvrir les e-books
-                </a>
-                <a href="#communaute" class="bg-transparent hover:bg-bosembo-blue border-2 border-bosembo-gold text-bosembo-gold font-bold py-3 px-8 rounded-full transition duration-300 text-center">
-                    Rejoindre la communauté
-                </a>
+            <!-- Témoignages  -->
+            <div class="max-w-7xl mx-auto mt-20">
+              <h3 class="text-center text-3xl font-gaming font-bold mb-10">Ils nous font confiance <i class="fas fa-heart text-pink-500"></i></h3>
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-black/40 p-5 rounded-2xl border-l-4 border-purple-500">
+                  <i class="fas fa-star text-yellow-400 mb-2"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
+                  <p class="italic mt-2">"Ambiance cinéma incroyable, son immersif et salle hyper propre. Le meilleur spot à Kinshasa !"</p>
+                  <p class="font-bold mt-3">— Grace T.</p>
+                </div>
+                <div class="bg-black/40 p-5 rounded-2xl border-l-4 border-fuchsia-500">
+                  <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
+                  <p class="italic mt-2">"VIP gaming de folie, PS5 et bibliothèque de jeux énorme. Expérience premium, je reviens."</p>
+                  <p class="font-bold mt-3">— Arnold K.</p>
+                </div>
+                <div class="bg-black/40 p-5 rounded-2xl border-l-4 border-indigo-500">
+                  <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star-half-alt text-yellow-400"></i>
+                  <p class="italic mt-2">"Super moment en famille, les enfants ont adoré le pop-corn et le film. Je recommande standard."</p>
+                  <p class="font-bold mt-3">— Nathalie M.</p>
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
+          </section>
+          
+          <!-- FOOTER RÉSEAUX -->
+          <footer class="bg-black/80 backdrop-blur-md py-8 border-t border-purple-800/30">
+            <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between items-center gap-5">
+              <div class="text-center md:text-left">
+                <div class="text-2xl font-gaming font-black bg-gradient-to-r from-purple-400 to-fuchsia-500 bg-clip-text text-transparent">NEXT LEVEL CONGO</div>
+                <p class="text-xs text-gray-400 mt-1">Salons privés · Cinéma & Gaming · Kinshasa</p>
+              </div>
+              <div class="flex gap-6 text-2xl">
+                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/243826123456" class="hover:text-green-400 transition"><i class="fab fa-whatsapp"></i></a>
+              </div>
+              <div class="text-xs text-gray-500">© 2025 — Réservez l'expérience ultime. Paiement sécurisé sur place.</div>
+            </div>
+          </footer>
+        `,
+        styles: [`
+          :host { display: block; }
+          .transition-all { transition: all 0.2s ease; }
+        `]
+      })
+    ];
     
-    <!-- About Section -->
-    <section id="about" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-bosembo-blue mb-12">À propos</h2>
-            
-            <div class="max-w-3xl mx-auto">
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center">
-                    Éditions Bosembo, initiées en 2025 par Jack Kutiwu, publient des livres sur le leadership, le développement personnel et collectif, les relations humaines, l'entrepreneuriat et l'éveil. Les e-books sont gratuits en ligne et bientôt disponibles en version physique à titre onéreux.
-                </p>
-                
-                <div class="mt-12 flex justify-center">
-                    <div class="w-32 h-1 bg-bosembo-terracotta"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    // Module Angular
+    class AppModule {}
+    AppModule.annotations = [
+      new NgModule({
+        imports: [BrowserModule, FormsModule],
+        declarations: [NextLevelApp],
+        bootstrap: [NextLevelApp]
+      })
+    ];
     
-
-    <!-- Publications Section -->
-    <section id="publications" class="py-16 md:py-24 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-bosembo-blue mb-12">Nos Publications</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Book 1 -->
-                <div class="book-card bg-white rounded-lg overflow-hidden shadow-md">
-                    <div class="h-100 bg-bosembo-blue flex items-center justify-center">
-                        <img src="vaf1.jpg" alt="Couverture du livre" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">LA VIE APRES LA FAC</h3>
-                        <p class="text-gray-600 mb-4">Maître Nathan Banze Mukuta est avocat au barreau près la Cour d’appel de Kinshasa/Matete, avocat de la République, arbitre, jeune écrivain, analyste politique et activiste congolais, né à Lubumbashi, dans le Grand Katanga. Il a effectué ses études supérieures en droit à l’Université Protestante au Congo, qui lui ont permis d’obtenir les différents titres précités.
-
-Dans La vie après la fac, il expose les réalités auxquelles il est confronté, tant dans sa propre vie que dans celle des autres, après leur parcours universitaire. Au-delà des rêves et des espoirs souvent promis aux jeunes générations, la réalité s’avère bien différente. Avec un esprit révolté et une rage constructive, l’auteur contribue, à travers cet ouvrage, à l’édifice du changement.</p>
-                        <button class="w-full bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded transition duration-300">
-                            Télécharger
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Book 2 -->
-                <div class="book-card bg-white rounded-lg overflow-hidden shadow-md">
-                    <div class="h-100 bg-bosembo-terracotta flex items-center justify-center">
-                        <img src="sol1.jpg" alt="Couverture du livre" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">J'AI TROUVÉ LA SOLUTION</h3>
-                        <p class="text-gray-600 mb-4">Jack Kutiwu Nzukukina, alias « Jack le Merveilleux », est un jeune auteur passionné par le leadership, les affaires et le Christ. Cofondateur de plusieurs structures autour de ces thématiques, il cultive également d’autres passions que le lecteur découvrira au fil du temps.
-
-Dans J’ai trouvé la solution, il raconte comment il a longtemps cherché une approche capable de résoudre la majorité de ses problèmes et de faire prospérer ses entreprises. Il y dévoile finalement un principe universel, déjà mis en pratique par les plus grands. Découvrez cette solution qui éclaire et libère !</p>
-                        <button class="w-full bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded transition duration-300">
-                            Télécharger
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Book 3 -->
-                <div class="book-card bg-white rounded-lg overflow-hidden shadow-md">
-                    <div class="h-100 bg-bosembo-gold flex items-center justify-center">
-                        <img src="passee1.jpg" alt="Couverture du livre" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-bosembo-blue mb-3">PIEGEE PAR LE PASSE</h3>
-                        <p class="text-gray-600 mb-4">Jason Ntumba Katambwa est un auteur fasciné par les émotions humaines et les dilemmes du cœur. Son écriture se distingue par une sensibilité rare et une capacité à capturer l’intensité des sentiments.
-
-Dans Piégée par le passé, il nous entraîne dans un univers de choix difficiles et de regrets. Son engagement à inspirer son entourage se manifeste dans chacune de ses œuvres, toujours porteuses d’un message d’espoir et de résilience.</p>
-                        <button class="w-full bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-2 px-4 rounded transition duration-300">
-                            Télécharger
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Section -->
-    <section id="communaute" class="py-16 md:py-24 bg-bosembo-blue text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8">Bosembo Leadership Community</h2>
-                <p class="text-xl mb-10">
-                    Rejoignez une communauté dynamique de leaders passionnés par le développement de l'Afrique et de sa diaspora. Échangez, collaborez et grandissez ensemble.
-                </p>
-                <a href="#contact" class="inline-block bg-bosembo-gold hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-full transition duration-300">
-                    En savoir plus
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-bosembo-blue mb-12">Contactez-nous</h2>
-            
-            <div class="max-w-2xl mx-auto">
-                <form class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
-                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold">
-                    </div>
-                    
-                    <div>
-                        <label for="email" class="block text-gray-700 mb-2">Adresse email</label>
-                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold">
-                    </div>
-                    
-                    <div>
-                        <label for="message" class="block text-gray-700 mb-2">Message</label>
-                        <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bosembo-gold"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-bosembo-blue hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-                        Envoyer le message
-                    </button>
-                </form>
-                
-                <div class="mt-12 flex justify-center space-x-6">
-                    <a href="#" class="text-bosembo-blue hover:text-blue-800 text-2xl">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/editionsbosembo?igsh=c3c5aTZjNXl0NWF1" class="text-bosembo-blue hover:text-blue-800 text-2xl">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="text-bosembo-blue hover:text-blue-800 text-2xl">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center justify-center md:justify-start">
-                        <img src="favicon.jpg" alt="Logo Torche" class="logo-torche mr-2 h-10 w-auto">
-                        <span class="text-xl font-bold text-bosembo-gold">Éditions Bosembo</span>
-                    </div>
-                </div>
-                
-                <div class="text-center md:text-right">
-                    <p class="text-bosembo-gold">© 2025 Éditions Bosembo. Tous droits réservés.</p>
-                    <p class="text-gray-400 mt-2">
-                        <a href="#" class="hover:text-bosembo-gold transition duration-300">Mentions légales</a> | 
-                        <a href="#" class="hover:text-bosembo-gold transition duration-300">Politique de confidentialité</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Menu mobile toggle
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    // Bootstrap
+    const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+    platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));
+  </script>
 </body>
 </html>
