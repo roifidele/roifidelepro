@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grace Info — Sport en RDC</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Vue.js CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- Font Awesome pour icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* transition personnalisée pour le menu mobile */
+    .fade-enter-active, .fade-leave-active { transition: opacity 0.2s ease; }
+    .fade-enter-from, .fade-leave-to { opacity: 0; }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+<div id="app" class="min-h-screen flex flex-col">
+  
+  <!-- ========== HEADER / NAVIGATION ========== -->
+  <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white shadow-lg sticky top-0 z-30">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Logo + Nom du site -->
+      <div class="flex items-center space-x-3">
+        <div class="bg-yellow-400 text-blue-900 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold shadow">G</div>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">GRACE <span class="text-yellow-300">INFO</span></h1>
+          <p class="text-xs text-blue-200 -mt-1 hidden sm:block">Le souffle du sport congolais</p>
+        </div>
+      </div>
+
+      <!-- Navigation desktop -->
+      <nav class="hidden md:flex space-x-8 font-medium">
+        <a href="#" class="hover:text-yellow-300 transition border-b-2 border-yellow-300 pb-1">Accueil</a>
+        <a href="#" class="hover:text-yellow-300 transition">Football</a>
+        <a href="#" class="hover:text-yellow-300 transition">Basket</a>
+        <a href="#" class="hover:text-yellow-300 transition">Athlétisme</a>
+        <a href="#" class="hover:text-yellow-300 transition">Autres</a>
+      </nav>
+
+      <!-- Bouton menu mobile + icône -->
+      <div class="flex items-center gap-4">
+        <button @click="showSearch = !showSearch" class="hover:text-yellow-300">
+          <i class="fas fa-search"></i>
+        </button>
+        <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-2xl focus:outline-none">
+          <i class="fas" :class="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Barre de recherche (cachée par défaut) -->
+    <transition name="fade">
+      <div v-if="showSearch" class="bg-blue-800 py-3 px-4 border-t border-blue-600">
+        <div class="container mx-auto flex items-center">
+          <i class="fas fa-search text-blue-300 mr-3"></i>
+          <input type="text" placeholder="Rechercher un article, une équipe..." 
+                 class="w-full bg-blue-900/50 text-white placeholder-blue-300 border border-blue-500 rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                 v-model="searchQuery">
+          <button @click="showSearch = false" class="ml-3 text-blue-300 hover:text-white">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </transition>
+
+    <!-- Menu mobile déroulant -->
+    <transition name="fade">
+      <nav v-if="mobileMenuOpen" class="md:hidden bg-blue-800 border-t border-blue-700 px-4 py-5 space-y-3">
+        <a href="#" class="block py-2 px-3 rounded hover:bg-blue-700 transition font-medium">Accueil</a>
+        <a href="#" class="block py-2 px-3 rounded hover:bg-blue-700 transition">Football</a>
+        <a href="#" class="block py-2 px-3 rounded hover:bg-blue-700 transition">Basket</a>
+        <a href="#" class="block py-2 px-3 rounded hover:bg-blue-700 transition">Athlétisme</a>
+        <a href="#" class="block py-2 px-3 rounded hover:bg-blue-700 transition">Autres</a>
+      </nav>
+    </transition>
+  </header>
+
+  <!-- ========== CONTENU PRINCIPAL ========== -->
+  <main class="flex-grow container mx-auto px-4 py-8">
+    
+    <!-- Section Héro / À la une -->
+    <section class="mb-12">
+      <div class="flex items-center border-l-8 border-yellow-400 pl-4 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800">À LA UNE</h2>
+        <span class="ml-3 text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">RD Congo</span>
+      </div>
+      
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- Article vedette (le premier du tableau) -->
+        <div class="lg:col-span-2 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
+          <img src="https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+               alt="Stade des Martyrs" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold mr-3">FOOTBALL</span>
+              <span><i class="far fa-calendar-alt mr-1"></i> 21 avril 2026</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3 hover:text-blue-700 transition">
+              {{ articles[0].titre }}
+            </h3>
+            <p class="text-gray-600 mb-4">{{ articles[0].resume }}</p>
+            <a href="#" class="inline-flex items-center text-blue-700 font-semibold hover:text-blue-900">
+              Lire la suite <i class="fas fa-arrow-right ml-2 text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Deux articles secondaires (côte à côte) -->
+        <div class="space-y-6">
+          <div v-for="n in [1, 2]" :key="n" class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col sm:flex-row hover:shadow-lg transition">
+            <img :src="articles[n].image" :alt="articles[n].titre" class="w-full sm:w-28 h-24 object-cover">
+            <div class="p-4 flex-1">
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">{{ articles[n].categorie }}</span>
+              <h4 class="font-bold text-gray-800 mt-2 text-base leading-tight">{{ articles[n].titre }}</h4>
+              <p class="text-xs text-gray-500 mt-1"><i class="far fa-clock mr-1"></i>{{ articles[n].date }}</p>
+            </div>
+          </div>
+          <!-- Bannière "Abonnez-vous" -->
+          <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 p-5 rounded-xl text-gray-900 shadow">
+            <i class="fas fa-envelope-open-text text-3xl mb-2"></i>
+            <h4 class="font-bold text-lg">Newsletter GRACE</h4>
+            <p class="text-sm">Toute l'actu sportive RDC dans votre boîte.</p>
+            <input type="email" placeholder="Votre email" class="w-full mt-3 px-4 py-2 rounded-full text-sm border-0 focus:ring-2 focus:ring-blue-700">
+            <button class="mt-2 bg-gray-900 text-white w-full py-2 rounded-full text-sm font-medium hover:bg-gray-800">S'abonner</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== LES 5 ARTICLES (grille complète) ========== -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-800 border-l-8 border-yellow-400 pl-4">📰 DERNIERS ARTICLES</h2>
+        <a href="#" class="text-blue-700 hover:underline text-sm font-medium">Voir tout <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+      </div>
+
+      <!-- Grille d'articles dynamique depuis Vue -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article v-for="article in filteredArticles" :key="article.id" 
+                 class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col hover:-translate-y-1 transition-transform duration-300">
+          <div class="relative h-48 overflow-hidden">
+            <img :src="article.image" :alt="article.titre" class="w-full h-full object-cover transition hover:scale-105 duration-500">
+            <span class="absolute top-3 left-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full">{{ article.categorie }}</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <div class="flex items-center text-gray-500 text-xs mb-2">
+              <i class="far fa-calendar-alt mr-1"></i> {{ article.date }}
+              <span class="mx-2">•</span>
+              <i class="far fa-user mr-1"></i> {{ article.auteur }}
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 leading-snug">{{ article.titre }}</h3>
+            <p class="text-gray-600 text-sm flex-1">{{ article.resume }}</p>
+            <div class="mt-4 flex items-center justify-between">
+              <a href="#" class="text-blue-700 font-medium hover:text-blue-900 text-sm inline-flex items-center">
+                Lire l'article <i class="fas fa-arrow-right ml-1 text-xs"></i>
+              </a>
+              <button class="text-gray-400 hover:text-red-500" @click="toggleLike(article.id)">
+                <i class="far fa-heart" :class="{'fas text-red-500': article.liked}"></i>
+                <span class="ml-1 text-xs">{{ article.likes }}</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Message si aucun article (après recherche) -->
+      <div v-if="filteredArticles.length === 0" class="text-center py-12 text-gray-500">
+        <i class="fas fa-newspaper text-4xl mb-3 opacity-50"></i>
+        <p>Aucun article ne correspond à "{{ searchQuery }}"</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-gray-900 text-gray-300 mt-12">
+    <div class="container mx-auto px-4 py-10">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="bg-yellow-400 text-gray-900 w-8 h-8 rounded-full flex items-center justify-center font-bold">G</div>
+            <span class="text-xl font-bold text-white">GRACE INFO</span>
+          </div>
+          <p class="text-sm text-gray-400">L'actualité sportive de la République Démocratique du Congo, avec passion et professionnalisme.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="#" class="hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">Catégories</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-yellow-400">Football</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Basketball</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Athlétisme</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Boxe</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">Liens utiles</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-yellow-400">À propos</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Contact</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Publicité</a></li>
+            <li><a href="#" class="hover:text-yellow-400">Mentions légales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3">Contact</h4>
+          <p class="text-sm"><i class="fas fa-map-marker-alt mr-2"></i> Kinshasa, RDC</p>
+          <p class="text-sm mt-2"><i class="fas fa-envelope mr-2"></i> redaction@graceinfo.cd</p>
+          <p class="text-sm mt-2"><i class="fas fa-phone-alt mr-2"></i> +243 123 456 789</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-6 text-sm text-center text-gray-500">
+        © 2026 Grace Info — Tous droits réservés. Fièrement dédié au sport congolais.
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const { createApp, ref, computed } = Vue;
+
+  createApp({
+    setup() {
+      // État de l'application
+      const mobileMenuOpen = ref(false);
+      const showSearch = ref(false);
+      const searchQuery = ref('');
+
+      // Données : 5 articles sportifs sur la RDC
+      const articles = ref([
+        {
+          id: 1,
+          titre: 'Ligue 1 RDC : V.Club s\'impose face au DCMP dans le derby de Kinshasa',
+          resume: 'Dans un stade des Martyrs électrique, l\'AS Vita Club a dominé le Daring Club Motema Pembe (2-1) grâce à un doublé de Makusu. Une victoire qui relance les Dauphins Noirs dans la course au titre.',
+          categorie: 'Football',
+          date: '21 avril 2026',
+          auteur: 'G. Kabongo',
+          image: 'https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          likes: 34,
+          liked: false
+        },
+        {
+          id: 2,
+          titre: 'Basket : La sélection U18 féminine qualifiée pour l\'Afrobasket après son sacre régional',
+          resume: 'Les Léopards U18 dames ont survolé le tournoi qualificatif de la zone Afrique centrale. Elles représenteront la RDC au championnat d\'Afrique prévu en août à Maputo.',
+          categorie: 'Basketball',
+          date: '19 avril 2026',
+          auteur: 'S. Mbuyi',
+          image: 'https://images.pexels.com/photos/5756295/pexels-photo-5756295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          likes: 21,
+          liked: false
+        },
+        {
+          id: 3,
+          titre: 'Athlétisme : Le Kinois Arnold Kisoka pulvérise le record national du 100m en 10.08s',
+          resume: 'À l’occasion du meeting international de Nairobi, le sprinteur congolais Arnold Kisoka a signé un chrono exceptionnel, nouveau record de RDC. Il se rapproche des minima olympiques.',
+          categorie: 'Athlétisme',
+          date: '17 avril 2026',
+          auteur: 'J. Lumbala',
+          image: 'https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          likes: 47,
+          liked: false
+        },
+        {
+          id: 4,
+          titre: 'TP Mazembe : Départ imminent de l\'entraîneur Franck Dumas ? Le club dément',
+          resume: 'Des rumeurs insistantes annoncent un départ du technicien français vers un club du Golfe. La direction des Corbeaux parle de "spéculations sans fondement" et assure que Dumas reste.',
+          categorie: 'Football',
+          date: '15 avril 2026',
+          auteur: 'P. Tshibangu',
+          image: 'https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          likes: 12,
+          liked: false
+        },
+        {
+          id: 5,
+          titre: 'Boxe : Junior Ilunga Makabu défendra son titre WBC le 5 juin à Lubumbashi',
+          resume: 'Le champion congolais des lourds-légers remettra sa ceinture en jeu devant son public face au challenger mexicain. La ville de Lubumbashi se prépare à un évènement historique.',
+          categorie: 'Boxe',
+          date: '13 avril 2026',
+          auteur: 'D. Kalonji',
+          image: 'https://images.pexels.com/photos/4761676/pexels-photo-4761676.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          likes: 63,
+          liked: false
+        }
+      ]);
+
+      // Filtrage des articles selon la recherche (titre, résumé, catégorie)
+      const filteredArticles = computed(() => {
+        if (!searchQuery.value.trim()) return articles.value;
+        const query = searchQuery.value.toLowerCase();
+        return articles.value.filter(art => 
+          art.titre.toLowerCase().includes(query) || 
+          art.resume.toLowerCase().includes(query) || 
+          art.categorie.toLowerCase().includes(query)
+        );
+      });
+
+      // Méthode pour liker/déliker
+      const toggleLike = (id) => {
+        const article = articles.value.find(a => a.id === id);
+        if (article) {
+          article.liked = !article.liked;
+          article.likes += article.liked ? 1 : -1;
+        }
+      };
+
+      return {
+        mobileMenuOpen,
+        showSearch,
+        searchQuery,
+        articles,
+        filteredArticles,
+        toggleLike
+      };
+    }
+  }).mount('#app');
+</script>
+
+<!-- Note: Les images sont des placeholders depuis Pexels (libres de droits). 
+     Pour un usage réel, remplacez par vos propres images -->
+</body>
+</html>
