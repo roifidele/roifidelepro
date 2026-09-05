@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="spaApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maquette Spa - Réservation</title>
+    <!-- AngularJS via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f1ea;
+            color: #3e3a39;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #5a4e4b;
+            border-bottom: 2px solid #e8e0d8;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .col-services {
+            flex: 2;
+            min-width: 280px;
+        }
+        .col-cart {
+            flex: 1;
+            min-width: 240px;
+            background: #faf8f5;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e8e0d8;
+            align-self: flex-start;
+        }
+        .service-item {
+            background: #fcfaf7;
+            border: 1px solid #e8e0d8;
+            border-radius: 10px;
+            padding: 15px 18px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+        .service-item:hover {
+            border-color: #b8a69c;
+            background: #f8f4ef;
+        }
+        .service-info h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .service-info p {
+            font-size: 0.9rem;
+            color: #7a6e6a;
+            margin-top: 4px;
+        }
+        .service-price {
+            font-weight: 600;
+            color: #2d5a4b;
+            font-size: 1.1rem;
+        }
+        .btn {
+            background: #2d5a4b;
+            color: #fff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .btn:hover {
+            background: #1f4237;
+        }
+        .btn-danger {
+            background: #b35e5e;
+        }
+        .btn-danger:hover {
+            background: #8f4747;
+        }
+        .btn-pay {
+            background: #b38b6b;
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+        .btn-pay:hover {
+            background: #9a765a;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd6ce;
+        }
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 15px;
+            text-align: right;
+            color: #2d5a4b;
+        }
+        .empty-cart {
+            color: #9a8e89;
+            font-style: italic;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #b0a59e;
+            text-align: center;
+        }
+        .alert {
+            background: #e2dcd5;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            color: #3e3a39;
+        }
+        @media (max-width: 700px) {
+            .row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" ng-controller="SpaCtrl">
+    <h1>🪷 Réserver un soin</h1>
+
+    <div class="row">
+        <!-- Liste des services -->
+        <div class="col-services">
+            <div class="service-item" ng-repeat="service in services">
+                <div class="service-info">
+                    <h3>{{ service.nom }}</h3>
+                    <p>{{ service.duree }} min · {{ service.description }}</p>
+                </div>
+                <div>
+                    <span class="service-price">{{ service.prix | currency:'€' }}</span>
+                    <button class="btn" ng-click="ajouter(service)">Ajouter</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panier -->
+        <div class="col-cart">
+            <h3 style="font-weight:400; border-bottom:1px solid #ddd6ce; padding-bottom:10px;">🧺 Panier</h3>
+            <div ng-if="panier.length === 0" class="empty-cart">Aucun service sélectionné</div>
+            <div ng-repeat="item in panier" class="cart-item">
+                <span>{{ item.nom }}</span>
+                <span>
+                    {{ item.prix | currency:'€' }}
+                    <button class="btn btn-danger" ng-click="retirer(item)" style="padding:2px 10px; font-size:0.7rem; margin-left:8px;">✕</button>
+                </span>
+            </div>
+            <div class="cart-total">
+                Total : {{ totalPanier() | currency:'€' }}
+            </div>
+            <button class="btn btn-pay" ng-click="payer()" ng-disabled="panier.length === 0">
+                💳 Payer maintenant
+            </button>
+            <div class="alert" ng-if="messagePaiement">
+                {{ messagePaiement }}
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Maquette de réservation – Chaîne de Spa (démonstration)
+    </div>
+</div>
+
+<script>
+    angular.module('spaApp', [])
+        .controller('SpaCtrl', function($scope) {
+            // Données des services
+            $scope.services = [
+                { id: 1, nom: 'Massage Suédois', duree: 60, description: 'Détente profonde', prix: 80 },
+                { id: 2, nom: 'Soin du Visage', duree: 45, description: 'Hydratation et éclat', prix: 65 },
+                { id: 3, nom: 'Gommage Corps', duree: 30, description: 'Exfoliation douce', prix: 50 },
+                { id: 4, nom: 'Forfait Détente', duree: 120, description: 'Massage + soin visage', prix: 130 }
+            ];
+
+            $scope.panier = [];
+            $scope.messagePaiement = '';
+
+            // Ajouter un service au panier
+            $scope.ajouter = function(service) {
+                // On clone l'objet pour éviter les références
+                $scope.panier.push({ 
+                    id: service.id, 
+                    nom: service.nom, 
+                    prix: service.prix 
+                });
+                $scope.messagePaiement = '';
+            };
+
+            // Retirer un service du panier (supprime la première occurrence)
+            $scope.retirer = function(item) {
+                var index = $scope.panier.indexOf(item);
+                if (index !== -1) {
+                    $scope.panier.splice(index, 1);
+                }
+                $scope.messagePaiement = '';
+            };
+
+            // Calculer le total
+            $scope.totalPanier = function() {
+                var total = 0;
+                angular.forEach($scope.panier, function(item) {
+                    total += item.prix;
+                });
+                return total;
+            };
+
+            // Simuler un paiement
+            $scope.payer = function() {
+                if ($scope.panier.length === 0) return;
+                $scope.messagePaiement = '✅ Paiement simulé accepté ! Merci pour votre réservation.';
+                // On pourrait vider le panier, mais on laisse pour l'exemple
+                // $scope.panier = [];
+            };
+        });
+</script>
+
+</body>
+</html>
