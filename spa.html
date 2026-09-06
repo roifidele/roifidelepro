@@ -1481,6 +1481,9 @@
                     '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00'
                 ];
 
+$scope.bookingDate = new Date().toISOString().split('T')[0];
+$scope.selectedTime = $scope.timeSlots[0];   // facultatif, pré-sélectionne le premier créneau
+
                 // Date du jour
                 $scope.today = new Date();
 
