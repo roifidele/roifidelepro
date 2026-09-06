@@ -1103,4 +1103,481 @@
         </div>
 
         <!-- ==========================================================
-        PAGE : SERVIC
+        PAGE : SERVICSERVICES
+        ========================================================== -->
+        <div class="page" id="page-services" ng-class="{ active: currentPage === 'services' }">
+            <div class="container">
+                <div class="section-header">
+                    <span class="subtitle">Notre offre</span>
+                    <h2>Soins &amp; <span class="text-gold">rituels</span></h2>
+                    <p>Des prestations conçues pour réveiller vos sens et restaurer votre équilibre.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" ng-repeat="s in allServices" ng-click="selectService(s); goTo('booking')">
+                        <div class="service-img" style="background-image: url('{{ s.image }}');">
+                            <span class="service-price-badge">{{ s.prix | currency:'€' }}</span>
+                        </div>
+                        <div class="service-body">
+                            <h3>{{ s.nom }}</h3>
+                            <div class="service-meta">
+                                <span><i class="far fa-clock"></i> {{ s.duree }} min</span>
+                                <span><i class="fas fa-tag"></i> {{ s.categorie || 'Soin' }}</span>
+                            </div>
+                            <p style="font-size:0.9rem; color:var(--text-light); margin-bottom:14px;">{{ s.desc || 'Un moment de pure détente.' }}</p>
+                            <button class="btn btn-primary btn-sm" ng-click="selectService(s); goTo('booking')">
+                                Réserver
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================
+        PAGE : BOOKING (multi-step)
+        ========================================================== -->
+        <div class="page" id="page-booking" ng-class="{ active: currentPage === 'booking' }">
+            <div class="container booking-container">
+
+                <!-- Stepper -->
+                <div class="stepper">
+                    <div class="step" ng-repeat="step in steps" ng-class="{ active: bookingStep === $index, done: bookingStep > $index }" ng-click="goToStep($index)">
+                        <div class="step-circle">{{ $index + 1 }}</div>
+                        <span class="step-label">{{ step.label }}</span>
+                    </div>
+                </div>
+
+                <!-- Step content -->
+                <div class="booking-step">
+                    <!-- ÉTAPE 1 : Choisir le spa -->
+                    <div ng-if="bookingStep === 0">
+                        <h3 class="step-title">Choisissez votre spa</h3>
+                        <p class="step-desc">Sélectionnez l'un de nos établissements d'exception.</p>
+                        <div class="spas-grid">
+                            <div class="spa-card" ng-repeat="spa in spas" ng-click="selectSpa(spa)" ng-class="{ selected: selectedSpa.id === spa.id }">
+                                <div class="spa-icon"><i class="fas fa-spa"></i></div>
+                                <h4>{{ spa.nom }}</h4>
+                                <div class="spa-location"><i class="fas fa-map-pin"></i> {{ spa.ville }}</div>
+                                <div style="font-size:0.8rem; color:var(--gold); margin-top:6px;">{{ spa.notes || '★ 4.9' }}</div>
+                            </div>
+                        </div>
+                        <div style="margin-top:30px; display:flex; justify-content:flex-end;">
+                            <button class="btn btn-primary" ng-disabled="!selectedSpa" ng-click="nextStep()">
+                                Suivant <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ÉTAPE 2 : Choisir le service -->
+                    <div ng-if="bookingStep === 1">
+                        <h3 class="step-title">Choisissez votre soin</h3>
+                        <p class="step-desc">Sélectionnez la prestation qui vous correspond.</p>
+                        <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px,1fr));">
+                            <div class="service-card" ng-repeat="s in allServices" ng-click="selectService(s)" ng-class="{ selected: selectedService.id === s.id }" style="border-color: {{ selectedService.id === s.id ? 'var(--gold)' : 'transparent' }};">
+                                <div class="service-img" style="background-image: url('{{ s.image }}'); height:150px;">
+                                    <span class="service-price-badge">{{ s.prix | currency:'€' }}</span>
+                                </div>
+                                <div class="service-body">
+                                    <h3 style="font-size:1rem;">{{ s.nom }}</h3>
+                                    <div class="service-meta" style="font-size:0.75rem;">
+                                        <span><i class="far fa-clock"></i> {{ s.duree }} min</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:30px; display:flex; justify-content:space-between;">
+                            <button class="btn btn-outline btn-sm" ng-click="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                            <button class="btn btn-primary" ng-disabled="!selectedService" ng-click="nextStep()">
+                                Suivant <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ÉTAPE 3 : Date & Heure -->
+                    <div ng-if="bookingStep === 2">
+                        <h3 class="step-title">Date &amp; heure</h3>
+                        <p class="step-desc">Choisissez le moment de votre escapade.</p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-calendar-day"></i> Date</label>
+                                <input type="date" ng-model="bookingDate" min="{{ today | date:'yyyy-MM-dd' }}" />
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-clock"></i> Horaire</label>
+                                <div class="time-slots">
+                                    <div class="time-slot" ng-repeat="t in timeSlots" ng-click="selectedTime = t" ng-class="{ selected: selectedTime === t }">
+                                        {{ t }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:30px; display:flex; justify-content:space-between;">
+                            <button class="btn btn-outline btn-sm" ng-click="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                            <button class="btn btn-primary" ng-disabled="!bookingDate || !selectedTime" ng-click="nextStep()">
+                                Suivant <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ÉTAPE 4 : Coordonnées -->
+                    <div ng-if="bookingStep === 3">
+                        <h3 class="step-title">Vos coordonnées</h3>
+                        <p class="step-desc">Merci de nous renseigner vos informations.</p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Prénom &amp; Nom</label>
+                                <input type="text" ng-model="customer.name" placeholder="Jean Dupont" />
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" ng-model="customer.email" placeholder="jean@email.com" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input type="tel" ng-model="customer.phone" placeholder="+33 6 12 34 56 78" />
+                        </div>
+                        <div style="margin-top:30px; display:flex; justify-content:space-between;">
+                            <button class="btn btn-outline btn-sm" ng-click="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                            <button class="btn btn-primary" ng-disabled="!customer.name || !customer.email || !customer.phone" ng-click="nextStep()">
+                                Suivant <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ÉTAPE 5 : Paiement -->
+                    <div ng-if="bookingStep === 4">
+                        <h3 class="step-title">Paiement</h3>
+                        <p class="step-desc">Sécurisez votre réservation en quelques secondes.</p>
+
+                        <div class="payment-methods">
+                            <div class="pmethod" ng-class="{ active: paymentMethod === 'card' }" ng-click="paymentMethod = 'card'">
+                                <i class="fas fa-credit-card"></i> Carte bancaire
+                            </div>
+                            <div class="pmethod" ng-class="{ active: paymentMethod === 'mobile' }" ng-click="paymentMethod = 'mobile'">
+                                <i class="fas fa-mobile-alt"></i> Mobile Money
+                            </div>
+                        </div>
+
+                        <div ng-if="paymentMethod === 'card'">
+                            <div class="form-group">
+                                <label>Numéro de carte</label>
+                                <div class="card-input-group">
+                                    <input type="text" ng-model="payment.cardNumber" placeholder="1234 5678 9012 3456" />
+                                    <span class="card-icon"><i class="fas fa-credit-card"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Date d'expiration</label>
+                                    <input type="text" ng-model="payment.expiry" placeholder="MM/AA" />
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV</label>
+                                    <input type="text" ng-model="payment.cvv" placeholder="***" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Titulaire</label>
+                                <input type="text" ng-model="payment.cardName" placeholder="Jean Dupont" />
+                            </div>
+                        </div>
+
+                        <div ng-if="paymentMethod === 'mobile'">
+                            <div class="form-group">
+                                <label>Numéro de Mobile Money</label>
+                                <input type="text" ng-model="payment.mobileNumber" placeholder="+33 6 12 34 56 78" />
+                            </div>
+                            <div class="form-group">
+                                <label>Opérateur</label>
+                                <select ng-model="payment.operator">
+                                    <option value="">Sélectionnez</option>
+                                    <option value="orange">Orange Money</option>
+                                    <option value="mtn">MTN Mobile</option>
+                                    <option value="free">Free Money</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                            <div>
+                                <strong>Total :</strong> {{ selectedService.prix | currency:'€' }}
+                            </div>
+                            <button class="btn btn-gold" ng-click="processPayment()">
+                                <i class="fas fa-lock"></i> Payer {{ selectedService.prix | currency:'€' }}
+                            </button>
+                        </div>
+                        <div style="margin-top:16px; display:flex; justify-content:space-between;">
+                            <button class="btn btn-outline btn-sm" ng-click="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================
+        PAGE : CONFIRMATIONCONFIRMATION
+        ========================================================== -->
+        <div class="page" id="page-confirmation" ng-class="{ active: currentPage === 'confirmation' }">
+            <div class="container" style="display:flex; align-items:center; justify-content:center; min-height:70vh; padding-top:40px;">
+                <div class="confirmation-box animate-fadeUp">
+                    <div class="checkmark">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h2>Réservation confirmée</h2>
+                    <p style="color:var(--text-light);">Votre escapade bien-être est planifiée.</p>
+                    <div class="ref-number">
+                        #SPA-{{ confirmationRef }}
+                    </div>
+                    <div class="recap">
+                        <div class="recap-item"><span>Spa</span> <strong>{{ selectedSpa.nom }}</strong></div>
+                        <div class="recap-item"><span>Service</span> <strong>{{ selectedService.nom }}</strong></div>
+                        <div class="recap-item"><span>Date</span> <strong>{{ bookingDate | date:'dd/MM/yyyy' }}</strong></div>
+                        <div class="recap-item"><span>Horaire</span> <strong>{{ selectedTime }}</strong></div>
+                        <div class="recap-item"><span>Total</span> <strong>{{ selectedService.prix | currency:'€' }}</strong></div>
+                    </div>
+                    <button class="btn btn-gold" ng-click="resetBooking(); goTo('home')">
+                        <i class="fas fa-home"></i> Retour à l'accueil
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================
+        FOOTER
+        ========================================================== -->
+        <footer class="footer" ng-if="currentPage !== 'confirmation'">
+            <div class="container">
+                <div class="footer-brand">Éclat<span>Spa</span></div>
+                <div class="footer-links">
+                    <a ng-click="goTo('home')">Accueil</a>
+                    <a ng-click="goTo('services')">Services</a>
+                    <a ng-click="goTo('booking')">Réserver</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 Éclat Spa — Maquette de réservation luxe
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ============================================================
+    ANGULARJS SCRIPT
+    ============================================================ -->
+    <script>
+        angular.module('spaApp', [])
+            .controller('NavCtrl', function($scope) {
+                $scope.navOpen = false;
+                $scope.toggleNav = function() {
+                    $scope.navOpen = !$scope.navOpen;
+                };
+            })
+            .controller('AppCtrl', function($scope, $filter) {
+                // ============================================================
+                // DONNÉES
+                // ============================================================
+
+                // Spas
+                $scope.spas = [{
+                    id: 1,
+                    nom: 'Spa des Collines',
+                    ville: 'Paris 16e',
+                    notes: '★ 4.9 · 320 avis'
+                }, {
+                    id: 2,
+                    nom: 'Spa du Lac',
+                    ville: 'Annecy',
+                    notes: '★ 4.8 · 210 avis'
+                }, {
+                    id: 3,
+                    nom: 'Spa des Pins',
+                    ville: 'Biarritz',
+                    notes: '★ 4.9 · 180 avis'
+                }, {
+                    id: 4,
+                    nom: 'Spa Impérial',
+                    ville: 'Versailles',
+                    notes: '★ 4.7 · 150 avis'
+                }];
+
+                // Services
+                var baseServices = [{
+                    id: 1,
+                    nom: 'Massage Suédois',
+                    duree: 60,
+                    prix: 120,
+                    image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&q=80',
+                    categorie: 'Massage',
+                    desc: 'Détente profonde et relâchement musculaire.'
+                }, {
+                    id: 2,
+                    nom: 'Soin Visage Éclat',
+                    duree: 45,
+                    prix: 95,
+                    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&q=80',
+                    categorie: 'Visage',
+                    desc: 'Hydratation intense et éclat immédiat.'
+                }, {
+                    id: 3,
+                    nom: 'Gommage Corps',
+                    duree: 30,
+                    prix: 70,
+                    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&q=80',
+                    categorie: 'Corps',
+                    desc: 'Exfoliation douce pour une peau satinée.'
+                }, {
+                    id: 4,
+                    nom: 'Forfait Détente',
+                    duree: 120,
+                    prix: 190,
+                    image: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=400&q=80',
+                    categorie: 'Forfait',
+                    desc: 'Massage + soin visage, l\'expérience complète.'
+                }, {
+                    id: 5,
+                    nom: 'Massage aux pierres chaudes',
+                    duree: 75,
+                    prix: 145,
+                    image: 'https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=400&q=80',
+                    categorie: 'Massage',
+                    desc: 'Chaleur apaisante et énergie revitalisante.'
+                }, {
+                    id: 6,
+                    nom: 'Soin Minceur',
+                    duree: 50,
+                    prix: 110,
+                    image: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=400&q=80',
+                    categorie: 'Corps',
+                    desc: 'Modelage et soin ciblé pour une silhouette affinée.'
+                }];
+
+                $scope.allServices = baseServices;
+                $scope.featuredServices = baseServices.slice(0, 3);
+
+                // Steps du booking
+                $scope.steps = [
+                    { label: 'Spa' },
+                    { label: 'Soin' },
+                    { label: 'Date' },
+                    { label: 'Coordonnées' },
+                    { label: 'Paiement' }
+                ];
+
+                // État du booking
+                $scope.bookingStep = 0;
+                $scope.selectedSpa = null;
+                $scope.selectedService = null;
+                $scope.bookingDate = null;
+                $scope.selectedTime = null;
+                $scope.customer = { name: '', email: '', phone: '' };
+                $scope.paymentMethod = 'card';
+                $scope.payment = { cardNumber: '', expiry: '', cvv: '', cardName: '', mobileNumber: '', operator: '' };
+                $scope.confirmationRef = '';
+
+                // Time slots
+                $scope.timeSlots = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '13:00', '13:30', '14:00',
+                    '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00'
+                ];
+
+                // Date du jour
+                $scope.today = new Date();
+
+                // Page courante
+                $scope.currentPage = 'home';
+
+                // ============================================================
+                // NAVIGATION
+                // ============================================================
+                $scope.goTo = function(page) {
+                    $scope.currentPage = page;
+                    // fermer le nav mobile
+                    var navCtrl = angular.element(document.querySelector('[ng-controller="NavCtrl"]')).scope();
+                    if (navCtrl) navCtrl.navOpen = false;
+                    // scroll en haut
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+
+                // ============================================================
+                // BOOKING
+                // ============================================================
+                $scope.selectSpa = function(spa) {
+                    $scope.selectedSpa = spa;
+                };
+
+                $scope.selectService = function(service) {
+                    $scope.selectedService = service;
+                };
+
+                $scope.goToStep = function(index) {
+                    // on ne peut aller que sur des étapes déjà visitées ou la suivante
+                    if (index <= $scope.bookingStep) {
+                        $scope.bookingStep = index;
+                    }
+                };
+
+                $scope.nextStep = function() {
+                    if ($scope.bookingStep < $scope.steps.length - 1) {
+                        $scope.bookingStep++;
+                    } else {
+                        // si on est à la dernière étape, on redirige vers paiement
+                        // mais normalement le bouton de paiement est séparé
+                    }
+                };
+
+                $scope.prevStep = function() {
+                    if ($scope.bookingStep > 0) {
+                        $scope.bookingStep--;
+                    }
+                };
+
+                // ============================================================
+                // PAIEMENT
+                // ============================================================
+                $scope.processPayment = function() {
+                    if (!$scope.selectedService) return;
+
+                    // Générer un numéro de réservation
+                    $scope.confirmationRef = Math.floor(100000 + Math.random() * 900000);
+
+                    // Simuler un paiement réussi
+                    // On passe à la page de confirmation
+                    $scope.goTo('confirmation');
+                };
+
+                // ============================================================
+                // RÉINITIALISATION
+                // ============================================================
+                $scope.resetBooking = function() {
+                    $scope.bookingStep = 0;
+                    $scope.selectedSpa = null;
+                    $scope.selectedService = null;
+                    $scope.bookingDate = null;
+                    $scope.selectedTime = null;
+                    $scope.customer = { name: '', email: '', phone: '' };
+                    $scope.paymentMethod = 'card';
+                    $scope.payment = { cardNumber: '', expiry: '', cvv: '', cardName: '', mobileNumber: '', operator: '' };
+                };
+
+                // ============================================================
+                // FIX : s'assurer que la date soit au bon format
+                // ============================================================
+                $scope.$watch('bookingDate', function(newVal) {
+                    if (newVal) {
+                        // s'assurer que c'est une date valide
+                    }
+                });
+
+                // ============================================================
+                // INIT : sélectionner un spa et service par défaut pour la démo
+                // ============================================================
+                $scope.selectedSpa = $scope.spas[0];
+                $scope.selectedService = $scope.allServices[0];
+
+                console.log('🌟 Éclat Spa — Maquette de réservation chargée !');
+            });
+    </script>
+
+</body>
+</html>
